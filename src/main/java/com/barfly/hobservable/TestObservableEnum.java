@@ -45,9 +45,9 @@ public enum TestObservableEnum implements HObservable
     }
 
     @Override    
-    public void registerObserver(HObserver obs) 
+    public void addObserver(HObserver obs) 
     {
-        this.observableObject.registerObserver(obs);
+        this.observableObject.addObserver(obs);
     }
 
     @Override

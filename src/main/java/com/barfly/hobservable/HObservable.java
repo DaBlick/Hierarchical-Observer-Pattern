@@ -17,7 +17,7 @@ public interface HObservable
 
     public BaseHObservable getParentObservable();
 
-    public void registerObserver(HObserver observer);
+    public void addObserver(HObserver observer);
 
     public void setParentObservable(BaseHObservable parentObservable);
     

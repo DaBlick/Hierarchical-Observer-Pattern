@@ -38,8 +38,8 @@ public class BaseHObservable extends Observable implements HObservable
         this.order = order;
     }       
 
-    @Override
-    public void registerObserver(HObserver observer)
+    
+    public void addObserver(HObserver observer)
     {
         printConsoleDisplay("Registering observer....");
         super.addObserver(observer);
@@ -82,9 +82,11 @@ public class BaseHObservable extends Observable implements HObservable
         printConsoleDisplay("Broadcasting event.....");
         if (order.equals(PRE))
         {
+            super.setChanged();
             super.notifyObservers(eventData);
             if (parentObservable != null)
             {
+                //parentObservable.setChanged();
                 parentObservable.notifyObservers(eventData);   //Notifies this observable's parent's observers         
             }
 //
@@ -93,8 +95,10 @@ public class BaseHObservable extends Observable implements HObservable
         {
             if (parentObservable != null)
             {
+                parentObservable.setChanged();
                 parentObservable.notifyObservers(eventData);    
             }
+            super.setChanged();
             super.notifyObservers(eventData);
         }
         

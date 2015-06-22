@@ -42,8 +42,8 @@ public class JUnitTester
         TestHObserver obs2 = new TestHObserver("Observer 2");
         TestHObservable testObservable = new TestHObservable("Child 1", TestObservableEnum.OA);
         testObservable.setConsoleDisplayMode(false);        
-        testObservable.registerObserver(obs1);
-        testObservable.registerObserver(obs2);        
+        testObservable.addObserver(obs1);
+        testObservable.addObserver(obs2);        
         assertEquals(2, testObservable.countObservers());
     }
     
@@ -54,7 +54,7 @@ public class JUnitTester
     {
         TestHObservable testObservable = new TestHObservable("Child 1", TestObservableEnum.OA);
         TestHObserver obs1 = new TestHObserver("Observer 1");      
-        testObservable.getParentObservable().registerObserver(obs1);
+        testObservable.getParentObservable().addObserver(obs1);
         testObservable.getParentObservable().deleteObserver(obs1);
         
         assertEquals(0 , testObservable.getParentObservable().countObservers());  
@@ -94,12 +94,12 @@ public class JUnitTester
         TestHObserver obs5 = new TestHObserver("Observer 5");  //C2
         TestHObserver obs6 = new TestHObserver("Observer 6");  //C2 
         
-        testObservableC1.getParentObservable().registerObserver(obs1);
-        testObservableC1.getParentObservable().registerObserver(obs2); 
-        testObservableC1.registerObserver(obs3);
-        testObservableC1.registerObserver(obs4); 
-        testObservableC2.registerObserver(obs5);
-        testObservableC2.registerObserver(obs6); 
+        testObservableC1.getParentObservable().addObserver(obs1);
+        testObservableC1.getParentObservable().addObserver(obs2); 
+        testObservableC1.addObserver(obs3);
+        testObservableC1.addObserver(obs4); 
+        testObservableC2.addObserver(obs5);
+        testObservableC2.addObserver(obs6); 
         
 
         testObservableC1.getParentObservable().notifyObservers("test");   //should notify the parent's observers
@@ -123,12 +123,12 @@ public class JUnitTester
         TestHObserver obs5 = new TestHObserver("Observer 5");  //C2
         TestHObserver obs6 = new TestHObserver("Observer 6");  //C2 
         
-        testObservableC1.getParentObservable().registerObserver(obs1);
-        testObservableC1.getParentObservable().registerObserver(obs2); 
-        testObservableC1.registerObserver(obs3);            //registerObserver
-        testObservableC1.registerObserver(obs4);            //registerObserver
-        testObservableC2.registerObserver(obs5);            //registerObserver
-        testObservableC2.registerObserver(obs6);            //registerObserver
+        testObservableC1.getParentObservable().addObserver(obs1);
+        testObservableC1.getParentObservable().addObserver(obs2); 
+        testObservableC1.addObserver(obs3);            //registerObserver
+        testObservableC1.addObserver(obs4);            //registerObserver
+        testObservableC2.addObserver(obs5);            //registerObserver
+        testObservableC2.addObserver(obs6);            //registerObserver
         
         testObservableC1.notifyObservers("test");      //should notify the C1 and the parent's observers
         
@@ -152,12 +152,12 @@ public class JUnitTester
         TestHObserver obs5 = new TestHObserver("Observer 5");  //C2
         TestHObserver obs6 = new TestHObserver("Observer 6");  //C2 
         
-        testObservableC1.getParentObservable().registerObserver(obs1);
-        testObservableC1.getParentObservable().registerObserver(obs2); 
-        testObservableC1.registerObserver(obs3);
-        testObservableC1.registerObserver(obs4); 
-        testObservableC2.registerObserver(obs5);
-        testObservableC2.registerObserver(obs6); 
+        testObservableC1.getParentObservable().addObserver(obs1);
+        testObservableC1.getParentObservable().addObserver(obs2); 
+        testObservableC1.addObserver(obs3);
+        testObservableC1.addObserver(obs4); 
+        testObservableC2.addObserver(obs5);
+        testObservableC2.addObserver(obs6); 
         
         testObservableC2.notifyObservers("test");      //should notify the C2 and the parent's observers
         

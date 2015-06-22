@@ -24,17 +24,15 @@ public class MainClass
         System.out.println("this is the " + testObserver1);
         System.out.println("this is the " + testObserver2);
         
-        testObservable.registerObserver(testObserver1);         //Works
-        testObservable.registerObserver(testObserver2); 
-        
+        testObservable.addObserver(testObserver1);         //Works
+        testObservable.addObserver(testObserver2); 
+       
         testObservable.notifyObservers("The test event");         //Doesn't Work (Related to notifyObservers or the overriden update() method in HObserver
-        
-        System.out.println("RESULTS");
         
         System.out.println(testObserver1);
         System.out.println(testObserver2);
         
-        //System.out.println(testObserver1.getEvents().get(0));
-        //System.out.println(testObserver2.getEvents().get(0));
+        System.out.println("EVENT " + testObserver1.getEvents().get(0).getEventData());
+        System.out.println("EVENT " + testObserver2.getEvents().get(0).getEventData());
     }
 }

@@ -1,5 +1,7 @@
 package com.barfly.hobservable;
 
+import java.util.List;
+import java.util.Observable;
 import java.util.Observer;
 
 /**
@@ -8,5 +10,13 @@ import java.util.Observer;
  */
 public interface HObserver extends Observer
 {
-    String getObserverID();
+    public void update(Observable observable, Object eventData);     
+    
+    public void setObservable(TestHObservable observable);
+
+    public String toString();
+    
+    public List<Event> getEvents();
+
+    public boolean isEventPresent(Event check);
 }

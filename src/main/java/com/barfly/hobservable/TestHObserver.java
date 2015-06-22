@@ -33,15 +33,10 @@ public class TestHObserver implements HObserver
         System.out.println("Hey, Observer got an event: " + eventData);     
     }                                                                         
     
-
+    @Override
     public void setObservable(TestHObservable observable)
     {
         this.observable = observable; 
-    }
-    
-    public String getObserverID()
-    {
-        return this.observerID;
     }
     
     @Override
@@ -49,12 +44,14 @@ public class TestHObserver implements HObserver
     {
         return "Observer: " + this.observerID;
     }
-    
+
+    @Override    
     public List<Event> getEvents()
     {
         return events;
     }
-    
+
+    @Override    
     public boolean isEventPresent(Event check) 
     {
         return events.contains(check);
