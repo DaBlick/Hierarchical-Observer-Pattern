@@ -59,17 +59,23 @@ public class BaseHObservable extends Observable implements HObservable
         
         if (order.equals(PRE))
         {
-            parentObservable.notifyObservers();
+            if (parentObservable != null)
+            {
+                parentObservable.notifyObservers();   //Notifies this observable's parent's observers         
+            }
             super.notifyObservers();            
         }
         if (order.equals(POST))
         {
             super.notifyObservers();
-            parentObservable.notifyObservers();
-            
+            if (parentObservable != null)
+            {
+                parentObservable.notifyObservers();   //Notifies this observable's parent's observers         
+            }           
         }
     }
        
+    @Override
     public void notifyObservers(Object eventData) 
     {
 
