@@ -1,7 +1,7 @@
 package com.barfly.hobservable;
 
-import static Barfly.core.utilities.observable.NotificationOrder.POST;
-import static Barfly.core.utilities.observable.NotificationOrder.PRE;
+import static com.barfly.hobservable.NotificationOrder.POST;
+import static com.barfly.hobservable.NotificationOrder.PRE;
 import java.util.Observable;
 
 
