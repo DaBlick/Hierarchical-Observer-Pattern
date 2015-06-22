@@ -13,12 +13,12 @@ import java.util.Observable;
  *
  * @author jonathanodgis
  */
-public class TestHObserver implements HObserver 
+public class TestHObserver implements HObserver
 {
     //Will include methods of the observer interface or Tournament Observer?
     
-    private List<Event> events = new ArrayList<>();
-    private String observerID;
+    private final List<Event> events = new ArrayList<>();
+    private final String observerID;
     private TestHObservable observable;
     
     public TestHObserver(String observerID)   
@@ -29,9 +29,9 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
+        System.out.println("Made it to the update");
         this.events.add(new Event((HObservable) observable, eventData));   //May be a problem
-        System.out.println("Hey, Observer got an event: " + eventData);
-        
+        System.out.println("Hey, Observer got an event: " + eventData);     
     }                                                                         
     
 

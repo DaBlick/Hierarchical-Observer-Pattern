@@ -70,7 +70,6 @@ public class BaseHObservable extends Observable implements HObservable
         }
     }
        
-    @Override
     public void notifyObservers(Object eventData) 
     {
 
@@ -78,11 +77,18 @@ public class BaseHObservable extends Observable implements HObservable
         if (order.equals(PRE))
         {
             super.notifyObservers(eventData);
-            parentObservable.notifyObservers(eventData);   //Notifies this observable's parent's observers
+            if (parentObservable != null)
+            {
+                parentObservable.notifyObservers(eventData);   //Notifies this observable's parent's observers         
+            }
+//
         }
         if (order.equals(POST))
         {
-            parentObservable.notifyObservers(eventData);
+            if (parentObservable != null)
+            {
+                parentObservable.notifyObservers(eventData);    
+            }
             super.notifyObservers(eventData);
         }
         

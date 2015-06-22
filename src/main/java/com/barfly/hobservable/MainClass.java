@@ -14,11 +14,27 @@ public class MainClass
     public static void main(String[] args)
     {
         TestHObservable testObservable = new TestHObservable("Root", TestObservableEnum.OA);
-        TestHObserver observer = new TestHObserver("Observer 1");
+        TestHObserver testObserver1 = new TestHObserver("Observer 1");
+        TestHObserver testObserver2 = new TestHObserver("Observer 2");
+        
+        testObservable.setConsoleDisplayMode(true);
+        
         System.out.println("this is the " + testObservable);
-        System.out.println("this is the " + observer);
-        //comment
-        testObservable.registerObserver(observer);                   //Works
-        //testObservable.notifyObservers("The test event");         //Doesn't Work (Related to notifyObservers or the overriden update() method in HObserver
+        
+        System.out.println("this is the " + testObserver1);
+        System.out.println("this is the " + testObserver2);
+        
+        testObservable.registerObserver(testObserver1);         //Works
+        testObservable.registerObserver(testObserver2); 
+        
+        testObservable.notifyObservers("The test event");         //Doesn't Work (Related to notifyObservers or the overriden update() method in HObserver
+        
+        System.out.println("RESULTS");
+        
+        System.out.println(testObserver1);
+        System.out.println(testObserver2);
+        
+        //System.out.println(testObserver1.getEvents().get(0));
+        //System.out.println(testObserver2.getEvents().get(0));
     }
 }
