@@ -17,7 +17,7 @@ public class MainClass
         TestHObserver observer = new TestHObserver("Observer 1");
         System.out.println("this is the " + testObservable);
         System.out.println("this is the " + observer);
-        
+        //comment
         testObservable.registerObserver(observer);                   //Works
         //testObservable.notifyObservers("The test event");         //Doesn't Work (Related to notifyObservers or the overriden update() method in HObserver
     }
