@@ -12,9 +12,6 @@ import java.util.Observable;
 public class BaseHObservable extends Observable implements HObservable
 {
     
-    
-    //private Set<HObserver> observers;
-    
     private BaseHObservable parentObservable;
     
     private String observableID;
@@ -38,13 +35,20 @@ public class BaseHObservable extends Observable implements HObservable
         this.order = order;
     }       
 
-    
+    /**
+     * Adds an observer to the observable's list of observers
+     * @param observer
+     */    
     public void addObserver(HObserver observer)
     {
         printConsoleDisplay("Registering observer....");
         super.addObserver(observer);
     }    
     
+    /**
+     * Removes an observer from the observable's list of observers
+     * @param observer 
+     */
     @Override
     public void deleteObserver(HObserver observer)
     {
@@ -52,6 +56,9 @@ public class BaseHObservable extends Observable implements HObservable
         super.deleteObserver(observer);
     }
 
+    /**
+     * Notifies the observers of an observable and its parent. 
+     */
     @Override
     public void notifyObservers() 
     {
@@ -74,7 +81,11 @@ public class BaseHObservable extends Observable implements HObservable
             }           
         }
     }
-       
+
+    /**
+     * Notifies the observers of an observable and its parent. 
+     * @param eventData
+     */    
     @Override
     public void notifyObservers(Object eventData) 
     {
@@ -104,7 +115,10 @@ public class BaseHObservable extends Observable implements HObservable
         
     }
     
-    
+    /**
+     * Returns the parent observable of this observable
+     * @return the parent observable of this observable
+     */
     @Override
     public BaseHObservable getParentObservable() 
     {
@@ -112,6 +126,10 @@ public class BaseHObservable extends Observable implements HObservable
         return parentObservable;
     }
 
+    /**
+     * Sets the parent observable of this observable
+     * @param parentObservable
+     */    
     @Override
     public void setParentObservable(BaseHObservable parentObservable) 
     {
@@ -119,12 +137,20 @@ public class BaseHObservable extends Observable implements HObservable
         this.parentObservable = parentObservable;
     }
 
+    /**
+     * Returns the name of the observable
+     * @return the name of the observable
+     */
     @Override
     public String getObservableID()        
     {
         return observableID;
     }
 
+    /**
+     * Returns the path of the parent and child observable in string form
+     * @return the path of the parent and child observable in string form
+     */
     public String getFullPath() 
     {
         String result = this.toString();
@@ -136,20 +162,37 @@ public class BaseHObservable extends Observable implements HObservable
         return result;
     }
     
+    /**
+     * Returns the notification order
+     * @return the notification order
+     */
     public NotificationOrder getNotificationOrder()
     {
         return this.order;
     }
     
+    /**
+     * Returns the current console display value 
+     * @return the console display mode value
+     */
     public boolean getConsoleDisplayMode()
     {
         return consoleDisplayMode;
     }
+    
+    /**
+     * Sets the console display value
+     * @param value 
+     */
     public void setConsoleDisplayMode(boolean value)
     {
         consoleDisplayMode = value;
     }
     
+    /**
+     * Displays the message in the parameters if the consoledisplayMode is set to true
+     * @param msg 
+     */
     public void printConsoleDisplay(String msg)
     {
         if (consoleDisplayMode == true)
@@ -158,6 +201,10 @@ public class BaseHObservable extends Observable implements HObservable
         }
     }
     
+    /**
+     * Returns the name of the observable
+     * @return the name of the observable 
+     */
     @Override
     public String toString()
     {

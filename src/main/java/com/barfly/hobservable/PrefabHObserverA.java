@@ -6,21 +6,24 @@
 package com.barfly.hobservable;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Observable;
+import java.util.Stack;
 
 /**
  *
  * @author jonathanodgis
  */
-public class TestHObserver implements HObserver 
+public class PrefabHObserverA implements HObserver 
 {   
-    private final List<Event> events = new ArrayList<>();
+    private final Stack<Event> events = new Stack<>();
     private final String observerID;
     private TestHObservable observable;
+    private Date date = new Date();
+    private boolean dateDisplayMode;
     
-    
-    public TestHObserver(String observerID)   
+    public PrefabHObserverA(String observerID)   
     {
         this.observerID = observerID;
     }    
@@ -33,10 +36,21 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        this.events.add(new Event((HObservable) observable, eventData));  
-        System.out.println("Hey, Observer got an event: " + eventData);     
+        this.events.push(new Event((HObservable) observable, eventData)); 
+        System.out.println("Hey, Observer got an event: " + eventData + " at ");
+        printDateDisplay();
     }                                                                         
     
+    /**
+     * Removes all the events of the observer
+     */
+    public void removeEvents()
+    {
+        while (!events.empty())
+        {
+            this.events.pop();
+        }
+    }
     
     /**
      * Sets the observable of the observer. 
@@ -63,7 +77,7 @@ public class TestHObserver implements HObserver
      * @return the list of events received by the observer
      */
     @Override    
-    public List<Event> getEvents()
+    public Stack<Event> getEvents()
     {
         return events;
     }
@@ -77,6 +91,26 @@ public class TestHObserver implements HObserver
     public boolean isEventPresent(Event check) 
     {
         return events.contains(check);
+    }
+    
+    /**
+     * Sets the value of the private boolean value dateDisplayMode to true or false.
+     * @param value 
+     */
+    public void setDateDisplayMode(boolean value)
+    {
+        dateDisplayMode = value;
+    }
+    
+    /**
+     * Displays the date if the dateDisplayMode is true
+     */
+    public void printDateDisplay()
+    {
+        if (dateDisplayMode == true)
+        {
+            System.out.println(this.date.toString());
+        }
     }
 
 }

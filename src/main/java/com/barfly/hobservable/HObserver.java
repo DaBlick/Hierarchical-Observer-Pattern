@@ -19,4 +19,5 @@ public interface HObserver extends Observer
     public List<Event> getEvents();
 
     public boolean isEventPresent(Event check);
+    
 }
