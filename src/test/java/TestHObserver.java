@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.barfly.hobservable;
 
+
+import com.barfly.hobservable.HObserver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -18,8 +19,7 @@ public class TestHObserver implements HObserver
     private final List<Event> events = new ArrayList<>();
     private final String observerID;
     private TestHObservable observable;
-    
-    
+     
     public TestHObserver(String observerID)   
     {
         this.observerID = observerID;
@@ -33,7 +33,7 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        this.events.add(new Event((HObservable) observable, eventData));  
+        //this.events.add(new Event((HObservable) observable, eventData));  
         System.out.println("Hey, Observer got an event: " + eventData);     
     }                                                                         
     
@@ -42,7 +42,6 @@ public class TestHObserver implements HObserver
      * Sets the observable of the observer. 
      * @param observable 
      */
-    @Override
     public void setObservable(TestHObservable observable)
     {
         this.observable = observable; 
@@ -61,8 +60,7 @@ public class TestHObserver implements HObserver
     /**
      * Returns the list of events received by the observer.
      * @return the list of events received by the observer
-     */
-    @Override    
+     */ 
     public List<Event> getEvents()
     {
         return events;
@@ -73,7 +71,6 @@ public class TestHObserver implements HObserver
      * @param check
      * @return true or false 
      */
-    @Override    
     public boolean isEventPresent(Event check) 
     {
         return events.contains(check);

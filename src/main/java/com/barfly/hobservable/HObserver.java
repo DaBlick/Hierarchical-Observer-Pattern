@@ -11,13 +11,8 @@ import java.util.Observer;
 public interface HObserver extends Observer
 {
     public void update(Observable observable, Object eventData);     
-    
-    public void setObservable(TestHObservable observable);
 
     public String toString();
     
-    public List<Event> getEvents();
-
-    public boolean isEventPresent(Event check);
     
 }

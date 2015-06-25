@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.barfly.hobservable;
+
 
 import java.util.Observable;
 
@@ -50,4 +50,17 @@ public class Event
         //return "Observable " + this.getObservable().toString();
         return this.observable.toString();
     }    
+
+    @Override
+    public boolean equals(Object obj) 
+    {
+        if (!(obj instanceof Event))
+        {
+            return false;
+        }
+        Event event = (Event) obj;
+        return this.observable == event.observable && this.eventData == event.eventData;
+    }
+    
+    
 }
