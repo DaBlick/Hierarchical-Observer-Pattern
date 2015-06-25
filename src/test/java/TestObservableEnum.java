@@ -1,3 +1,8 @@
+
+import com.barfly.hobservable.BaseHObservable;
+import com.barfly.hobservable.HObservable;
+import com.barfly.hobservable.HObserver;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -139,4 +144,11 @@ public enum TestObservableEnum implements HObservable
     {
         return this.observableObject.countObservers();
     }
+
+    @Override
+    public int countAllObservers() 
+    {
+        return this.observableObject.countAllObservers();
+    }
+
 }

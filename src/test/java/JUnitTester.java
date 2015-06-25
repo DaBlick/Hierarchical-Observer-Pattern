@@ -4,13 +4,11 @@
  * and open the template in the editor.
  */
 
+
 import com.barfly.hobservable.Event;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import static com.barfly.hobservable.NotificationOrder.PRE;
-import com.barfly.hobservable.TestHObservable;
-import com.barfly.hobservable.TestHObserver;
-import com.barfly.hobservable.TestObservableEnum;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

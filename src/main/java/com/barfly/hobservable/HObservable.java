@@ -22,4 +22,6 @@ public interface HObservable
     public void setParentObservable(BaseHObservable parentObservable);
     
     public int countObservers();
+    
+    public int countAllObservers();
 }

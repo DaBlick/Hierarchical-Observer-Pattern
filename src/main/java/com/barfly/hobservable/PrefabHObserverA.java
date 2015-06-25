@@ -1,11 +1,12 @@
+package com.barfly.hobservable;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.barfly.hobservable;
 
-import java.util.ArrayList;
+import java.awt.Event;
 import java.util.Date;
 import java.util.List;
 import java.util.Observable;
@@ -19,7 +20,7 @@ public class PrefabHObserverA implements HObserver
 {   
     private final Stack<Event> events = new Stack<>();
     private final String observerID;
-    private TestHObservable observable;
+    private BaseHObservable observable;
     private Date date = new Date();
     private boolean dateDisplayMode;
     
@@ -36,8 +37,8 @@ public class PrefabHObserverA implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        this.events.push(new Event((HObservable) observable, eventData)); 
-        System.out.println("Hey, Observer got an event: " + eventData + " at ");
+        //this.events.push(new Event((HObservable) observable, eventData)); 
+        System.out.println("Hey, Observer got an event: " + eventData);
         printDateDisplay();
     }                                                                         
     
@@ -56,8 +57,8 @@ public class PrefabHObserverA implements HObserver
      * Sets the observable of the observer. 
      * @param observable 
      */
-    @Override
-    public void setObservable(TestHObservable observable)
+
+    public void setObservable(BaseHObservable observable)
     {
         this.observable = observable; 
     }
@@ -76,7 +77,7 @@ public class PrefabHObserverA implements HObserver
      * Returns the list of events received by the observer.
      * @return the list of events received by the observer
      */
-    @Override    
+
     public Stack<Event> getEvents()
     {
         return events;
@@ -87,7 +88,7 @@ public class PrefabHObserverA implements HObserver
      * @param check
      * @return true or false 
      */
-    @Override    
+
     public boolean isEventPresent(Event check) 
     {
         return events.contains(check);
@@ -109,7 +110,7 @@ public class PrefabHObserverA implements HObserver
     {
         if (dateDisplayMode == true)
         {
-            System.out.println(this.date.toString());
+            System.out.println(" at " + this.date.toString());
         }
     }
 

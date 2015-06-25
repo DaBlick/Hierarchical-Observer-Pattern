@@ -16,8 +16,6 @@ public class BaseHObservable extends Observable implements HObservable
     
     private String observableID;
     
-    private TestObservableEnum observableEnum;  //added by Netbeans as a recommended fix for the enum call for event
-    
     private NotificationOrder order;
     
     private boolean consoleDisplayMode;
@@ -210,4 +208,16 @@ public class BaseHObservable extends Observable implements HObservable
     {
         return "Observable: " + this.observableID;
     }
+
+    public int countObservers()
+    {
+        return super.countObservers();
+    }
+    
+    public int countAllObservers()
+    {
+        return super.countObservers() + parentObservable.countObservers();
+    }
+    
+    
 }

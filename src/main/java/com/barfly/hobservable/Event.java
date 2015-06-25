@@ -1,3 +1,7 @@
+package com.barfly.hobservable;
+
+
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +9,7 @@
  */
 
 
+import com.barfly.hobservable.HObservable;
 import java.util.Observable;
 
 /**
