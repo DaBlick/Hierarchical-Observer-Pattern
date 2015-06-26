@@ -22,7 +22,7 @@ public class TestHObserver implements HObserver
 {   
     private final List<Event> events = new ArrayList<>();
     private final String observerID;
-    private TestHObservable observable;
+    private HObservable observable;  //originally testhobservable
      
     public TestHObserver(String observerID)   
     {
@@ -37,7 +37,7 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        //this.events.add(new Event((HObservable) observable, eventData));  
+        this.events.add(new Event((HObservable) observable, eventData));  
         System.out.println("Hey, Observer got an event: " + eventData);     
     }                                                                         
     
@@ -49,6 +49,11 @@ public class TestHObserver implements HObserver
     public void setObservable(TestHObservable observable)
     {
         this.observable = observable; 
+    }
+    
+    public HObservable getObservable()
+    {
+        return this.observable;
     }
     
     /**

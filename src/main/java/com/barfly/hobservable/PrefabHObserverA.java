@@ -20,7 +20,7 @@ public class PrefabHObserverA implements HObserver
 {   
     private final Stack<Event> events = new Stack<>();
     private final String observerID;
-    private BaseHObservable observable;
+    private HObservable observable;
     private Date date = new Date();
     private boolean dateDisplayMode;
     

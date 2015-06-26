@@ -209,11 +209,13 @@ public class BaseHObservable extends Observable implements HObservable
         return "Observable: " + this.observableID;
     }
 
+    @Override
     public int countObservers()
     {
         return super.countObservers();
     }
     
+    @Override
     public int countAllObservers()
     {
         return super.countObservers() + parentObservable.countObservers();

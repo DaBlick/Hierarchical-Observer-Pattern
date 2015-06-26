@@ -1,5 +1,6 @@
 
 import com.barfly.hobservable.BaseHObservable;
+import com.barfly.hobservable.HObservable;
 import com.barfly.hobservable.PrefabHObserverA;
 
 /*
@@ -23,11 +24,20 @@ public class MainClass
         TestHObserver realObserverA = new TestHObserver("Observer A");
         
         realObservable.addObserver(realObserverA);
+        realObservable.addObserver(realObserverA);
         
-        realObservable.notifyObservers("Real BaseHobservable test");
+        realObservable.notifyObservers("test 1");
+        realObservable.notifyObservers("test 2");
+        realObservable.notifyObservers("test 3");
+        realObservable.notifyObservers("test 4");
+        
+        System.out.println(realObservable.countObservers());
+     
+        for (int i = 0; i < realObserverA.getEvents().size(); i++)
+        {
+            System.out.println(realObserverA.getEvents().get(i).getEventData());            
+        }
 
-        System.out.println("HERE" + realObserverA + " has " + realObserverA.getEvents().get(0).getEventData().toString());
-        
         
         System.out.println("==================================================");
         
@@ -67,9 +77,20 @@ public class MainClass
 
         System.out.println("=================================");           
         //System.out.println(testObserver3 + ": The most recent event is " + testObserver3.getEvents().peek().getEventData() + " from the " + testObserver3.getEvents().peek().getObservable()); 
-
+        
+        System.out.println(testObserver3.getEvents().size());
+        int count = 0;
+        
+        /*
+        while (!(testObserver3.getEvents().isEmpty()))
+        {
+            testObserver3.getEvents().pop();
+            count++;
+        }
+        System.out.println("Number of events in stack : " + count);
         testObserver3.removeEvents();    
-
+        */
+        
         System.out.println("Now " + testObserver3 + " has " + testObserver3.getEvents().size() + " events after being cleared");
         System.out.println("=================================");        
         System.out.println(testObservable + " has " +testObservable.countObservers() + " observers");
