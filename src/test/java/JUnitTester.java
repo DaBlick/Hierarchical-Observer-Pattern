@@ -79,6 +79,7 @@ public class JUnitTester
         assertEquals(POST, testObservable.getNotificationOrder());
     }        
     
+    @Test     
     //Case 1: send some events to P, and make sure only observers of P get those
     public void sendEventsToParentOnly()
     {
@@ -108,7 +109,7 @@ public class JUnitTester
        
     }
 
-    
+    @Test     
     public void sendEventsToParentOnlyAlt()
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
@@ -134,6 +135,8 @@ public class JUnitTester
         //Insert assert here
        
     }    
+
+    @Test     
     //Case 2: send some events to C1 and make sure only observers of P and C1 get events
     public void sendEventsToC1()   //notifyObservers with no param
     {
@@ -163,7 +166,8 @@ public class JUnitTester
         );
         
     }
-    
+
+    @Test     
     //Case 2: send some events to C1 and make sure only observers of P and C1 get events
     public void sendEventsToC1Alt()   //notifyObservers with no param
     {
@@ -189,6 +193,8 @@ public class JUnitTester
         //Insert Assert here
         
     }    
+    
+    @Test 
     //Case 3: send some events to C2 and make sure only observers of P and C2 get those events
     public void sendEventsToC2()
     {
@@ -217,7 +223,8 @@ public class JUnitTester
                 && obs2.isEventPresent(new Event(testObservableC2.getParentObservable(), "test"))
         );     
     }
-    
+  
+    @Test     
     //Case 3: send some events to C2 and make sure only observers of P and C2 get those events
     public void sendEventsToC2Alt()
     {
@@ -242,6 +249,36 @@ public class JUnitTester
         
         //Insert Assert Here
  
+    }
+
+    @Test     
+    public void countingTheObservers()
+    {
+        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
+        
+        TestHObserver obs1 = new TestHObserver("Observer 1"); 
+        TestHObserver obs2 = new TestHObserver("Observer 2");  
+        TestHObserver obs3 = new TestHObserver("Observer 3");   
+        
+        testObservableC1.addObserver(obs1);
+        testObservableC1.addObserver(obs2);
+        testObservableC1.getParentObservable().addObserver(obs1);
+        
+        assert(testObservableC1.countObservers() < testObservableC1.countAllObservers());
+    }
+    
+    @Test
+    public void deletionOfObserverAndThenSendingEvent()
+    {
+        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
+        
+        TestHObserver obs1 = new TestHObserver("Observer 1"); 
+
+        testObservableC1.addObserver(obs1);
+        
+        testObservableC1.deleteObserver(obs1);
+        
+        
     }
     
     

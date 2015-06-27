@@ -58,6 +58,13 @@ public class TestHObserver implements HObserver
         this.observable = observable; 
     }
     
+    /*
+    public void removeObservable()
+    {
+        this.observable = null;
+    }
+    */
+    
     public HObservable getObservable()
     {
         return this.observable;
