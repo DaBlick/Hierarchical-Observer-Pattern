@@ -218,7 +218,14 @@ public class BaseHObservable extends Observable implements HObservable
     @Override
     public int countAllObservers()
     {
-        return super.countObservers() + parentObservable.countObservers();
+        if (this.parentObservable != null)
+        {
+            return super.countObservers() + parentObservable.countObservers();
+        }
+        else
+        {
+            return countObservers();
+        }
     }
     
     

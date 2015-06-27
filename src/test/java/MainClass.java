@@ -31,8 +31,9 @@ public class MainClass
         realObservable.notifyObservers("test 3");
         realObservable.notifyObservers("test 4");
         
-        System.out.println(realObservable.countObservers());
-     
+        System.out.println("NUMBER OF OBSERVERS:" +realObservable.countObservers());    
+        System.out.println("NUMBER OF OBSERVERS:" + realObservable.countAllObservers());
+        
         for (int i = 0; i < realObserverA.getEvents().size(); i++)
         {
             System.out.println(realObserverA.getEvents().get(i).getEventData());            
@@ -62,39 +63,24 @@ public class MainClass
         testObservable.notifyObservers("A");       
         testObservable.getParentObservable().notifyObservers("B"); 
         System.out.println(testObserver1.getEvents().size());
-        System.out.println("=================================");
-        for (int i = 0; i < testObserver1.getEvents().size(); i++)
-        {
-            System.out.println(testObserver1 + ": The index " + i + " event is " + testObserver1.getEvents().get(i).getEventData() + " from the " + testObserver1.getEvents().get(i).getObservable());
-       
-        }
-
-        System.out.println("=================================");        
-        for (int i = 0; i < testObserver2.getEvents().size(); i++)
-        {
-            System.out.println(testObserver2 + ": The index " + i + " event is " + testObserver2.getEvents().get(i).getEventData() + " from the " + testObserver2.getEvents().get(i).getObservable()); 
-        }
-
-        System.out.println("=================================");           
-        //System.out.println(testObserver3 + ": The most recent event is " + testObserver3.getEvents().peek().getEventData() + " from the " + testObserver3.getEvents().peek().getObservable()); 
-        
-        System.out.println(testObserver3.getEvents().size());
-        int count = 0;
-        
-        /*
-        while (!(testObserver3.getEvents().isEmpty()))
-        {
-            testObserver3.getEvents().pop();
-            count++;
-        }
-        System.out.println("Number of events in stack : " + count);
-        testObserver3.removeEvents();    
-        */
-        
-        System.out.println("Now " + testObserver3 + " has " + testObserver3.getEvents().size() + " events after being cleared");
-        System.out.println("=================================");        
+  
         System.out.println(testObservable + " has " +testObservable.countObservers() + " observers");
         System.out.println(testObservable.getParentObservable() + " has " + testObservable.getParentObservable().countObservers() + " observers");
+    
+        System.out.println("NUMBER OF OBSERVERS:" +testObservable.countObservers());
+     
+        System.out.println("NUMBER OF OBSERVERS:" + testObservable.countAllObservers());
+        
+        System.out.println("========================================================");
+        
+        testObservable.deleteObserver(testObserver1);
+        
+        testObservable.notifyObservers("new event to see if deleted observers get events");
+        
+        for (int i = 0; i < testObserver1.getEvents().size(); i++)
+        {
+            System.out.println(testObserver1.getEvents().get(i).getEventData());
+        }
     }
 
 }

@@ -107,9 +107,35 @@ public class JUnitTester
         );
        
     }
+
     
+    public void sendEventsToParentOnlyAlt()
+    {
+        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
+        TestHObservable testObservableC2 = new TestHObservable("Child 2", TestObservableEnum.OA);
+        
+        TestHObserver obs1 = new TestHObserver("Observer 1");  //Parent of C1/C2
+        TestHObserver obs2 = new TestHObserver("Observer 2");  //Parent of C1/C2
+        TestHObserver obs3 = new TestHObserver("Observer 3");  //C1 
+        TestHObserver obs4 = new TestHObserver("Observer 4");  //C1 
+        TestHObserver obs5 = new TestHObserver("Observer 5");  //C2
+        TestHObserver obs6 = new TestHObserver("Observer 6");  //C2 
+        
+        testObservableC1.getParentObservable().addObserver(obs1);
+        testObservableC1.getParentObservable().addObserver(obs2); 
+        testObservableC1.addObserver(obs3);
+        testObservableC1.addObserver(obs4); 
+        testObservableC2.addObserver(obs5);
+        testObservableC2.addObserver(obs6); 
+        
+
+        testObservableC1.getParentObservable().notifyObservers();   //should notify the parent's observers
+        
+        //Insert assert here
+       
+    }    
     //Case 2: send some events to C1 and make sure only observers of P and C1 get events
-    public void sendEventsToC1()
+    public void sendEventsToC1()   //notifyObservers with no param
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
         TestHObservable testObservableC2 = new TestHObservable("Child 2", TestObservableEnum.OA);
@@ -128,7 +154,7 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);            //registerObserver
         testObservableC2.addObserver(obs6);            //registerObserver
         
-        testObservableC1.notifyObservers("test");      //should notify the C1 and the parent's observers
+        testObservableC1.notifyObservers("Test");      //should notify the C1 and the parent's observers
         
         assertEquals(true, obs3.isEventPresent(new Event(testObservableC1,"test")) 
                 && obs4.isEventPresent(new Event(testObservableC1, "test")) 
@@ -137,6 +163,32 @@ public class JUnitTester
         );
         
     }
+    
+    //Case 2: send some events to C1 and make sure only observers of P and C1 get events
+    public void sendEventsToC1Alt()   //notifyObservers with no param
+    {
+        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
+        TestHObservable testObservableC2 = new TestHObservable("Child 2", TestObservableEnum.OA);
+        
+        TestHObserver obs1 = new TestHObserver("Observer 1");  //Parent of C1/C2
+        TestHObserver obs2 = new TestHObserver("Observer 2");  //Parent of C1/C2
+        TestHObserver obs3 = new TestHObserver("Observer 3");  //C1 
+        TestHObserver obs4 = new TestHObserver("Observer 4");  //C1 
+        TestHObserver obs5 = new TestHObserver("Observer 5");  //C2
+        TestHObserver obs6 = new TestHObserver("Observer 6");  //C2 
+        
+        testObservableC1.getParentObservable().addObserver(obs1);
+        testObservableC1.getParentObservable().addObserver(obs2); 
+        testObservableC1.addObserver(obs3);            //registerObserver
+        testObservableC1.addObserver(obs4);            //registerObserver
+        testObservableC2.addObserver(obs5);            //registerObserver
+        testObservableC2.addObserver(obs6);            //registerObserver
+        
+        testObservableC1.notifyObservers();      //should notify the C1 and the parent's observers
+        
+        //Insert Assert here
+        
+    }    
     //Case 3: send some events to C2 and make sure only observers of P and C2 get those events
     public void sendEventsToC2()
     {
@@ -157,7 +209,7 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);
         testObservableC2.addObserver(obs6); 
         
-        testObservableC2.notifyObservers("test");      //should notify the C2 and the parent's observers
+        testObservableC2.notifyObservers();      //should notify the C2 and the parent's observers
         
         assertEquals(true, obs5.isEventPresent(new Event(testObservableC2,"test")) 
                 && obs6.isEventPresent(new Event(testObservableC2, "test")) 
@@ -166,6 +218,32 @@ public class JUnitTester
         );     
     }
     
-
+    //Case 3: send some events to C2 and make sure only observers of P and C2 get those events
+    public void sendEventsToC2Alt()
+    {
+        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
+        TestHObservable testObservableC2 = new TestHObservable("Child 2", TestObservableEnum.OA);
+        
+        TestHObserver obs1 = new TestHObserver("Observer 1");  //Parent of C1/C2
+        TestHObserver obs2 = new TestHObserver("Observer 2");  //Parent of C1/C2
+        TestHObserver obs3 = new TestHObserver("Observer 3");  //C1 
+        TestHObserver obs4 = new TestHObserver("Observer 4");  //C1 
+        TestHObserver obs5 = new TestHObserver("Observer 5");  //C2
+        TestHObserver obs6 = new TestHObserver("Observer 6");  //C2 
+        
+        testObservableC1.getParentObservable().addObserver(obs1);
+        testObservableC1.getParentObservable().addObserver(obs2); 
+        testObservableC1.addObserver(obs3);
+        testObservableC1.addObserver(obs4); 
+        testObservableC2.addObserver(obs5);
+        testObservableC2.addObserver(obs6); 
+        
+        testObservableC2.notifyObservers();      //should notify the C2 and the parent's observers
+        
+        //Insert Assert Here
+ 
+    }
+    
+    
 }
 
