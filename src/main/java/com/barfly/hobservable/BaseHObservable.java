@@ -41,6 +41,7 @@ public class BaseHObservable extends Observable implements HObservable
     {
         printConsoleDisplay("Registering observer....");
         super.addObserver(observer);
+        //Should we add a way to set the observable in the observer object in this method?
     }    
     
     /**

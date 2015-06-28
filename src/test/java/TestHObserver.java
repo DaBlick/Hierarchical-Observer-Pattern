@@ -37,6 +37,9 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
+        this.events.add(new Event((HObservable) observable, eventData));  
+        System.out.println("Hey, Observer got an event: " + eventData); 
+        /*
         if (this.observable != null)
         {
             this.events.add(new Event((HObservable) observable, eventData));  
@@ -44,8 +47,9 @@ public class TestHObserver implements HObserver
         }
         else
         {
-            System.out.println("Observer was deleted and will not get future events");
+            System.out.println("Observer was deleted and can not get future events");
         }
+        */
     }                                                                         
     
     

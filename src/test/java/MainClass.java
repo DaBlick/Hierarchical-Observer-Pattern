@@ -20,6 +20,9 @@ public class MainClass
     public static void main(String[] args)
     {        
 
+        
+        
+        
         BaseHObservable realObservable = new BaseHObservable("ROOT", TestObservableEnum.OA.getObservableObject());
         TestHObserver realObserverA = new TestHObserver("Observer A");
         
