@@ -1,13 +1,13 @@
 
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.HObservable;
-import com.barfly.hobservable.PrefabHObserverA;
+import com.barfly.hobservable.PrefabHObserverAStack;
+import com.barfly.hobservable.PrefabHObserverBLogger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
 
 
 /**
@@ -26,8 +26,12 @@ public class MainClass
         BaseHObservable realObservable = new BaseHObservable("ROOT", TestObservableEnum.OA.getObservableObject());
         TestHObserver realObserverA = new TestHObserver("Observer A");
         
+        PrefabHObserverBLogger realObserverB = new PrefabHObserverBLogger("Observer B");
+        
+        
         realObservable.addObserver(realObserverA);
         realObservable.addObserver(realObserverA);
+        realObservable.addObserver(realObserverB);
         
         realObservable.notifyObservers("test 1");
         realObservable.notifyObservers("test 2");
@@ -48,7 +52,7 @@ public class MainClass
         TestHObservable testObservable = new TestHObservable("Child", TestObservableEnum.OA);
         TestHObserver testObserver1 = new TestHObserver("Observer 1");
         TestHObserver testObserver2 = new TestHObserver("Observer 2");
-        PrefabHObserverA testObserver3 = new PrefabHObserverA("Observer 3");
+        PrefabHObserverAStack testObserver3 = new PrefabHObserverAStack("Observer 3");
         
         testObserver3.setDateDisplayMode(false);
         testObservable.setConsoleDisplayMode(false);

@@ -266,14 +266,11 @@ public class JUnitTester
     @Test
     public void deletionOfObserver()
     {
-        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
-        
+        TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);         
         TestHObserver obs1 = new TestHObserver("Observer 1"); 
 
-        testObservableC1.addObserver(obs1);
-        
-        testObservableC1.deleteObserver(obs1);
-        
+        testObservableC1.addObserver(obs1);      
+        testObservableC1.deleteObserver(obs1);      
         testObservableC1.notifyObservers("Test");
         
         assertEquals(0, obs1.getEvents().size());  
