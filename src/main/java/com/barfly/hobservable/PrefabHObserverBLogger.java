@@ -6,21 +6,23 @@
 package com.barfly.hobservable;
 
 import java.util.Observable;
-import org.apache.log4j.*;
+//import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  *
  * @author jonathanodgis
  */
 public class PrefabHObserverBLogger implements HObserver
 {
-    private Logger logger;
+    static Logger log = LoggerFactory.getLogger(PrefabHObserverBLogger.class);
     
     private final String observerID;
     private HObservable observable;  //originally testhobservable
      
     public PrefabHObserverBLogger(String observerID)   
     {
-        logger.debug("LOGGER TEST CONSTRUCTOR");
+        log.info("LOGGER TEST CONSTRUCTOR");
         this.observerID = observerID;       
     }      
     
@@ -32,7 +34,7 @@ public class PrefabHObserverBLogger implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        logger.debug("LOGGER TEST UPDATE");
+        log.debug("LOGGER TEST UPDATE");
         System.out.println("Hey, Observer got an event: " + eventData); 
     }                                                                         
     
