@@ -16,7 +16,7 @@ import java.util.Stack;
  *
  * @author jonathanodgis
  */
-public class PrefabHObserverAStack implements HObserver 
+public class StackHObserver implements HObserver 
 {   
     private final Stack<Event> events = new Stack<>();
     private final String observerID;
@@ -24,7 +24,7 @@ public class PrefabHObserverAStack implements HObserver
     private Date date = new Date();
     private boolean dateDisplayMode;
     
-    public PrefabHObserverAStack(String observerID)   
+    public StackHObserver(String observerID)   
     {
         this.observerID = observerID;
     }    

@@ -1,8 +1,8 @@
 
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.HObservable;
-import com.barfly.hobservable.PrefabHObserverAStack;
-import com.barfly.hobservable.PrefabHObserverBLogger;
+import com.barfly.hobservable.StackHObserver;
+import com.barfly.hobservable.LoggingHObserver;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,7 +26,7 @@ public class MainClass
         BaseHObservable realObservable = new BaseHObservable("ROOT", TestObservableEnum.OA.getObservableObject());
         TestHObserver realObserverA = new TestHObserver("Observer A");
         
-        PrefabHObserverBLogger realObserverB = new PrefabHObserverBLogger("Observer B");
+        LoggingHObserver realObserverB = new LoggingHObserver("Observer B");
         
         
         realObservable.addObserver(realObserverA);
@@ -52,7 +52,7 @@ public class MainClass
         TestHObservable testObservable = new TestHObservable("Child", TestObservableEnum.OA);
         TestHObserver testObserver1 = new TestHObserver("Observer 1");
         TestHObserver testObserver2 = new TestHObserver("Observer 2");
-        PrefabHObserverAStack testObserver3 = new PrefabHObserverAStack("Observer 3");
+        StackHObserver testObserver3 = new StackHObserver("Observer 3");
         
         testObserver3.setDateDisplayMode(false);
         testObservable.setConsoleDisplayMode(false);

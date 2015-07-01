@@ -6,24 +6,23 @@
 package com.barfly.hobservable;
 
 import java.util.Observable;
-//import org.apache.log4j.Logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
  *
  * @author jonathanodgis
  */
-public class PrefabHObserverBLogger implements HObserver
+public class LoggingHObserver implements HObserver
 {
-    static Logger log = LoggerFactory.getLogger(PrefabHObserverBLogger.class);
+    static Logger log = LoggerFactory.getLogger(LoggingHObserver.class);
     
     private final String observerID;
     private HObservable observable;  //originally testhobservable
      
-    public PrefabHObserverBLogger(String observerID)   
+    public LoggingHObserver(String observerID)   
     {
-        log.info("LOGGER TEST CONSTRUCTOR");
-        this.observerID = observerID;       
+        this.observerID = observerID;
+        
     }      
     
     /**
@@ -34,11 +33,37 @@ public class PrefabHObserverBLogger implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        log.debug("LOGGER TEST UPDATE");
-        System.out.println("Hey, Observer got an event: " + eventData); 
+        displayLog(eventData);
+        //TODO Set the log to either of the modes/levels
     }                                                                         
     
-    
+    /**
+     * Displays the log with the event data based on the current mode of logging which can be debug, info, trace, error, or warn levels of the logger.
+     * @param eventData 
+     */
+    private void displayLog(Object eventData)
+    {
+        if (log.isDebugEnabled())
+        {
+            log.debug("Logged the event data debug: " + eventData);
+        }
+        else if (log.isInfoEnabled())
+        {
+            log.info("Logged the event data info: " + eventData);              
+        }
+        else if (log.isTraceEnabled())
+        {
+            log.trace("Logged the event data info: " + eventData);              
+        }        
+        else if (log.isErrorEnabled())
+        {
+            log.error("Logged the event data error: " + eventData);              
+        } 
+        else if (log.isWarnEnabled())
+        {
+            log.warn("Logged the event data warn: " + eventData);
+        }        
+    }
     /**
      * Sets the observable of the observer. 
      * @param observable 
