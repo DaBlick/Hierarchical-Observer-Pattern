@@ -21,9 +21,13 @@ public class LoggingHObserver implements HObserver
      
     public LoggingHObserver(String observerID)   
     {
-        this.observerID = observerID;
-        
+        this.observerID = observerID;  
     }      
+    
+    public LoggingHObserver()      //Need to choose the right parameter
+    {
+        this("DEFAULT");     //The default level
+    }
     
     /**
      * Updates Observer with eventData and the observable in the form of an event
@@ -33,7 +37,17 @@ public class LoggingHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        displayLog(eventData);
+        String eventDataStr;
+        if (eventData instanceof LoggingEventData)
+        {
+            eventDataStr = observable.toString();
+        }
+        else
+        {
+            eventDataStr = eventData.toString();      //Type casting
+        }
+        //TODO Write that String variable to the log
+        getLogLevel((HObservable) observable);
         //TODO Set the log to either of the modes/levels
     }                                                                         
     
@@ -41,6 +55,7 @@ public class LoggingHObserver implements HObserver
      * Displays the log with the event data based on the current mode of logging which can be debug, info, trace, error, or warn levels of the logger.
      * @param eventData 
      */
+    /*
     private void displayLog(Object eventData)
     {
         if (log.isDebugEnabled())
@@ -64,6 +79,7 @@ public class LoggingHObserver implements HObserver
             log.warn("Logged the event data warn: " + eventData);
         }        
     }
+    */
     /**
      * Sets the observable of the observer. 
      * @param observable 
@@ -86,6 +102,10 @@ public class LoggingHObserver implements HObserver
     public String toString()
     {
         return "Observer: " + this.observerID;
+    }
+
+    private void getLogLevel(HObservable hObservable) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
