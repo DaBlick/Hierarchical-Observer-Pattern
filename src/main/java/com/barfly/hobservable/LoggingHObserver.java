@@ -8,11 +8,12 @@ package com.barfly.hobservable;
 import java.util.Observable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.ext.XLogger;
 /**
  *
  * @author jonathanodgis
  */
-public class LoggingHObserver implements HObserver
+public class LoggingHObserver implements HObserver, LoggingEventData
 {
     static Logger log = LoggerFactory.getLogger(LoggingHObserver.class);
     
@@ -40,22 +41,20 @@ public class LoggingHObserver implements HObserver
         String eventDataStr;
         if (eventData instanceof LoggingEventData)
         {
-            eventDataStr = observable.toString();
+            eventDataStr = observable.toString();   //call eventData(observable)
         }
         else
         {
-            eventDataStr = eventData.toString();      //Type casting
+            eventDataStr = eventData.toString();     //call eventData.toString()
         }
-        //TODO Write that String variable to the log
+        logString((HObservable) observable);
         getLogLevel((HObservable) observable);
-        //TODO Set the log to either of the modes/levels
     }                                                                         
     
     /**
      * Displays the log with the event data based on the current mode of logging which can be debug, info, trace, error, or warn levels of the logger.
      * @param eventData 
      */
-    /*
     private void displayLog(Object eventData)
     {
         if (log.isDebugEnabled())
@@ -79,7 +78,7 @@ public class LoggingHObserver implements HObserver
             log.warn("Logged the event data warn: " + eventData);
         }        
     }
-    */
+
     /**
      * Sets the observable of the observer. 
      * @param observable 
@@ -99,13 +98,34 @@ public class LoggingHObserver implements HObserver
      * @return the name of the observer
      */
     @Override
-    public String toString()
+    public String toString()  
     {
         return "Observer: " + this.observerID;
     }
 
-    private void getLogLevel(HObservable hObservable) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String logString(HObservable hObservable)    //TODO log this string to the log. 
+    {
+        return hObservable.getObservableID();      
     }
-    
+
+    @Override
+    public XLogger.Level getLogLevel(HObservable hObservable)
+    {
+        switch (observerID) 
+        {
+            case "DEBUG":
+                return XLogger.Level.DEBUG;
+            case "INFO":
+                return XLogger.Level.INFO;
+            case "TRACE":
+                return XLogger.Level.TRACE;
+            case "WARN":
+                return XLogger.Level.WARN;
+            case "ERROR":
+                return XLogger.Level.ERROR;
+            default:
+                return XLogger.Level.valueOf("DEFAULT");
+        }
+    }    
 }

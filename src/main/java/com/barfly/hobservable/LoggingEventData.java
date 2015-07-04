@@ -12,8 +12,8 @@ import org.slf4j.ext.XLogger;
  */
 public interface LoggingEventData 
 {
-    public String logString(HObservable hObserver);
-    public XLogger.Level getLogLevel(HObservable hObserver);  //TODO import XLogger into project
+    public String logString(HObservable hObservable);
+    public XLogger.Level getLogLevel(HObservable hObservable); 
     
     
 }
