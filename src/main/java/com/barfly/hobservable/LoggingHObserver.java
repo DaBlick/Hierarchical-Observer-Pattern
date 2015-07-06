@@ -50,34 +50,6 @@ public class LoggingHObserver implements HObserver, LoggingEventData
         logString((HObservable) observable);
         getLogLevel((HObservable) observable);
     }                                                                         
-    
-    /**
-     * Displays the log with the event data based on the current mode of logging which can be debug, info, trace, error, or warn levels of the logger.
-     * @param eventData 
-     */
-    private void displayLog(Object eventData)
-    {
-        if (log.isDebugEnabled())
-        {
-            log.debug("Logged the event data debug: " + eventData);
-        }
-        else if (log.isInfoEnabled())
-        {
-            log.info("Logged the event data info: " + eventData);              
-        }
-        else if (log.isTraceEnabled())
-        {
-            log.trace("Logged the event data info: " + eventData);              
-        }        
-        else if (log.isErrorEnabled())
-        {
-            log.error("Logged the event data error: " + eventData);              
-        } 
-        else if (log.isWarnEnabled())
-        {
-            log.warn("Logged the event data warn: " + eventData);
-        }        
-    }
 
     /**
      * Sets the observable of the observer. 
