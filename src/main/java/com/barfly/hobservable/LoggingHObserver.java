@@ -51,6 +51,11 @@ public class LoggingHObserver implements HObserver, LoggingEventData
         getLogLevel((HObservable) observable);
     }                                                                         
 
+    public XLogger getEvents()   //TODO get the events from the XLogger
+    {
+        return null;
+    }
+    
     /**
      * Sets the observable of the observer. 
      * @param observable 

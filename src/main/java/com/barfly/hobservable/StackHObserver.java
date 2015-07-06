@@ -6,12 +6,10 @@ package com.barfly.hobservable;
  * and open the template in the editor.
  */
 
-import java.awt.Event;
-import java.util.Date;
-import java.util.List;
 import java.util.Observable;
 import java.util.Stack;
-
+import java.util.List;
+import java.util.Observable;
 /**
  *
  * @author jonathanodgis
@@ -21,8 +19,6 @@ public class StackHObserver implements HObserver
     private final Stack<Event> events = new Stack<>();
     private final String observerID;
     private HObservable observable;
-    private Date date = new Date();
-    private boolean dateDisplayMode;
     
     public StackHObserver(String observerID)   
     {
@@ -37,9 +33,8 @@ public class StackHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        //this.events.push(new Event((HObservable) observable, eventData)); 
+        this.events.push(new Event((HObservable) observable, eventData));
         System.out.println("Hey, Observer got an event: " + eventData);
-        printDateDisplay();
     }                                                                         
     
     /**
@@ -78,40 +73,21 @@ public class StackHObserver implements HObserver
      * @return the list of events received by the observer
      */
 
-    public Stack<Event> getEvents()
+    public Stack getEvents()
     {
         return events;
     }
+    
 
     /**
      * Returns true or false depending if the list contains the event specified in the parameter. 
      * @param check
      * @return true or false 
      */
-
     public boolean isEventPresent(Event check) 
     {
         return events.contains(check);
     }
     
-    /**
-     * Sets the value of the private boolean value dateDisplayMode to true or false.
-     * @param value 
-     */
-    public void setDateDisplayMode(boolean value)
-    {
-        dateDisplayMode = value;
-    }
-    
-    /**
-     * Displays the date if the dateDisplayMode is true
-     */
-    public void printDateDisplay()
-    {
-        if (dateDisplayMode == true)
-        {
-            System.out.println(" at " + this.date.toString());
-        }
-    }
 
 }

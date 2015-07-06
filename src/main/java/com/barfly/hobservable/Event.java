@@ -53,7 +53,7 @@ public class Event
     public String toString()
     {
         //return "Observable " + this.getObservable().toString();
-        return this.observable.toString();
+        return this.eventData + " | " + this.observable.toString();
     }    
 
     @Override

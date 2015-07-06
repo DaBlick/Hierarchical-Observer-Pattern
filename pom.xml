@@ -37,6 +37,12 @@
             <artifactId>slf4j-ext</artifactId>
             <version>1.7.12</version>
         </dependency>
+        <dependency>
+            <groupId>com.barfly</groupId>
+            <artifactId>HObservable</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
