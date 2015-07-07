@@ -5,10 +5,13 @@
  */
 
 
+import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.Event;
+import com.barfly.hobservable.LoggingHObserver;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import static com.barfly.hobservable.NotificationOrder.PRE;
+import com.barfly.hobservable.eventData;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -274,6 +277,28 @@ public class JUnitTester
         testObservableC1.notifyObservers("Test");
         
         assertEquals(0, obs1.getEvents().size());  
+    }
+    
+    @Test
+    public void LoggingEventData()
+    {
+        BaseHObservable observableParent = new BaseHObservable("Parent Observable", null);
+        BaseHObservable observable = new BaseHObservable("Child Observable", observableParent);
+        
+        LoggingHObserver observerA = new LoggingHObserver("Observer A");
+        LoggingHObserver observerB = new LoggingHObserver("Observer B");
+
+        observable.addObserver(observerA);
+        observable.addObserver(observerB);
+
+        
+        observable.notifyObservers("Here's an Event!");
+        
+        observable.notifyObservers(new eventData("Hello"));
+        
+        //System.out.println("Observer A: " + observerA.getEvents().peek());
+        //System.out.println("Observer B: " + observerB.getEvents().get(0));
+        assert(observerA.toString().equals(observerB.toString()));
     }
     
     

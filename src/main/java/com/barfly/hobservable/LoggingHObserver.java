@@ -13,7 +13,7 @@ import org.slf4j.ext.XLogger;
  *
  * @author jonathanodgis
  */
-public class LoggingHObserver implements HObserver, LoggingEventData
+public class LoggingHObserver implements HObserver
 {
     static Logger log = LoggerFactory.getLogger(LoggingHObserver.class);
     
@@ -41,14 +41,16 @@ public class LoggingHObserver implements HObserver, LoggingEventData
         String eventDataStr;
         if (eventData instanceof LoggingEventData)
         {
-            eventDataStr = observable.toString();   //call eventData(observable)
+            eventDataStr = observable.toString();  
+            System.out.println("This eventData is an instance!");
+            eventData.getLogLevel((HObservable) observable);
+            eventData.logString((HObservable) observable);
         }
         else
         {
             eventDataStr = eventData.toString();     //call eventData.toString()
+            System.out.println("This eventData is NOT an instance!");
         }
-        logString((HObservable) observable);
-        getLogLevel((HObservable) observable);
     }                                                                         
 
     public XLogger getEvents()   //TODO get the events from the XLogger
@@ -79,30 +81,4 @@ public class LoggingHObserver implements HObserver, LoggingEventData
     {
         return "Observer: " + this.observerID;
     }
-
-    @Override
-    public String logString(HObservable hObservable)    //TODO log this string to the log. 
-    {
-        return hObservable.getObservableID();      
-    }
-
-    @Override
-    public XLogger.Level getLogLevel(HObservable hObservable)
-    {
-        switch (observerID) 
-        {
-            case "DEBUG":
-                return XLogger.Level.DEBUG;
-            case "INFO":
-                return XLogger.Level.INFO;
-            case "TRACE":
-                return XLogger.Level.TRACE;
-            case "WARN":
-                return XLogger.Level.WARN;
-            case "ERROR":
-                return XLogger.Level.ERROR;
-            default:
-                return XLogger.Level.valueOf("DEFAULT");
-        }
-    }    
 }
