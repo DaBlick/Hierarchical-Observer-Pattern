@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package com.barfly.hobservable;
-import org.slf4j.ext.XLogger;
 
 /**
  *
@@ -13,7 +12,7 @@ import org.slf4j.ext.XLogger;
 public interface LoggingEventData 
 {
     public String logString(HObservable hObservable);
-    public XLogger.Level getLogLevel(HObservable hObservable); 
+    public LogLevel getLogLevel(); 
     
     
 }

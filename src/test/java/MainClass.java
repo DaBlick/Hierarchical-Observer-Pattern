@@ -1,9 +1,7 @@
 
 import com.barfly.hobservable.BaseHObservable;
-import com.barfly.hobservable.HObservable;
-import com.barfly.hobservable.StackHObserver;
 import com.barfly.hobservable.LoggingHObserver;
-import com.barfly.hobservable.eventData;
+import com.barfly.hobservable.StackHObserver;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -34,7 +32,7 @@ public class MainClass
         
         observable.notifyObservers("Here's an Event!");
         
-        observable.notifyObservers(new eventData("Hello"));
+        observable.notifyObservers(new EventData("Hello"));
         
         System.out.println("Observer A: " + observerA.getEvents().peek());
         System.out.println("Observer B: " + observerB.getEvents().get(0));

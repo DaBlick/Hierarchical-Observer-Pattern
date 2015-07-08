@@ -6,14 +6,12 @@
 
 
 import com.barfly.hobservable.BaseHObservable;
-import com.barfly.hobservable.Event;
 import com.barfly.hobservable.LoggingHObserver;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import static com.barfly.hobservable.NotificationOrder.PRE;
-import com.barfly.hobservable.eventData;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -294,7 +292,7 @@ public class JUnitTester
         
         observable.notifyObservers("Here's an Event!");
         
-        observable.notifyObservers(new eventData("Hello"));
+        observable.notifyObservers(new EventData("Hello"));
         
         //System.out.println("Observer A: " + observerA.getEvents().peek());
         //System.out.println("Observer B: " + observerB.getEvents().get(0));

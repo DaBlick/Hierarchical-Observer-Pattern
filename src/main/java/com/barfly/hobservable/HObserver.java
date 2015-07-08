@@ -1,6 +1,5 @@
 package com.barfly.hobservable;
 
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 

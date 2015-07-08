@@ -33,11 +33,6 @@
             <version>1.1.3</version>
         </dependency>
         <dependency>
-            <groupId>org.sfl4j</groupId>
-            <artifactId>slf4j-ext</artifactId>
-            <version>1.7.12</version>
-        </dependency>
-        <dependency>
             <groupId>com.barfly</groupId>
             <artifactId>HObservable</artifactId>
             <version>1.0-SNAPSHOT</version>
