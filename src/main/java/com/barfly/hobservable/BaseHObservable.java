@@ -18,9 +18,7 @@ public class BaseHObservable extends Observable implements HObservable
     private BaseHObservable parentObservable;
     
     private String observableID;
-    
-    private TestObservableEnum observableEnum;  //added by Netbeans as a recommended fix for the enum call for event
-    
+       
     private NotificationOrder order;
     
     private boolean consoleDisplayMode;

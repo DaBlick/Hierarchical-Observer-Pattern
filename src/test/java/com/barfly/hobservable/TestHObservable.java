@@ -1,5 +1,7 @@
 package com.barfly.hobservable;
 
+import com.barfly.hobservable.BaseHObservable;
+import com.barfly.hobservable.NotificationOrder;
 import java.util.ArrayList;
 
 public class TestHObservable extends BaseHObservable 
