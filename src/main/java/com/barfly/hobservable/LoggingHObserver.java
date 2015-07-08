@@ -8,17 +8,21 @@ import org.slf4j.LoggerFactory;
  *
  * @author jonathanodgis
  */
-public class LoggingHObserver implements HObserver {
-
+public class LoggingHObserver implements HObserver 
+{
     private static final LogLevel DEFAULT_LOGLEVEL = LogLevel.WARN;
 
     private Logger log;
+    
+    private String eventDataStr;
+    private String logLevelStr;
     /**
      * Creates a LoggingObserver that generates its own Logger using
      * LoggerFactor.getLogger(name)
      * @param name 
      */
-    public LoggingHObserver(String name) {
+    public LoggingHObserver(String name) 
+    {
         log = LoggerFactory.getLogger(name);
     }
     
@@ -28,7 +32,8 @@ public class LoggingHObserver implements HObserver {
      * 
      * @param clazz Class marker to use for all log events
      */
-    public LoggingHObserver(Class<? extends Class> clazz) {
+    public LoggingHObserver(Class<? extends Class> clazz) 
+    {
         log = LoggerFactory.getLogger(clazz);
     }
     
@@ -38,7 +43,8 @@ public class LoggingHObserver implements HObserver {
      * @param logger The Logger
      * 
      */
-    public LoggingHObserver(Logger logger) {
+    public LoggingHObserver(Logger logger) 
+    {
         log = logger;
     }
 
@@ -49,18 +55,33 @@ public class LoggingHObserver implements HObserver {
      * @param eventData The event context
      */
     @Override
-    public void update(Observable observable, Object eventData) {
-        String eventDataStr;
+    public void update(Observable observable, Object eventData) 
+    {
         LogLevel logLevel = DEFAULT_LOGLEVEL;
-        if (eventData instanceof LoggingEventData) {
+        if (eventData instanceof LoggingEventData) 
+        {
             LoggingEventData ed = (LoggingEventData) eventData;
-            eventDataStr = observable.toString();
-            System.out.println("This eventData is an instance!");
-            ed.getLogLevel();
+            logLevel = ed.getLogLevel();
             eventDataStr = ed.logString((HObservable) observable);
-        } else {
-            eventDataStr = eventData.toString();     //call eventData.toString()
-            System.out.println("This eventData is NOT an instance!");
+            System.out.println("This eventData [" + eventData + "] is an instance!");            
+        } 
+        else 
+        {
+            eventDataStr = eventData.toString();   
+            System.out.println("This eventData [" + eventData + "] is NOT an instance!");
         }
+        logLevelStr = logLevel.toString();
     }
+    
+    @Override
+    public String toString()
+    {
+        return eventDataStr;
+    }
+    
+    public String getLogLevel()
+    {
+        return logLevelStr;
+    }
+   
 }

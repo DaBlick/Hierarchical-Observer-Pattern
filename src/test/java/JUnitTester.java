@@ -6,6 +6,8 @@
 
 
 import com.barfly.hobservable.BaseHObservable;
+import com.barfly.hobservable.LogLevel;
+import static com.barfly.hobservable.LogLevel.DEBUG;
 import com.barfly.hobservable.LoggingHObserver;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
@@ -276,31 +278,39 @@ public class JUnitTester
         
         assertEquals(0, obs1.getEvents().size());  
     }
-    
+
     @Test
-    public void LoggingEventData()
+    public void LogObserverLogLevel()
     {
         BaseHObservable observableParent = new BaseHObservable("Parent Observable", null);
         BaseHObservable observable = new BaseHObservable("Child Observable", observableParent);
         
         LoggingHObserver observerA = new LoggingHObserver("Observer A");
-        LoggingHObserver observerB = new LoggingHObserver("Observer B");
 
         observable.addObserver(observerA);
-        observable.addObserver(observerB);
 
+        observable.notifyObservers(new EventData("Hello", LogLevel.DEBUG));
         
-        observable.notifyObservers("Here's an Event!");
+        assert(observerA.getLogLevel().equals("DEBUG"));
+    }    
+
+    @Test
+    public void LogObserverEventData()
+    {
+        BaseHObservable observableA = new BaseHObservable("Child Observable", null);
+        BaseHObservable observableB = new BaseHObservable("Child Observable", null);
         
-        observable.notifyObservers(new EventData("Hello"));
+        LoggingHObserver observerA = new LoggingHObserver("Observer A");
+        LoggingHObserver observerB = new LoggingHObserver("Observer B");
         
-        //System.out.println("Observer A: " + observerA.getEvents().peek());
-        //System.out.println("Observer B: " + observerB.getEvents().get(0));
-        assert(observerA.toString().equals(observerB.toString()));
-    }
-    
-    
-    
+        observableA.addObserver(observerA);
+        observableB.addObserver(observerB);
+
+        observableA.notifyObservers(new EventData("Event A", LogLevel.WARN));
+        observableB.notifyObservers("Event B");
+        
+        assert(!(observerA.toString().equals(observerB.toString())));
+    }        
     
 }
 
