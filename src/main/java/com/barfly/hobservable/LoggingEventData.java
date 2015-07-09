@@ -12,7 +12,5 @@ package com.barfly.hobservable;
 public interface LoggingEventData 
 {
     public String logString(HObservable hObservable);
-    public LogLevel getLogLevel(); 
-    
-    
+    public LogLevel getLogLevel();     
 }

@@ -51,21 +51,22 @@ public class LoggingHObserver implements HObserver {
      * @param eventData The event context
      */
     @Override
+
     public void update(Observable observable, Object eventData) {
         String eventDataStr;
-        LogLevel level = DEFAULT_LOGLEVEL;
+        LogLevel logLevel = DEFAULT_LOGLEVEL;
         if (eventData instanceof LoggingEventData) {
+
             LoggingEventData ed = (LoggingEventData) eventData;
-            eventDataStr = observable.toString();
-            System.out.println("This eventData is an instance!");
-            ed.getLogLevel();
+            logLevel = ed.getLogLevel();
             eventDataStr = ed.logString((HObservable) observable);
+            System.out.println("This eventData [" + eventData + "] is an instance!");
         } else {
-            eventDataStr = eventData.toString();     //call eventData.toString()
-            System.out.println("This eventData is NOT an instance!");
+            eventDataStr = eventData.toString();
+            System.out.println("This eventData [" + eventData + "] is NOT an instance!");
         }
 
-        switch (level) {
+        switch (logLevel) {
             case TRACE:
                 log.trace(eventDataStr);
                 break;
@@ -83,5 +84,5 @@ public class LoggingHObserver implements HObserver {
                 break;
         }
     }
-}
 
+}

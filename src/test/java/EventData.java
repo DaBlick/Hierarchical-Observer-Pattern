@@ -18,6 +18,7 @@ public class EventData implements LoggingEventData {
 
     public EventData(Object data) {
         this.data = data;
+        this.logLevel = LogLevel.WARN;
     }
 
     @Override
@@ -26,8 +27,7 @@ public class EventData implements LoggingEventData {
     }
 
     @Override
-    public String logString(HObservable hObservable) //TODO log this string to the log. 
-    {
+    public String logString(HObservable hObservable) {
         return hObservable.getObservableID();
     }
 
