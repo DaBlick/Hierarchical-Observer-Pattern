@@ -13,30 +13,32 @@ public class LoggingHObserver implements HObserver {
     private static final LogLevel DEFAULT_LOGLEVEL = LogLevel.WARN;
 
     private Logger log;
+
     /**
      * Creates a LoggingObserver that generates its own Logger using
      * LoggerFactor.getLogger(name)
-     * @param name 
+     *
+     * @param name
      */
     public LoggingHObserver(String name) {
         log = LoggerFactory.getLogger(name);
     }
-    
+
     /**
      * Create a LoggingObserver that generates its own Logger using
      * LoggingFactory.getLogger(clazz).
-     * 
+     *
      * @param clazz Class marker to use for all log events
      */
     public LoggingHObserver(Class<? extends Class> clazz) {
         log = LoggerFactory.getLogger(clazz);
     }
-    
+
     /**
      * Create an Observer with provided Logger
-     * 
+     *
      * @param logger The Logger
-     * 
+     *
      */
     public LoggingHObserver(Logger logger) {
         log = logger;
@@ -51,7 +53,7 @@ public class LoggingHObserver implements HObserver {
     @Override
     public void update(Observable observable, Object eventData) {
         String eventDataStr;
-        LogLevel logLevel = DEFAULT_LOGLEVEL;
+        LogLevel level = DEFAULT_LOGLEVEL;
         if (eventData instanceof LoggingEventData) {
             LoggingEventData ed = (LoggingEventData) eventData;
             eventDataStr = observable.toString();
@@ -62,5 +64,24 @@ public class LoggingHObserver implements HObserver {
             eventDataStr = eventData.toString();     //call eventData.toString()
             System.out.println("This eventData is NOT an instance!");
         }
+
+        switch (level) {
+            case TRACE:
+                log.trace(eventDataStr);
+                break;
+            case DEBUG:
+                log.debug(eventDataStr);
+                break;
+            case INFO:
+                log.info(eventDataStr);
+                break;
+            case WARN:
+                log.warn(eventDataStr);
+                break;
+            case ERROR:
+                log.error(eventDataStr);
+                break;
+        }
     }
 }
+
