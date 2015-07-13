@@ -18,21 +18,25 @@ public class MainClass
    
     public static void main(String[] args)
     {        
-        BaseHObservable observableParent = new BaseHObservable("Parent Observable", null);
-        BaseHObservable observable = new BaseHObservable("Child Observable", observableParent);
+        BaseHObservable observableI = new BaseHObservable("Obsevable I", null);
+        BaseHObservable observableII = new BaseHObservable("Observable II", observableI);
+        BaseHObservable observableIII = new BaseHObservable("Observable III", observableII);
         
         StackHObserver observerA = new StackHObserver("Observer A");
         TestHObserver observerB = new TestHObserver("Observer B");
         LoggingHObserver observerC = new LoggingHObserver("Observer C");
         LoggingHObserver observerD = new LoggingHObserver("Observer D");
-        observable.addObserver(observerA);
-        observable.addObserver(observerB);
-        observable.addObserver(observerC);
-        observable.addObserver(observerD);
+        observableIII.addObserver(observerA);
+        observableIII.addObserver(observerB);
+        observableIII.addObserver(observerC);
+        observableIII.addObserver(observerD);
         
-        observable.notifyObservers("Here's an Event!");
+        observableIII.setChanged();
+        observableIII.notifyObservers("Here's an Event!");
         
-        observable.notifyObservers(new EventData("Hello"));
+        //observableIII.notifyObservers(new EventData("Hello"));
+        
+        System.out.println("THE FULL PATH: " + observableIII.getFullPath());
         
         System.out.println("Observer A: " + observerA.getEvents().peek());
         System.out.println("Observer B: " + observerB.getEvents().get(0));

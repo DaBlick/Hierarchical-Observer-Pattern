@@ -161,10 +161,17 @@ public class BaseHObservable extends Observable implements HObservable
     public String getFullPath() 
     {
         String result = this.toString();
-        while (parentObservable != null) 
+        /*
+        while (this.parentObservable != null) 
         {
             result += "/";
-            result += parentObservable.toString();
+            result = result + parentObservable.toString();
+        }
+        */
+        if (this.parentObservable != null)
+        {
+            result = this.parentObservable.getFullPath() + "/" + result;
+            //result = result + "/" + this.parentObservable.getFullPath();
         }
         return result;
     }

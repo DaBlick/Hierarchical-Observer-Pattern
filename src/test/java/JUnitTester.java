@@ -288,11 +288,9 @@ public class JUnitTester
     @Test
     public void getFullPath()
     {
-        BaseHObservable observableParent = new BaseHObservable("Parent Observable", null);
-        BaseHObservable observable = new BaseHObservable("Child Observable", observableParent);
-        System.out.println(observable.getFullPath());
-        //assertEquals(null, observable.getFullPath());
-        
+        BaseHObservable observableI = new BaseHObservable("Observable I", null);
+        BaseHObservable observableII = new BaseHObservable("Observable II", observableI);
+        assert("Observable: Observable I/Observable: Observable II".equals(observableII.getFullPath()));
     }
     
     
