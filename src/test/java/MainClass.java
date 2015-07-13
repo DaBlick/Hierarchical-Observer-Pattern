@@ -40,8 +40,6 @@ public class MainClass
         
         System.out.println("Observer A: " + observerA.getEvents().peek());
         System.out.println("Observer B: " + observerB.getEvents().get(0));
-        
-      
-//System.out.println("Observer C: " + observerC.getEvents().get(0));
+        //System.out.println("Observer C: " + observerC.getEvents().get(0));
     }
 }

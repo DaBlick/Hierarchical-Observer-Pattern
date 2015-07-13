@@ -58,8 +58,6 @@ public class BaseHObservable extends Observable implements HObservable
     @Override
     public void setChanged()
     {
-        //TODO: If the parentObservable then you need to have the parentObservable call this method
-        //else is that its a child and you just call super.setChanged()
         super.setChanged();
     }
     
@@ -100,11 +98,9 @@ public class BaseHObservable extends Observable implements HObservable
         printConsoleDisplay("Broadcasting event.....");
         if (order.equals(PRE))
         {
-            //super.setChanged();
             super.notifyObservers(eventData);
             if (parentObservable != null)
             {
-                //parentObservable.setChanged();
                 parentObservable.notifyObservers(eventData);   //Notifies this observable's parent's observers         
             }
 //
@@ -225,12 +221,20 @@ public class BaseHObservable extends Observable implements HObservable
         return "Observable: " + this.observableID;
     }
 
+    /**
+     * Returns the number of observers of the observable
+     * @return the number of observers
+     */
     @Override
     public int countObservers()
     {
         return super.countObservers();
     }
     
+    /**
+     * Returns the number of observers of the observable and its parent
+     * @return the number of observers of the observable and the parent
+     */
     @Override
     public int countAllObservers()
     {

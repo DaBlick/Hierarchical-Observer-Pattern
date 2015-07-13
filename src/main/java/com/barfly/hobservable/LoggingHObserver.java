@@ -51,7 +51,6 @@ public class LoggingHObserver implements HObserver {
      * @param eventData The event context
      */
     @Override
-
     public void update(Observable observable, Object eventData) {
         String eventDataStr;
         LogLevel logLevel = DEFAULT_LOGLEVEL;

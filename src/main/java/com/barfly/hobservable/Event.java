@@ -8,10 +8,6 @@ package com.barfly.hobservable;
  * and open the template in the editor.
  */
 
-
-import com.barfly.hobservable.HObservable;
-import java.util.Observable;
-
 /**
  *
  * @author jonathanodgis
@@ -56,6 +52,11 @@ public class Event
         return this.eventData + " | " + this.observable.toString();
     }    
 
+    /**
+     * Returns boolean value if the object is an instance of the event interface
+     * @param obj
+     * @return boolean value
+     */
     @Override
     public boolean equals(Object obj) 
     {

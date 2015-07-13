@@ -8,8 +8,6 @@ package com.barfly.hobservable;
 
 import java.util.Observable;
 import java.util.Stack;
-import java.util.List;
-import java.util.Observable;
 /**
  *
  * @author jonathanodgis
@@ -38,7 +36,7 @@ public class StackHObserver implements HObserver
     }                                                                         
     
     /**
-     * Removes all the events of the observer
+     * Removes all the events of the observer by popping the events off the stack until empty
      */
     public void removeEvents()
     {
@@ -52,7 +50,6 @@ public class StackHObserver implements HObserver
      * Sets the observable of the observer. 
      * @param observable 
      */
-
     public void setObservable(BaseHObservable observable)
     {
         this.observable = observable; 
@@ -72,7 +69,6 @@ public class StackHObserver implements HObserver
      * Returns the list of events received by the observer.
      * @return the list of events received by the observer
      */
-
     public Stack getEvents()
     {
         return events;

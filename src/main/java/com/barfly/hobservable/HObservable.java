@@ -6,7 +6,8 @@ package com.barfly.hobservable;
  */
 public interface HObservable 
 {
-
+    public void setChanged();
+    
     public void notifyObservers();
     
     public void notifyObservers(Object o);

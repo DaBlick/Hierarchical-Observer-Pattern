@@ -88,8 +88,14 @@ public enum TestObservableEnum implements HObservable
     }
 
     @Override
+    public void setChanged()
+    {
+        this.observableObject.setChanged();
+    }
+    
+    @Override
     public void notifyObservers() {
-        this.observableObject.notify();
+        this.observableObject.notifyObservers();
     }
 
     @Override    

@@ -130,7 +130,7 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);
         testObservableC2.addObserver(obs6); 
         
-
+        testObservableC1.getParentObservable().setChanged();
         testObservableC1.getParentObservable().notifyObservers();   //should notify the parent's observers
 
         
@@ -159,6 +159,7 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);            //registerObserver
         testObservableC2.addObserver(obs6);            //registerObserver
         
+        testObservableC1.setChanged();
         testObservableC1.notifyObservers("Test");      //should notify the C1 and the parent's observers
         
         //needs to be fixed
@@ -188,6 +189,7 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);            //registerObserver
         testObservableC2.addObserver(obs6);            //registerObserver
         
+        testObservableC1.setChanged();
         testObservableC1.notifyObservers();      //should notify the C1 and the parent's observers
         
         assert(obs3.getEvents().size() > 0 && obs4.getEvents().size() > 0 && obs1.getEvents().size() > 0 && obs2.getEvents().size() > 0 && obs5.getEvents().isEmpty() && obs6.getEvents().isEmpty());
@@ -292,9 +294,7 @@ public class JUnitTester
         BaseHObservable observableII = new BaseHObservable("Observable II", observableI);
         assert("Observable: Observable I/Observable: Observable II".equals(observableII.getFullPath()));
     }
-    
-    
-
+   
     @Test
     public void LogObserverLogLevel()
     {
@@ -324,6 +324,8 @@ public class JUnitTester
         observableA.addObserver(observerA);
         observableB.addObserver(observerB);
 
+        observableA.setChanged();
+        observableB.setChanged();
         observableA.notifyObservers(new EventData("Event A", LogLevel.WARN));
         observableB.notifyObservers("Event B");
         
