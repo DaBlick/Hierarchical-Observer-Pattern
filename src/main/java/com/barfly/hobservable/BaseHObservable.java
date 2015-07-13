@@ -55,6 +55,14 @@ public class BaseHObservable extends Observable implements HObservable
         super.deleteObserver(observer);
     }
 
+    @Override
+    public void setChanged()
+    {
+        //TODO: If the parentObservable then you need to have the parentObservable call this method
+        //else is that its a child and you just call super.setChanged()
+        super.setChanged();
+    }
+    
     /**
      * Notifies the observers of an observable and its parent. 
      */
@@ -92,7 +100,7 @@ public class BaseHObservable extends Observable implements HObservable
         printConsoleDisplay("Broadcasting event.....");
         if (order.equals(PRE))
         {
-            super.setChanged();
+            //super.setChanged();
             super.notifyObservers(eventData);
             if (parentObservable != null)
             {

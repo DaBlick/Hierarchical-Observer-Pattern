@@ -102,9 +102,9 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);
         testObservableC2.addObserver(obs6); 
         
-
+        testObservableC1.getParentObservable().setChanged();
         testObservableC1.getParentObservable().notifyObservers("test");   //should notify the parent's observers
-              
+     
         assert(obs1.getEvents().size() > 0 && obs2.getEvents().size() > 0 && obs3.getEvents().isEmpty() && obs4.getEvents().isEmpty() && obs5.getEvents().isEmpty() && obs6.getEvents().isEmpty());
         
        
@@ -215,6 +215,9 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);
         testObservableC2.addObserver(obs6); 
         
+        testObservableC2.setChanged();
+        testObservableC2.getParentObservable().setChanged();
+        
         testObservableC2.notifyObservers();      //should notify the C2 and the parent's observers
         
 
@@ -243,6 +246,8 @@ public class JUnitTester
         testObservableC2.addObserver(obs5);
         testObservableC2.addObserver(obs6); 
         
+        testObservableC2.setChanged();
+        testObservableC2.getParentObservable().setChanged();
         testObservableC2.notifyObservers();      //should notify the C2 and the parent's observers
 
         assert(obs5.getEvents().size() > 0 && obs6.getEvents().size() > 0 && obs1.getEvents().size() > 0 && obs2.getEvents().size() > 0 && obs3.getEvents().isEmpty() && obs4.getEvents().isEmpty());       
@@ -272,11 +277,25 @@ public class JUnitTester
         TestHObserver obs1 = new TestHObserver("Observer 1"); 
 
         testObservableC1.addObserver(obs1);      
-        testObservableC1.deleteObserver(obs1);      
+        testObservableC1.deleteObserver(obs1);
+        
+        testObservableC1.setChanged();
         testObservableC1.notifyObservers("Test");
         
         assertEquals(0, obs1.getEvents().size());  
     }
+    
+    @Test
+    public void getFullPath()
+    {
+        BaseHObservable observableParent = new BaseHObservable("Parent Observable", null);
+        BaseHObservable observable = new BaseHObservable("Child Observable", observableParent);
+        System.out.println(observable.getFullPath());
+        //assertEquals(null, observable.getFullPath());
+        
+    }
+    
+    
 
     @Test
     public void LogObserverLogLevel()
@@ -288,6 +307,8 @@ public class JUnitTester
 
         observable.addObserver(observerA);
 
+        observable.setChanged();
+        observable.getParentObservable().setChanged();
         observable.notifyObservers(new EventData("Hello", LogLevel.DEBUG));
         
 //        assert(observerA.getLogLevel().equals("DEBUG")); // TODO this test is wrong.   
