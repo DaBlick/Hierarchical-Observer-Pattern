@@ -9,8 +9,19 @@ import java.util.Observer;
  */
 public interface HObserver extends Observer
 {
+    /**
+     * implements the same functionality as java.util.Observer#update(java.util.Observable, java.lang.Object) 
+     * @param observable
+     * @param eventData 
+     * @see java.util.Observer#update(java.util.Observable, java.lang.Object) 
+     */
     public void update(Observable observable, Object eventData);     
 
+    /**
+     * implements the same functionality as java.util.Observer#toString() 
+     * @return String of the Observer 
+     * @see java.util.Observer#toString() 
+     */
     public String toString();
     
     

@@ -36,7 +36,9 @@ public class BaseHObservable extends Observable implements HObservable
     /**
      * Adds an observer to the observable's list of observers
      * @param observer
+     * @see java.util.Observable
      */    
+    @Override
     public void addObserver(HObserver observer)
     {
         printConsoleDisplay("Registering observer....");
@@ -55,10 +57,17 @@ public class BaseHObservable extends Observable implements HObservable
         super.deleteObserver(observer);
     }
 
+    /**
+     * Toggles the status of an observable before notifying the observers
+     */
     @Override
-    public void setChanged()
+    public void setChanged()    //make a test based on this
     {
         super.setChanged();
+        if (this.parentObservable != null)
+        {
+            this.parentObservable.setChanged();
+        }
     }
     
     /**
