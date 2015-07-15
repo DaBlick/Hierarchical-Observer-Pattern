@@ -2,7 +2,6 @@
 
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.NotificationOrder;
-import java.util.ArrayList;
 
 public class TestHObservable extends BaseHObservable 
 {
@@ -25,6 +24,11 @@ public class TestHObservable extends BaseHObservable
     public TestHObservable(String observableID, TestObservableEnum e, NotificationOrder order)
     {
         super(observableID, e.getObservableObject(), order);
-    }   
+    } 
+    
+    public TestHObservable(String observableID)
+    {
+        super(observableID, null);
+    }
     
 }

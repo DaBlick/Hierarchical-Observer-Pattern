@@ -7,13 +7,12 @@ package com.barfly.hobservable;
  */
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Observable;
 /**
  *
  * @author jonathanodgis
  */
-public class CollectionHObserver implements HObserver, Collection
+public class CollectionHObserver implements HObserver
 {   
     private final Collection events;
     private final String observerID;
@@ -38,8 +37,18 @@ public class CollectionHObserver implements HObserver, Collection
     }                                                                         
     
     /**
-     * Removes all the events of the observer by popping the events off the stack until empty
+     * 
+     * @return 
      */
+    public Collection getEvents()
+    {
+        return this.events;
+    }
+
+    /**
+    * Removes all the events of the observer by popping the events off the stack until empty
+    * 
+    */    
     public void removeEvents()
     {
         int i = 0;
@@ -78,78 +87,4 @@ public class CollectionHObserver implements HObserver, Collection
     {
         return events.contains(check);
     }
-
-    @Override
-    public int size() 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean isEmpty() 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean contains(Object o) 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator iterator() 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object[] toArray() 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean add(Object e) 
-    {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean containsAll(Collection c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean addAll(Collection c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeAll(Collection c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean retainAll(Collection c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void clear() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-
 }
