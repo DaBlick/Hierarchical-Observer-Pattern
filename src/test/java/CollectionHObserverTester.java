@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.CollectionHObserver;
 import com.barfly.hobservable.Event;
 import com.barfly.hobservable.HObservable;
@@ -21,19 +20,18 @@ public class CollectionHObserverTester
     @Test
     public void sendEventToCollectionHObserver()
     {
-        BaseHObservable observableI = new BaseHObservable("Observable I", null);
-        BaseHObservable observableII = new BaseHObservable("Observable II", observableI);
+        TestHObservable observableII = new TestHObservable("Observable II", TestObservableEnum.OA);
         
         ArrayList events = new ArrayList();
         
-        CollectionHObserver obs = new CollectionHObserver("Observer General", events);
+        CollectionHObserver obs = new CollectionHObserver("Collection Observer", events);
         
         observableII.addObserver(obs);
         
         observableII.setChanged();
-        observableII.notifyObservers("Hi");
+        observableII.notifyObservers("Test for event");
         
-        assert(obs.getEvents().size() > 0 && obs.getEvents().contains(new Event((HObservable) observableII, "Hi")));
+        assert(obs.getEvents().size() > 0 && obs.getEvents().contains(new Event((HObservable) observableII, "Test for event")));
     }
     
     

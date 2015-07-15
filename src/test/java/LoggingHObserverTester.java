@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.LogLevel;
 import com.barfly.hobservable.LoggingHObserver;
 import org.junit.Test;
@@ -19,8 +18,8 @@ public class LoggingHObserverTester
   @Test
     public void LogObserverLogLevel()
     {
-        BaseHObservable observableParent = new BaseHObservable("Parent Observable", null);
-        BaseHObservable observable = new BaseHObservable("Child Observable", observableParent);
+        TestHObservable observableParent = new TestHObservable("Parent Observable");
+        TestHObservable observable = new TestHObservable("Child Observable", observableParent);
         
         LoggingHObserver observerA = new LoggingHObserver("Observer A");
 
@@ -35,8 +34,8 @@ public class LoggingHObserverTester
     @Test
     public void LogObserverEventData()
     {
-        BaseHObservable observableA = new BaseHObservable("Child Observable", null);
-        BaseHObservable observableB = new BaseHObservable("Child Observable", null);
+        TestHObservable observableA = new TestHObservable("Child Observable");
+        TestHObservable observableB = new TestHObservable("Child Observable", observableA);
         
         LoggingHObserver observerA = new LoggingHObserver("Observer A");
         LoggingHObserver observerB = new LoggingHObserver("Observer B");
