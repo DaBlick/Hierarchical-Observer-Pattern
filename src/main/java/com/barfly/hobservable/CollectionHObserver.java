@@ -51,12 +51,8 @@ public class CollectionHObserver implements HObserver
     */    
     public void removeEvents()
     {
-        int i = 0;
-        while (!events.isEmpty())
-        {
-            this.events.remove(i);
-            i++;
-        }
+        this.events.removeAll(events);
+        System.out.println("List of events emptied!");
     }
     
     /**
