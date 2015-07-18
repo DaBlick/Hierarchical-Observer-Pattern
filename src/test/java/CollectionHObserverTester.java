@@ -8,6 +8,7 @@ import com.barfly.hobservable.CollectionHObserver;
 import com.barfly.hobservable.Event;
 import com.barfly.hobservable.HObservable;
 import java.util.ArrayList;
+import java.util.Stack;
 import org.junit.Test;
 
 /**
@@ -53,5 +54,21 @@ public class CollectionHObserverTester
         assert(obs.getEvents().isEmpty());
     }
     
+    @Test
+    public void usingStackDataStructureTypeForCollection()
+    {
+        TestHObservable observable = new TestHObservable("Observable", TestObservableEnum.OA);
+        
+        Stack events = new Stack();
+        
+        CollectionHObserver obs = new CollectionHObserver("Collection Observer", events);
+        
+        observable.addObserver(obs);
+        
+        observable.setChanged();
+        observable.notifyObservers("Test for event");
+        
+        assert(obs.getEvents().contains(new Event((HObservable) observable, "Test for event")));
+    }
     
 }
