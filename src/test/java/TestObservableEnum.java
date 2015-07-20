@@ -1,16 +1,47 @@
-package com.barfly.hobservable;
+
+import com.barfly.hobservable.BaseHObservable;
+import com.barfly.hobservable.HObservable;
+import com.barfly.hobservable.HObserver;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 
 /**
  *
  * @author jonathanodgis
  */
+/**
+ * Observables that can be used with other observables in the hierarchy. 
+ */
 public enum TestObservableEnum implements HObservable
 {
+    /**
+     * Observable OA - has no parent
+    */
     OA(),
+    /**
+     * Observable OB - parent is Observable OA
+     */
     OB(OA),
+    /**
+     * Observable OC - parent is Observable OA
+     */
     OC(OA),
+    /**
+     * Observable OD - parent is Observable OA
+     */
     OD(OA),
+    /**
+     * Observable OE - parent is Observable OD
+     */
     OE(OD),
+    /**
+     * Observable OF - parent is Observable OE
+     */
     OF(OE),;
 
     private TestObservableEnum parent = null;
@@ -28,17 +59,28 @@ public enum TestObservableEnum implements HObservable
         this.observableObject = new TestHObservable(this.toString(), parent.observableObject);
     }
     
-
+    /**
+     * Returns TestObservableEnum
+     * @return TestObservableEnum
+     */
     public TestObservableEnum getTestEnum() 
     {
         return this;
     }
     
+    /**
+     * Returns ObservableObject
+     * @return ObservableObject
+     */
     public BaseHObservable getObservableObject() 
     {
         return observableObject;
     }
 
+    /**
+     * Adds an observer to the observable's list of observers
+     * @param observer
+     */    
     @Override    
     public void addObserver(HObserver obs) 
     {
@@ -46,8 +88,14 @@ public enum TestObservableEnum implements HObservable
     }
 
     @Override
+    public void setChanged()
+    {
+        this.observableObject.setChanged();
+    }
+    
+    @Override
     public void notifyObservers() {
-        this.observableObject.notify();
+        this.observableObject.notifyObservers();
     }
 
     @Override    
@@ -56,6 +104,10 @@ public enum TestObservableEnum implements HObservable
         this.observableObject.notifyObservers(eventData);
     }
 
+    /**
+     * Removes an observer from the observable's list of observers
+     * @param observer
+     */        
     @Override
     public void deleteObserver(HObserver observer) 
     {
@@ -63,12 +115,20 @@ public enum TestObservableEnum implements HObservable
         System.out.println("Observer " + observer + " has been deleted.");
     }
 
+    /**
+     * Returns the Observable ID
+     * @return ObservableID
+     */
     @Override
     public String getObservableID() 
     {
         return this.observableObject.getObservableID();
     }
 
+    /**
+     * Returns the Parent Observable
+     * @return Parent Observable
+     */
     @Override
     public BaseHObservable getParentObservable() 
     {
@@ -81,6 +141,10 @@ public enum TestObservableEnum implements HObservable
         this.observableObject.setParentObservable(parentObservable);
     }    
 
+    /**
+     * Returns the number of observers that a 
+     * @return 
+     */
     @Override
     public int countObservers() 
     {
@@ -88,12 +152,9 @@ public enum TestObservableEnum implements HObservable
     }
 
     @Override
-    public void setChanged() {
-        this.observableObject.setChanged();
-    }
-
-    @Override
-    public int countAllObservers() {
+    public int countAllObservers() 
+    {
         return this.observableObject.countAllObservers();
     }
+
 }
