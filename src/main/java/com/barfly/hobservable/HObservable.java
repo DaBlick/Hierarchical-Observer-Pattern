@@ -6,7 +6,7 @@ package com.barfly.hobservable;
  *
  * @author dblickstein
  */
-public interface HObservable //extends Observable
+public interface HObservable 
 {
     /**
      * implements the same functionality as java.util.Observable#setChanged()

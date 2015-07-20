@@ -31,7 +31,8 @@ public class BaseHObservable extends Observable implements HObservable
         this.observableID = observableID;
         this.parentObservable = parentObservable;  
         this.order = order;
-    }       
+    }    
+   
 
     /**
      * Adds an observer to the observable's list of observers

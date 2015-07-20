@@ -15,7 +15,7 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
    HObservableTester.class,
-   CollectionHObserverTester.class,
+   CollectionsTester.class,
    LoggingHObserverTester.class
 })
 public class JUnitTester 
