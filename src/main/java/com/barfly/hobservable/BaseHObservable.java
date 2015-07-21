@@ -11,7 +11,7 @@ import java.util.Observable;
  */
 public class BaseHObservable extends Observable implements HObservable
 {
-    
+    //Comment
     private BaseHObservable parentObservable;
     
     private String observableID;
