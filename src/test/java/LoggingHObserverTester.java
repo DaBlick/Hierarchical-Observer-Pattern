@@ -15,7 +15,10 @@ import org.junit.Test;
 public class LoggingHObserverTester 
 {
     
-  @Test
+    /**
+     * Tests if the log level is equal to the enum string value
+     */
+    @Test
     public void LogObserverLogLevel()
     {
         TestHObservable observableParent = new TestHObservable("Parent Observable");
@@ -28,9 +31,12 @@ public class LoggingHObserverTester
         observable.setChanged();
         observable.notifyObservers(new EventData("Hello", LogLevel.DEBUG));
         
-//        assert(observerA.getLogLevel().equals("DEBUG")); // TODO this test is wrong.   
+        //assert(observerA.getLog.equals("DEBUG")); // TODO this test is wrong.   
     }    
 
+    /**
+     * Tests if the event data of observerA is equal to the event data of observerB
+     */
     @Test
     public void LogObserverEventData()
     {

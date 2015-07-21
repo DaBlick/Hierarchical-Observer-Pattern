@@ -86,8 +86,9 @@ public class ListObservable<T> extends AbstractCollectionObservable implements L
     }
 
     @Override
-    public String toString() {
-        return collection.toString();
+    public String toString() 
+    {
+        return super.toString();
     }
 
     @Override

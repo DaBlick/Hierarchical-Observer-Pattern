@@ -42,6 +42,9 @@ public class CollectionsTester
         assert(!(collectionObservable.contains(str)));        
     }
     
+    /**
+     * Tests if a ListObservable can notify an observer of an event in the form of a string
+     */
     @Test
     public void notifyingAnObserverOfAnEvent()
     {
@@ -54,11 +57,16 @@ public class CollectionsTester
         TestHObserver observer = new TestHObserver("Observer");
         
         collectionObservable.addObserver(observer);
+        
+        collectionObservable.setChanged();
         collectionObservable.notifyObservers(collectionObservable.get(0));
         
         assert(observer.getEvents().get(0).getEventData().equals(collectionObservable.get(0).toString()));
     }
 
+    /**
+     * Tests if a ListObservable can notify an observer of many events from its collection
+     */
     @Test
     public void notifyingAnObserverOfManyEvents()
     {
@@ -75,11 +83,16 @@ public class CollectionsTester
         TestHObserver observer = new TestHObserver("Observer");
         
         collectionObservable.addObserver(observer);
+
+        collectionObservable.setChanged();        
         collectionObservable.notifyObservers();
         
         assert(observer.getEvents().size() == collectionObservable.size());
     }    
 
+    /**
+     * Tests if the many observers of a ListObservable get the same events broadcast to them
+     */
     @Test
     public void notifyingManyObserverOfManyEvents()
     {
@@ -99,9 +112,31 @@ public class CollectionsTester
         
         collectionObservable.addObserver(observer1);
         collectionObservable.addObserver(observer2);
-       
+
+        collectionObservable.setChanged();        
         collectionObservable.notifyObservers();
         
         assert(observer1.getEvents().containsAll(observer2.getEvents()));
-    }    
+    }
+    
+    /**
+     * Tests if the notifyObservers updates observers of the parent and child ListObservables and also checks the fullPath string with a base case string of "Observable: Parent/Observable: Child"
+     */
+    @Test
+    public void HierarchalObserverPattern()
+    {
+        ListObservable<String> collectionObservableParent = new ListObservable<>("Parent", null, new ArrayList<String>());
+        ListObservable<String> collectionObservableChild = new ListObservable<>("Child", collectionObservableParent, new ArrayList<String>());    
+    
+        TestHObserver obs1 = new TestHObserver("Observer 1");
+        TestHObserver obs2 = new TestHObserver("Observer 2");
+        
+        collectionObservableChild.addObserver(obs1);
+        collectionObservableParent.addObserver(obs2);
+        
+        collectionObservableChild.setChanged();
+        collectionObservableChild.notifyObservers("OK");
+        
+        assert(obs1.getEvents().get(0).getEventData() == obs2.getEvents().get(0).getEventData() && "Observable: Parent/Observable: Child".equals(collectionObservableChild.getFullPath()));
+    }
 }

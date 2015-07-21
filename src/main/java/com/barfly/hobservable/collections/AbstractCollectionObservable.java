@@ -184,8 +184,9 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public String toString() {
-        return collection.toString();
+    public String toString() 
+    {
+        return "Observable: " + super.getObservableID();
     }
             
     /**

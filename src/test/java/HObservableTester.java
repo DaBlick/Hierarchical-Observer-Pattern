@@ -16,6 +16,9 @@ import org.junit.Test;
  */
 public class HObservableTester 
 {
+    /**
+     * Tests if the testObservable's name is the same as the String value "TOURNAMENT"
+     */
     @Test
     public void nameIsCorrect()
     {	
@@ -23,6 +26,9 @@ public class HObservableTester
         assertEquals("TOURNAMENT", testObservable.getObservableID());
     }	
     
+    /**
+     * Tests if the testObservable's console display mode is toggled to the boolean value true
+     */
     @Test
     public void correctConsoleDisplayMode()
     {
@@ -31,6 +37,9 @@ public class HObservableTester
         assertEquals(true, testObservable.getConsoleDisplayMode());
     }
     
+    /**
+     * Tests if the number of observers of a testObservable is equal to the int value of 2
+     */
     @Test
     public void numberOfObserversIsCorrect()
     {
@@ -43,19 +52,30 @@ public class HObservableTester
         assertEquals(2, testObservable.countObservers());
     }
     
-    //Are all the events being logged into the observer
- 
+    
+    /**
+     * Tests if the parent observable of an observable can remove an observer from its list of observers
+     */
     @Test 
     public void parentOfChildObservableRemovesAnObserver()
     {
-        TestHObservable testObservable = new TestHObservable("Child 1", TestObservableEnum.OA);
+        TestHObservable testObservableParent = new TestHObservable("Parent");
+        TestHObservable testObservable = new TestHObservable("Child", testObservableParent);
+        
         TestHObserver obs1 = new TestHObserver("Observer 1");      
+        TestHObserver obs2 = new TestHObserver("Observer 2");  
+        
         testObservable.getParentObservable().addObserver(obs1);
+        testObservable.addObserver(obs2);
+        
         testObservable.getParentObservable().deleteObserver(obs1);
         
         assertEquals(0 , testObservable.getParentObservable().countObservers());  
     }
     
+    /**
+     * Tests if the NotificationOrderEnum is set to POST in the default constructor of the observable.
+     */
     @Test
     public void correctOrderDEFAULT()
     {
@@ -63,6 +83,9 @@ public class HObservableTester
         assertEquals(POST, testObservable.getNotificationOrder());
     }
     
+    /**
+     * Tests if the NotificationOrderEnum is set to PRE in the other constructor of the observable where one of the parameters is a NotificationOrderEnum value
+     */
     @Test
     public void CorrectOrderPRE()
     {
@@ -70,6 +93,9 @@ public class HObservableTester
         assertEquals(PRE, testObservable.getNotificationOrder());
     }
     
+    /**
+     * Tests if the NotificationOrderEnum is set to POST in the other constructor of the observable where one of the parameters is a NotificationOrderEnum value 
+     */
     @Test
     public void correctOrderPOST()
     {
@@ -77,8 +103,11 @@ public class HObservableTester
         assertEquals(POST, testObservable.getNotificationOrder());
     }        
     
+    /**
+     * Test to send events to P, and make sure only observers of P get those events
+     */
     @Test     
-    //Case 1: send some events to P, and make sure only observers of P get those
+    
     public void sendEventsToParentOnly()
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
@@ -106,6 +135,9 @@ public class HObservableTester
        
     }
 
+    /**
+     * Test to send a few events to P, and make sure only observers of P get those events
+     */    
     @Test     
     public void sendEventsToParentOnlyAlt()
     {
@@ -133,9 +165,10 @@ public class HObservableTester
         assert(obs1.getEvents().size() > 0 && obs2.getEvents().size() > 0 && obs3.getEvents().isEmpty() && obs4.getEvents().isEmpty() && obs5.getEvents().isEmpty() && obs6.getEvents().isEmpty());        
        
     }    
-
+    /**
+     * Test to send some events to C1 and make sure only observers of P and C1 get events 
+     */
     @Test     
-    //Case 2: send some events to C1 and make sure only observers of P and C1 get events
     public void sendEventsToC1()   //notifyObservers with no param
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
@@ -163,9 +196,10 @@ public class HObservableTester
  
         
     }
-
+    /**
+     * Test to send some events to C1 and make sure only observers of P and C1 get events
+     */
     @Test     
-    //Case 2: send some events to C1 and make sure only observers of P and C1 get events
     public void sendEventsToC1Alt()   //notifyObservers with no param
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
@@ -192,8 +226,11 @@ public class HObservableTester
         
     }    
     
+    /**
+     * Test to send some events to C2 and make sure only observers of P and C2 get those events
+     */
     @Test 
-    //Case 3: send some events to C2 and make sure only observers of P and C2 get those events
+    
     public void sendEventsToC2()
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
@@ -220,9 +257,10 @@ public class HObservableTester
         assert(obs5.getEvents().size() > 0 && obs6.getEvents().size() > 0 && obs1.getEvents().size() > 0 && obs2.getEvents().size() > 0 && obs3.getEvents().isEmpty() && obs4.getEvents().isEmpty());
         
     }
-  
+    /**
+     * Test to send some events to C2 and make sure only observers of P and C2 get those events
+     */
     @Test     
-    //Case 3: send some events to C2 and make sure only observers of P and C2 get those events
     public void sendEventsToC2Alt()
     {
         TestHObservable testObservableC1 = new TestHObservable("Child 1", TestObservableEnum.OA);    
@@ -249,6 +287,9 @@ public class HObservableTester
  
     }
 
+    /**
+     * Test to check the countObservers() which counts only the observable and not its parent, is less than countAllObservers() which counts the observers among the observable and its parent observable
+     */
     @Test     
     public void countingTheObservers()
     {
@@ -265,6 +306,9 @@ public class HObservableTester
         assert(testObservableC1.countObservers() < testObservableC1.countAllObservers());
     }
  
+    /**
+     * Test to check the setChanged() method of observable
+     */
     @Test
     public void setChanged()
     {
@@ -284,6 +328,9 @@ public class HObservableTester
         assert(obs1.getEvents().get(0).getEventData() == obs2.getEvents().get(0).getEventData());
     }
     
+    /**
+     * Test to check if the observer is deleted from the observable
+     */
     @Test
     public void deletionOfObserver()
     {
@@ -300,6 +347,9 @@ public class HObservableTester
         assertEquals(0, obs1.getEvents().size());  
     }
     
+    /**
+     * Tests to see if a path of the observable hierarchy is properly written compared to the String value in the assertion
+     */
     @Test
     public void getFullPath()
     {
