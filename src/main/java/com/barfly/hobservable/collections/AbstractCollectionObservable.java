@@ -33,20 +33,24 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
     
 
-    //TODO Add comments to each of these
-
     /**
-     * 
+     * Returns the size of the collection 
      * @return 
      * @see java.util.Collection
      */
+    
+    public Collection getEvents()
+    {
+        return this.collection;
+    }
+    
     @Override
     public int size() {
         return collection.size();
     }
 
     /**
-     * 
+     * Returns boolean value if the collection is empty or not empty
      * @return 
      * @see java.util.Collection
      */
@@ -56,7 +60,7 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * 
+     * Returns boolean value if the collection contains the object specified in the parameter
      * @param o
      * @return 
      * @see java.util.Collection
@@ -67,7 +71,7 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * 
+     * Returns the iterator of the collection
      * @return 
      * @see java.util.Collection
      */
@@ -77,8 +81,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * 
-     * @return 
+     * Returns the collection as an array
+     * @return the collection as an array
      * @see java.util.Collection
      */
     @Override

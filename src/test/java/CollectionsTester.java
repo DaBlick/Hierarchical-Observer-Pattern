@@ -29,8 +29,6 @@ public class CollectionsTester
         assert(collectionObservable.contains(str) && collectionObservable.contains("Some String"));
     }
     
-    // Tests
-    // We got an event for the add
     @Test
     public void collectionObservableRemoving()
     {
@@ -44,13 +42,8 @@ public class CollectionsTester
         assert(!(collectionObservable.contains(str)));        
     }
     
-    // We got an event for the 2nd add
-    // We got an event for the remove
-    // The list ended up with size 1
-    // etc
-    
     @Test
-    public void notifyingAnObserver()
+    public void notifyingAnObserverOfAnEvent()
     {
         ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
        
@@ -58,13 +51,57 @@ public class CollectionsTester
         
         collectionObservable.add("Some Other String");   
         
-        TestHObserver obs = new TestHObserver("Observer");
+        TestHObserver observer = new TestHObserver("Observer");
         
-        collectionObservable.addObserver(obs);
-        
+        collectionObservable.addObserver(observer);
         collectionObservable.notifyObservers(collectionObservable.get(0));
         
-        assert(obs.getEvents().get(0) != null);
+        assert(observer.getEvents().get(0).getEventData().equals(collectionObservable.get(0).toString()));
     }
-    
+
+    @Test
+    public void notifyingAnObserverOfManyEvents()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
+        
+        final String str1 = "Some String 1";
+        final String str2 = "Some String 2";
+        final String str3 = "Some String 3";
+        
+        collectionObservable.add(str1);  
+        collectionObservable.add(str2);
+        collectionObservable.add(str3);
+        
+        TestHObserver observer = new TestHObserver("Observer");
+        
+        collectionObservable.addObserver(observer);
+        collectionObservable.notifyObservers();
+        
+        assert(observer.getEvents().size() == collectionObservable.size());
+    }    
+
+    @Test
+    public void notifyingManyObserverOfManyEvents()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
+        
+        final String str1 = "Some String 1";
+        final String str2 = "Some String 2";
+        final String str3 = "Some String 3";
+        
+        collectionObservable.add(str1);  
+        collectionObservable.add(str2);
+        collectionObservable.add(str3);
+        
+        TestHObserver observer1 = new TestHObserver("Observer 1");
+        TestHObserver observer2 = new TestHObserver("Observer 2");
+
+        
+        collectionObservable.addObserver(observer1);
+        collectionObservable.addObserver(observer2);
+       
+        collectionObservable.notifyObservers();
+        
+        assert(observer1.getEvents().containsAll(observer2.getEvents()));
+    }    
 }

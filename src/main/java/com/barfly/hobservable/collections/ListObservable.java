@@ -28,7 +28,18 @@ public class ListObservable<T> extends AbstractCollectionObservable implements L
     {
         super(observableID, parentObservable, order, collection);  
     }    
-        
+
+    /**
+     * @see com.barfly.hobservable.BaseHObservable
+     */
+    @Override
+    public void notifyObservers()
+    {
+        for (int i = 0; i < this.size(); i++)
+        {
+            super.notifyObservers(this.get(i));
+        }   
+    }
     @Override
     public int size() {
         return collection.size();
@@ -85,10 +96,11 @@ public class ListObservable<T> extends AbstractCollectionObservable implements L
     }
 
     @Override
-    public Object get(int index) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Object get(int index) 
+    {
+        return collection.toArray()[index];
     }
-
+    
     @Override
     public Object set(int index, Object element) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

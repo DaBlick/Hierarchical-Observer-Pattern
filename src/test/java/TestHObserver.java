@@ -21,6 +21,7 @@ import java.util.Observable;
 public class TestHObserver implements HObserver 
 {   
     private final List<Event> events = new ArrayList<>();
+    
     private final String observerID;
     private HObservable observable;  //originally testhobservable
      
@@ -39,18 +40,10 @@ public class TestHObserver implements HObserver
     {
         this.events.add(new Event((HObservable) observable, eventData));  
         System.out.println("Hey, Observer got an event: " + eventData); 
-        /*
-        if (this.observable != null)
-        {
-            this.events.add(new Event((HObservable) observable, eventData));  
-            System.out.println("Hey, Observer got an event: " + eventData);     
-        }
-        else
-        {
-            System.out.println("Observer was deleted and can not get future events");
-        }
-        */
-    }                                                                         
+
+    }     
+    
+   
     
     
     /**
