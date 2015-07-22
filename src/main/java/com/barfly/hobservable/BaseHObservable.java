@@ -2,6 +2,7 @@ package com.barfly.hobservable;
 
 import static com.barfly.hobservable.NotificationOrder.POST;
 import static com.barfly.hobservable.NotificationOrder.PRE;
+import static com.barfly.hobservable.SetChangedMode.AUTO;
 import java.util.Observable;
 
 
@@ -17,20 +18,33 @@ public class BaseHObservable extends Observable implements HObservable
 
     private NotificationOrder order;
     
+    private SetChangedMode setChangedMode;
+    
     private boolean consoleDisplayMode;
     
-    public BaseHObservable(String observableID, BaseHObservable parentObservable)   //DEFAULT 
+    
+    public BaseHObservable(String observableID, BaseHObservable parentObservable)   
     {
-        this(observableID, parentObservable, POST);
+        this(observableID, parentObservable, POST, AUTO);
     }    
     
+    public BaseHObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order)  
+    {
+        this(observableID, parentObservable, order, AUTO);
+    }    
+
+    public BaseHObservable(String observableID, BaseHObservable parentObservable, SetChangedMode setChangedMode)   
+    {
+        this(observableID, parentObservable, POST, setChangedMode);
+    }        
     
-    public BaseHObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order)   //PRE
+    public BaseHObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, SetChangedMode setChangedMode)
     {
         this.observableID = observableID;
         this.parentObservable = parentObservable;  
         this.order = order;
-    }    
+        this.setChangedMode = setChangedMode;        
+    }
    
 
     /**
@@ -77,7 +91,10 @@ public class BaseHObservable extends Observable implements HObservable
     public void notifyObservers() 
     {
         printConsoleDisplay("Broadcasting event.....");
-        
+        if (this.setChangedMode.equals(AUTO))
+        {
+            this.setChanged();
+        }
         if (order.equals(PRE))
         {
             if (parentObservable != null)
@@ -105,6 +122,10 @@ public class BaseHObservable extends Observable implements HObservable
     {
 
         printConsoleDisplay("Broadcasting event.....");
+        if (this.setChangedMode.equals(AUTO))
+        {
+            this.setChanged();
+        }
         if (order.equals(PRE))
         {
             super.notifyObservers(eventData);
@@ -118,10 +139,8 @@ public class BaseHObservable extends Observable implements HObservable
         {
             if (parentObservable != null)
             {
-                parentObservable.setChanged();
                 parentObservable.notifyObservers(eventData);    
             }
-            super.setChanged();
             super.notifyObservers(eventData);
         }
         
@@ -190,6 +209,14 @@ public class BaseHObservable extends Observable implements HObservable
         return this.order;
     }
     
+    /**
+     * Returns the setChangedMode value
+     * @return the setChangedMode value
+     */
+    public SetChangedMode getSetChangedMode()
+    {
+        return this.setChangedMode;
+    }
     /**
      * Returns the current console display value 
      * @return the console display mode value

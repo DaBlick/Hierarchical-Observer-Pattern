@@ -7,9 +7,12 @@
  */
 
 
+import com.barfly.hobservable.CollectionEvent;
 import com.barfly.hobservable.Event;
+import static com.barfly.hobservable.EventDataEnum.ADD;
 import com.barfly.hobservable.HObservable;
 import com.barfly.hobservable.HObserver;
+import com.barfly.hobservable.collections.AbstractCollectionObservable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -21,7 +24,7 @@ import java.util.Observable;
 public class TestHObserver implements HObserver 
 {   
     private final List<Event> events = new ArrayList<>();
-    
+
     private final String observerID;
     private HObservable observable;  //originally testhobservable
      
@@ -38,9 +41,16 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        this.events.add(new Event((HObservable) observable, eventData));  
-        System.out.println("Hey, Observer got an event: " + eventData); 
-
+        if (observable instanceof AbstractCollectionObservable)
+        {
+            System.out.println("HERE its a collection event");
+            this.events.add(new CollectionEvent((HObservable) observable, eventData, ADD));    
+        }
+        else
+        {
+            this.events.add(new Event((HObservable) observable, eventData));  
+            System.out.println("Hey, Observer got an event: " + eventData); 
+        }
     }     
     
    
@@ -83,7 +93,7 @@ public class TestHObserver implements HObserver
      */ 
     public List<Event> getEvents()
     {
-        return events;
+        return this.events;
     }
 
     /**

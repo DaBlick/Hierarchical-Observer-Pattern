@@ -8,6 +8,8 @@ package com.barfly.hobservable.collections;
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
+import com.barfly.hobservable.SetChangedMode;
+import static com.barfly.hobservable.SetChangedMode.AUTO;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -20,32 +22,37 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
 {
     protected final Collection<E> collection;   //arraylist, stack, list (Concrete types) 
     
-    public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, Collection<E> collection)
+    public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, Collection<E> collection)   
     {
-        super(observableID, parentObservable, POST);
+        super(observableID, parentObservable, POST, AUTO);
         this.collection = collection;
-    }
-   
+    }    
+    
     public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, Collection<E> collection)  
     {
-        super(observableID, parentObservable, order);
+        super(observableID, parentObservable, order, AUTO);
         this.collection = collection;
-    }
-    
+    }    
 
+    public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, SetChangedMode setChangedMode, Collection<E> collection)   
+    {
+        super(observableID, parentObservable, POST, setChangedMode);
+        this.collection = collection;
+    }        
+    
+    public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, SetChangedMode setChangedMode, Collection<E> collection)
+    {
+        super(observableID, parentObservable, order, setChangedMode);
+        this.collection = collection;    
+    }
     /**
      * Returns the size of the collection 
      * @return 
      * @see java.util.Collection
-     */
-    
-    public Collection getEvents()
-    {
-        return this.collection;
-    }
-    
+     */ 
     @Override
-    public int size() {
+    public int size() 
+    {
         return collection.size();
     }
 
@@ -55,7 +62,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean isEmpty() {
+    public boolean isEmpty() 
+    {
         return collection.isEmpty();
     }
 
@@ -66,7 +74,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(Object o) 
+    {
         return collection.contains(o);
     }
 
@@ -76,7 +85,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public Iterator<E> iterator() {
+    public Iterator<E> iterator() 
+    { 
         return collection.iterator();
     }
 
@@ -86,7 +96,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public Object[] toArray() {
+    public Object[] toArray() 
+    {
         return collection.toArray();
     }
 
@@ -98,7 +109,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <T> T[] toArray(T[] a) 
+    {
         return collection.toArray(a);
     }
 
@@ -109,7 +121,14 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean remove(Object o) {
+    public boolean remove(Object o) 
+    {
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        }
+        */
         return collection.remove(o);
     }
 
@@ -120,7 +139,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean containsAll(Collection<?> c) {
+    public boolean containsAll(Collection<?> c) 
+    {
         return collection.containsAll(c);
     }
 
@@ -131,7 +151,9 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean addAll(Collection<? extends E> c) {
+    public boolean addAll(Collection<? extends E> c) 
+    {
+        super.setChanged();        
         return collection.addAll(c);
     }
 
@@ -142,7 +164,14 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean removeAll(Collection<?> c) {
+    public boolean removeAll(Collection<?> c) 
+    {
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        } 
+        */
         return collection.removeAll(c);
     }
 
@@ -153,7 +182,14 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean retainAll(Collection<?> c) {
+    public boolean retainAll(Collection<?> c) 
+    {
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        } 
+        */
         return collection.retainAll(c);
     }
 
@@ -164,7 +200,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o) 
+    {
         return collection.equals(o);
     }
 
@@ -174,7 +211,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      * @see java.util.Collection
      */
     @Override
-    public int hashCode() {
+    public int hashCode() 
+    {
         return collection.hashCode();
     }
 
@@ -195,6 +233,12 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     @Override
     public void clear() 
     {
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        } 
+        */
         collection.clear();
     }
     
@@ -207,6 +251,12 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     @Override
     public boolean add(E e)
     {
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        }
+        */
         return collection.add(e);
     }
    
@@ -218,6 +268,12 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
      */
     public boolean removeAll(E e)
     {
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        } 
+        */
         return collection.removeAll((Collection<?>) e);
     }
     

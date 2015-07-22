@@ -7,6 +7,9 @@ package com.barfly.hobservable.collections;
 
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.NotificationOrder;
+import static com.barfly.hobservable.NotificationOrder.POST;
+import com.barfly.hobservable.SetChangedMode;
+import static com.barfly.hobservable.SetChangedMode.AUTO;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -19,27 +22,29 @@ import java.util.ListIterator;
  */
 public class ListObservable<T> extends AbstractCollectionObservable implements List   //list looks at collection interface
 {   
-    public ListObservable(String observableID, BaseHObservable parentObservable, Collection<T> collection) 
+    public ListObservable(String observableID, BaseHObservable parentObservable, Collection<T> collection)   
     {
-        super(observableID, parentObservable, collection);
-    }
-
-    public ListObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, Collection<T> collection) 
+        super(observableID, parentObservable, POST, AUTO, collection);
+    }    
+    
+    public ListObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, Collection<T> collection)  
     {
-        super(observableID, parentObservable, order, collection);  
+        super(observableID, parentObservable, order, AUTO, collection);
     }    
 
+    public ListObservable(String observableID, BaseHObservable parentObservable, SetChangedMode setChangedMode, Collection<T> collection)   
+    {
+        super(observableID, parentObservable, POST, setChangedMode, collection);
+    }        
+    
+    public ListObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, SetChangedMode setChangedMode, Collection<T> collection)
+    {
+        super(observableID, parentObservable, order, setChangedMode, collection);   
+    }
     /**
      * @see com.barfly.hobservable.BaseHObservable
      */
-    @Override
-    public void notifyObservers()
-    {
-        for (int i = 0; i < this.size(); i++)
-        {
-            super.notifyObservers(this.get(i));
-        }   
-    }
+    
     @Override
     public int size() {
         return collection.size();

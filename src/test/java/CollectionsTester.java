@@ -4,9 +4,14 @@
  * and open the template in the editor.
  */
 
+import com.barfly.hobservable.CollectionEvent;
+import static com.barfly.hobservable.EventDataEnum.ADD;
+import static com.barfly.hobservable.SetChangedMode.AUTO;
+import static com.barfly.hobservable.SetChangedMode.MANUAL;
 import com.barfly.hobservable.collections.ListObservable;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
 /**
@@ -20,7 +25,6 @@ public class CollectionsTester
     public void collectionObservableAdding()
     {
         List<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
-       
         final String str = "Some String";
         
         collectionObservable.add(str);
@@ -32,8 +36,7 @@ public class CollectionsTester
     @Test
     public void collectionObservableRemoving()
     {
-        List<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
-       
+        List<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());  
         final String str = "Some String";
         
         collectionObservable.add("Some Other String");  
@@ -49,16 +52,11 @@ public class CollectionsTester
     public void notifyingAnObserverOfAnEvent()
     {
         ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
-       
+        TestHObserver observer = new TestHObserver("Observer");       
         final String str = "Some String";
         
         collectionObservable.add("Some Other String");   
-        
-        TestHObserver observer = new TestHObserver("Observer");
-        
         collectionObservable.addObserver(observer);
-        
-        collectionObservable.setChanged();
         collectionObservable.notifyObservers(collectionObservable.get(0));
         
         assert(observer.getEvents().get(0).getEventData().equals(collectionObservable.get(0).toString()));
@@ -70,8 +68,8 @@ public class CollectionsTester
     @Test
     public void notifyingAnObserverOfManyEvents()
     {
-        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
-        
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), AUTO, new ArrayList<String>());
+        TestHObserver observer = new TestHObserver("Observer");        
         final String str1 = "Some String 1";
         final String str2 = "Some String 2";
         final String str3 = "Some String 3";
@@ -79,15 +77,12 @@ public class CollectionsTester
         collectionObservable.add(str1);  
         collectionObservable.add(str2);
         collectionObservable.add(str3);
-        
-        TestHObserver observer = new TestHObserver("Observer");
-        
         collectionObservable.addObserver(observer);
-
-        collectionObservable.setChanged();        
-        collectionObservable.notifyObservers();
+        collectionObservable.notifyObservers(collectionObservable.get(0));
+        collectionObservable.notifyObservers(collectionObservable.get(1));
+        collectionObservable.notifyObservers(collectionObservable.get(2));
         
-        assert(observer.getEvents().size() == collectionObservable.size());
+        assertEquals(collectionObservable.size(), observer.getEvents().size());
     }    
 
     /**
@@ -97,23 +92,17 @@ public class CollectionsTester
     public void notifyingManyObserverOfManyEvents()
     {
         ListObservable<String> collectionObservable = new ListObservable<>("List Observable", TestObservableEnum.OA.getObservableObject(), new ArrayList<String>());
-        
+        TestHObserver observer1 = new TestHObserver("Observer 1");
+        TestHObserver observer2 = new TestHObserver("Observer 2");         
         final String str1 = "Some String 1";
         final String str2 = "Some String 2";
         final String str3 = "Some String 3";
-        
+     
         collectionObservable.add(str1);  
         collectionObservable.add(str2);
-        collectionObservable.add(str3);
-        
-        TestHObserver observer1 = new TestHObserver("Observer 1");
-        TestHObserver observer2 = new TestHObserver("Observer 2");
-
-        
+        collectionObservable.add(str3);      
         collectionObservable.addObserver(observer1);
-        collectionObservable.addObserver(observer2);
-
-        collectionObservable.setChanged();        
+        collectionObservable.addObserver(observer2);     
         collectionObservable.notifyObservers();
         
         assert(observer1.getEvents().containsAll(observer2.getEvents()));
@@ -133,10 +122,75 @@ public class CollectionsTester
         
         collectionObservableChild.addObserver(obs1);
         collectionObservableParent.addObserver(obs2);
-        
-        collectionObservableChild.setChanged();
+        collectionObservableChild.add("OK");
         collectionObservableChild.notifyObservers("OK");
         
         assert(obs1.getEvents().get(0).getEventData() == obs2.getEvents().get(0).getEventData() && "Observable: Parent/Observable: Child".equals(collectionObservableChild.getFullPath()));
     }
+    
+    @Test
+    public void CollectionEventNotifyEnum()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("Observable", null, new ArrayList<String>());
+        TestHObserver obs = new TestHObserver("Observer");
+        
+        collectionObservable.addObserver(obs);
+        collectionObservable.add("Hello Test");   
+        collectionObservable.notifyObservers(new CollectionEvent(collectionObservable, collectionObservable.get(0), ADD));
+        
+        //assertEquals(EventDataEnum.ADD, obs.getEvents().get(0).);      
+    }
+
+    /**
+     * Tests if the default constructor which accepts no parameters for the SetChangedMode is AUTO and the user doesn't need to call setChanged()
+     */
+    @Test
+    public void setChangedModeDefault()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, new ArrayList<String>());
+        TestHObserver obs = new TestHObserver("Observer");
+        
+        collectionObservable.addObserver(obs);
+        collectionObservable.add("HELLO");    
+
+        collectionObservable.notifyObservers(collectionObservable.get(0));
+        
+        assert(obs.getEvents().get(0) != null && collectionObservable.getSetChangedMode().equals(AUTO));        
+    }        
+
+    /**
+     * Tests if the SetChangedMode is AUTO and the user doesn't need to call setChanged()
+     */
+    @Test
+    public void setChangedModeAuto()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, AUTO, new ArrayList<String>());
+        TestHObserver obs = new TestHObserver("Observer");
+        
+        collectionObservable.addObserver(obs);
+        collectionObservable.add("HELLO");    
+
+        collectionObservable.notifyObservers(collectionObservable.get(0));
+        
+        assert(obs.getEvents().get(0) != null && collectionObservable.getSetChangedMode().equals(AUTO));        
+    }            
+    /**
+     * Tests if the Manuel Mode for the observable works and setChanged only will be called when the user calls it
+     */
+    @Test
+    public void setChangedModeManual()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, MANUAL, new ArrayList<String>());
+        TestHObserver obs = new TestHObserver("Observer");
+        
+        collectionObservable.addObserver(obs);
+        collectionObservable.add("HELLO");   //ADD ENUM    
+
+        collectionObservable.setChanged();
+        collectionObservable.notifyObservers(collectionObservable.get(0));
+        
+        assert(obs.getEvents().get(0) != null && collectionObservable.getSetChangedMode().equals(MANUAL));        
+    }
+
+
 }
