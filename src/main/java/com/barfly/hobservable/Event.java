@@ -16,6 +16,7 @@ public class Event
 {
     private HObservable observable;
     private Object eventData;
+    private EventDataEnum eventDataEnum = null;
     
     public Event(HObservable observable, Object eventData)
     {
@@ -48,7 +49,6 @@ public class Event
     @Override
     public String toString()
     {
-        //return "Observable " + this.getObservable().toString();
         return this.eventData + " | " + this.observable.toString();
     }    
 
@@ -66,6 +66,16 @@ public class Event
         }
         Event event = (Event) obj;
         return this.observable == event.observable && this.eventData == event.eventData;
+    }
+    
+    public void setEventDataEnum(EventDataEnum eventDataEnum)
+    {
+        this.eventDataEnum = eventDataEnum;
+    }
+    
+    public String getEventDataEnum()
+    {
+        return this.eventDataEnum.toString();
     }
     
     

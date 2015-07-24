@@ -7,9 +7,7 @@
  */
 
 
-import com.barfly.hobservable.CollectionEvent;
 import com.barfly.hobservable.Event;
-import static com.barfly.hobservable.EventDataEnum.ADD;
 import com.barfly.hobservable.HObservable;
 import com.barfly.hobservable.HObserver;
 import com.barfly.hobservable.collections.AbstractCollectionObservable;
@@ -24,7 +22,7 @@ import java.util.Observable;
 public class TestHObserver implements HObserver 
 {   
     private final List<Event> events = new ArrayList<>();
-
+    
     private final String observerID;
     private HObservable observable;  //originally testhobservable
      
@@ -44,7 +42,7 @@ public class TestHObserver implements HObserver
         if (observable instanceof AbstractCollectionObservable)
         {
             System.out.println("HERE its a collection event");
-            this.events.add(new CollectionEvent((HObservable) observable, eventData, ADD));    
+            this.events.add(new Event((HObservable) observable, eventData));
         }
         else
         {
@@ -53,7 +51,6 @@ public class TestHObserver implements HObserver
         }
     }     
     
-   
     
     
     /**

@@ -11,16 +11,11 @@ package com.barfly.hobservable;
  */
 public class CollectionEvent extends Event
 {
-    private final EventDataEnum eventDataEnum;
-    
     public CollectionEvent(HObservable observable, Object eventData, EventDataEnum eventDataEnum) 
     {
         super(observable, eventData);
-        this.eventDataEnum = eventDataEnum;
+        super.setEventDataEnum(eventDataEnum);
     }
     
-    public String getEventDataEnum()
-    {
-        return this.eventDataEnum.toString();
-    }
+
 }

@@ -185,11 +185,26 @@ public class CollectionsTester
         
         collectionObservable.addObserver(obs);
         collectionObservable.add("HELLO");   //ADD ENUM    
-
         collectionObservable.setChanged();
         collectionObservable.notifyObservers(collectionObservable.get(0));
         
         assert(obs.getEvents().get(0) != null && collectionObservable.getSetChangedMode().equals(MANUAL));        
+    }
+    
+    /**
+     * Tests if the collectionEvent can be read into the list of events and the ENUM says the right operation from the event
+     * TODO Get the enums to be read into the collectionEvent when updating the observer. 
+     */
+    @Test
+    public void collectionEvent()
+    {
+        ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, AUTO, new ArrayList<String>());
+        TestHObserver obs = new TestHObserver("Observer");       
+        
+        collectionObservable.add("Data 1");
+        collectionObservable.notifyObservers(collectionObservable.get(0));
+        
+        assertEquals(ADD, obs.getEvents().get(0).getEventDataEnum());
     }
 
 

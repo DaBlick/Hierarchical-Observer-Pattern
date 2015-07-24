@@ -3,6 +3,7 @@ package com.barfly.hobservable;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import static com.barfly.hobservable.NotificationOrder.PRE;
 import static com.barfly.hobservable.SetChangedMode.AUTO;
+import java.util.ArrayList;
 import java.util.Observable;
 
 
@@ -15,6 +16,8 @@ public class BaseHObservable extends Observable implements HObservable
     private BaseHObservable parentObservable;
     
     private String observableID;
+    
+    private ArrayList<EventDataEnum> eventOperations = new ArrayList<EventDataEnum>();
 
     private NotificationOrder order;
     
@@ -144,6 +147,16 @@ public class BaseHObservable extends Observable implements HObservable
             super.notifyObservers(eventData);
         }
         
+    }
+    
+    public void addEventDataEnum(EventDataEnum eventDataEnum)
+    {
+        this.eventOperations.add(eventDataEnum);
+    }
+    
+    public EventDataEnum getEventDataEnum(int i)
+    {
+        return this.eventOperations.get(i);
     }
     
     /**

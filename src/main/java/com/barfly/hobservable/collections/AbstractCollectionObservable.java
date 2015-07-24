@@ -6,6 +6,7 @@
 package com.barfly.hobservable.collections;
 
 import com.barfly.hobservable.BaseHObservable;
+import static com.barfly.hobservable.EventDataEnum.ADD;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import com.barfly.hobservable.SetChangedMode;
@@ -45,6 +46,7 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
         super(observableID, parentObservable, order, setChangedMode);
         this.collection = collection;    
     }
+        
     /**
      * Returns the size of the collection 
      * @return 
@@ -257,6 +259,7 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         }
         */
+        super.addEventDataEnum(ADD);
         return collection.add(e);
     }
    
