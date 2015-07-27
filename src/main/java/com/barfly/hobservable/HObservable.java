@@ -29,6 +29,7 @@ public interface HObservable
      * @see java.util.Observable#addObserver(java.util.Observer) 
      */    
     public void addObserver(HObserver observer);    
+
     
     /**
      * @see java.util.Observable#deleteObserver(java.util.Observer)
@@ -64,4 +65,5 @@ public interface HObservable
      * Returns the number of observers of an observable and its parent
      */    
     public int countAllObservers();
+    
 }

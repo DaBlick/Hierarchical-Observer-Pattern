@@ -39,7 +39,7 @@ public class TestHObserver implements HObserver
     @Override
     public void update(Observable observable, Object eventData) 
     {
-        if (observable instanceof AbstractCollectionObservable)
+        if (observable instanceof AbstractCollectionObservable)   //Make a testCollectionsObserver which extends testHObserver
         {
             System.out.println("HERE its a collection event");
             this.events.add(new Event((HObservable) observable, eventData));

@@ -196,15 +196,17 @@ public class CollectionsTester
      * TODO Get the enums to be read into the collectionEvent when updating the observer. 
      */
     @Test
-    public void collectionEvent()
+    public void collectionObserver()
     {
         ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, AUTO, new ArrayList<String>());
-        TestHObserver obs = new TestHObserver("Observer");       
+        TestCollectionObserver collectionObserver = new TestCollectionObserver("Observer");
         
-        collectionObservable.add("Data 1");
+        collectionObservable.add("Event Data");   //Should make the most recent change ADD as the enum
+        collectionObservable.addObserver(collectionObserver);
         collectionObservable.notifyObservers(collectionObservable.get(0));
+      
         
-        assertEquals(ADD, obs.getEvents().get(0).getEventDataEnum());
+        assert(collectionObserver.getEvents().get(0).getEventDataEnum() == ADD);
     }
 
 

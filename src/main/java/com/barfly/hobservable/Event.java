@@ -14,9 +14,8 @@ package com.barfly.hobservable;
  */
 public class Event 
 {
-    private HObservable observable;
-    private Object eventData;
-    private EventDataEnum eventDataEnum = null;
+    private final HObservable observable;
+    private final Object eventData;
     
     public Event(HObservable observable, Object eventData)
     {
@@ -66,16 +65,6 @@ public class Event
         }
         Event event = (Event) obj;
         return this.observable == event.observable && this.eventData == event.eventData;
-    }
-    
-    public void setEventDataEnum(EventDataEnum eventDataEnum)
-    {
-        this.eventDataEnum = eventDataEnum;
-    }
-    
-    public String getEventDataEnum()
-    {
-        return this.eventDataEnum.toString();
     }
     
     

@@ -25,6 +25,7 @@ public class BaseHObservable extends Observable implements HObservable
     
     private boolean consoleDisplayMode;
     
+    private EventDataEnum mostRecentChange;
     
     public BaseHObservable(String observableID, BaseHObservable parentObservable)   
     {
@@ -149,15 +150,6 @@ public class BaseHObservable extends Observable implements HObservable
         
     }
     
-    public void addEventDataEnum(EventDataEnum eventDataEnum)
-    {
-        this.eventOperations.add(eventDataEnum);
-    }
-    
-    public EventDataEnum getEventDataEnum(int i)
-    {
-        return this.eventOperations.get(i);
-    }
     
     /**
      * Returns the parent observable of this observable

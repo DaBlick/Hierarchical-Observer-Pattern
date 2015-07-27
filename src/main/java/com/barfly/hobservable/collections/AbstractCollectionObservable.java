@@ -6,6 +6,7 @@
 package com.barfly.hobservable.collections;
 
 import com.barfly.hobservable.BaseHObservable;
+import com.barfly.hobservable.EventDataEnum;
 import static com.barfly.hobservable.EventDataEnum.ADD;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
@@ -23,6 +24,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
 {
     protected final Collection<E> collection;   //arraylist, stack, list (Concrete types) 
     
+    private EventDataEnum eventDataEnum;
+
     public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, Collection<E> collection)   
     {
         super(observableID, parentObservable, POST, AUTO);
@@ -46,12 +49,14 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
         super(observableID, parentObservable, order, setChangedMode);
         this.collection = collection;    
     }
-        
+    
     /**
      * Returns the size of the collection 
      * @return 
      * @see java.util.Collection
      */ 
+   
+    
     @Override
     public int size() 
     {
@@ -155,7 +160,12 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     @Override
     public boolean addAll(Collection<? extends E> c) 
     {
-        super.setChanged();        
+        /*
+        if (this.getSetChangedMode().equals(AUTO))
+        {
+            super.setChanged();
+        }
+        */      
         return collection.addAll(c);
     }
 
@@ -259,7 +269,7 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         }
         */
-        super.addEventDataEnum(ADD);
+        setMostRecentChange(ADD);
         return collection.add(e);
     }
    
@@ -279,7 +289,16 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
         */
         return collection.removeAll((Collection<?>) e);
     }
-    
+
+    private void setMostRecentChange(EventDataEnum eventDataEnum) 
+    {
+        this.eventDataEnum = eventDataEnum;
+    }
+
+    private EventDataEnum getMostRecentChange() 
+    {
+        return this.eventDataEnum;
+    }    
     
     
     
