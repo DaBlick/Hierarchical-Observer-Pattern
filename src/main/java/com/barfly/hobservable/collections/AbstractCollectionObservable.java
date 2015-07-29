@@ -8,6 +8,7 @@ package com.barfly.hobservable.collections;
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.EventDataEnum;
 import static com.barfly.hobservable.EventDataEnum.ADD;
+import com.barfly.hobservable.HObservable;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import com.barfly.hobservable.SetChangedMode;
@@ -20,7 +21,7 @@ import java.util.Iterator;
  * @author jonathanodgis
  */
 
-public abstract class AbstractCollectionObservable<E> extends BaseHObservable implements Collection<E> 
+public abstract class AbstractCollectionObservable<E> extends BaseHObservable implements Collection<E>, HObservable
 {
     protected final Collection<E> collection;   //arraylist, stack, list (Concrete types) 
     
@@ -294,13 +295,11 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     {
         this.eventDataEnum = eventDataEnum;
     }
-
-    private EventDataEnum getMostRecentChange() 
+    
+    public EventDataEnum getMostRecentChange() 
     {
         return this.eventDataEnum;
     }    
-    
-    
     
     
 }

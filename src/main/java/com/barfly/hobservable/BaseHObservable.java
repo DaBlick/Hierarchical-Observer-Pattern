@@ -288,6 +288,11 @@ public class BaseHObservable extends Observable implements HObservable
             return countObservers();
         }
     }
+
+    public EventDataEnum getMostRecentChange() 
+    {
+        return this.mostRecentChange;
+    }
     
     
 }

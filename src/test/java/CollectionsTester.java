@@ -8,6 +8,7 @@ import com.barfly.hobservable.CollectionEvent;
 import static com.barfly.hobservable.EventDataEnum.ADD;
 import static com.barfly.hobservable.SetChangedMode.AUTO;
 import static com.barfly.hobservable.SetChangedMode.MANUAL;
+import com.barfly.hobservable.collections.AbstractCollectionObservable;
 import com.barfly.hobservable.collections.ListObservable;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,7 +137,7 @@ public class CollectionsTester
         
         collectionObservable.addObserver(obs);
         collectionObservable.add("Hello Test");   
-        collectionObservable.notifyObservers(new CollectionEvent(collectionObservable, collectionObservable.get(0), ADD));
+        collectionObservable.notifyObservers(new CollectionEvent((AbstractCollectionObservable) collectionObservable, collectionObservable.get(0)));
         
         //assertEquals(EventDataEnum.ADD, obs.getEvents().get(0).);      
     }
