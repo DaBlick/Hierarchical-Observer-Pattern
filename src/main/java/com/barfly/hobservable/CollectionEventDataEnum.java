@@ -11,7 +11,7 @@ package com.barfly.hobservable;
  *
  * @author jonathanodgis
  */
-public enum EventDataEnum 
+public enum CollectionEventDataEnum 
 {
     ADD,ADDALL,
     REMOVE,REMOVEALL,

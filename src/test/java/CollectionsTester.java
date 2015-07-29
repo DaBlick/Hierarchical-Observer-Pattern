@@ -5,11 +5,13 @@
  */
 
 import com.barfly.hobservable.CollectionEvent;
-import static com.barfly.hobservable.EventDataEnum.ADD;
+import static com.barfly.hobservable.CollectionEventDataEnum.ADD;
+import static com.barfly.hobservable.CollectionEventDataEnum.REMOVE;
 import static com.barfly.hobservable.SetChangedMode.AUTO;
 import static com.barfly.hobservable.SetChangedMode.MANUAL;
 import com.barfly.hobservable.collections.AbstractCollectionObservable;
 import com.barfly.hobservable.collections.ListObservable;
+import com.barfly.hobservable.collections.SetObservable;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -197,7 +199,7 @@ public class CollectionsTester
      * TODO Get the enums to be read into the collectionEvent when updating the observer. 
      */
     @Test
-    public void collectionObserver()
+    public void listObservable()
     {
         ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, AUTO, new ArrayList<String>());
         TestCollectionObserver collectionObserver = new TestCollectionObserver("Observer");
@@ -210,5 +212,26 @@ public class CollectionsTester
         assert(collectionObserver.getEvents().get(0).getEventDataEnum() == ADD);
     }
 
+    /**
+     * Tests if the collectionEvent can be read into the list of events and the ENUM says the right operation from the event 
+     * TODO extract info from the set
+     */    
+    @Test
+    public void setObservable()
+    {
+        SetObservable setObservable = new SetObservable("Observable", null, new ArrayList());
+        TestCollectionObserver observer = new TestCollectionObserver("Observer");
+        
+        setObservable.add("Hi");
+        setObservable.remove("Hi");
+        
+        setObservable.addObserver(observer);
+  
+        setObservable.notifyObservers(setObservable.toArray()[0]);    //the observable informs of the most recent change. TODO get index/data from a set
+
+        assert(observer.getEvents().get(0).getEventDataEnum().equals(REMOVE) && observer.getEvents().get(0).getEventData() != null);
+    }
+    
+    
 
 }
