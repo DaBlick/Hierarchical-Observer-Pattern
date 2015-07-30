@@ -48,4 +48,13 @@ changes (via addition and deletion) there is that opiion as well.
 
 This example is admittedly contrived and overkill but contrived overkill examples are usually the most helpful. 
 
-TBS - Logging "Aspect"
+#What is the Logging Observer?
+
+In the Hierarchical Observer Pattern, there are multiple types of observers that handle events differenty. Thg logging observer uses the Logger API in Java in order to handle incoming events at different levels of the log. The LoggingObserver instantiates a Logger using the built in Logger Factory and then events are processed by the LoggingObserver class and the proper log message is outputed through the log. The loggingObserver can write the data to different log levels such as DEBUG and INFO. 
+
+
+#What is the Collection Observable
+
+Suppose the user wants to have an observable consisting of a specific type of collection and they want to have observers notified when there is a change made to the observable collection. Collection Observable allows for observers to be fired an event that not only provides information about the data changed but also the operation executed on the list.
+
+For example, a collection observable that uses an ArrayList, a type of collection for its collection can add or remove data from its list. If data is removed from the list, the most recent event done on the observable's collection is set to Add and then the observers of this observable are notified of the recent change in the form of an enum. Examples of EventDataEnums are for ADD, REMOVE, ADDALL, REMOVEALL.
