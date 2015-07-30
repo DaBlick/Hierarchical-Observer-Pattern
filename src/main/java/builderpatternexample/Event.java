@@ -5,7 +5,7 @@
  */
 package builderpatternexample;
 
-import com.barfly.hobservable.EventDataEnum;
+import com.barfly.hobservable.CollectionEventDataEnum;
 import com.barfly.hobservable.HObservable;
 
 /**
@@ -16,7 +16,7 @@ public class Event
 {
     private final HObservable observable;   //required
     private final Object eventData;         //required
-    private final EventDataEnum eventDataEnum;  //optional (to be used with CollectionObservable instances)
+    private final CollectionEventDataEnum eventDataEnum;  //optional (to be used with CollectionObservable instances)
 
     Event(EventBuilder eventBuilder)
     {
@@ -39,7 +39,7 @@ public class Event
         return eventData;
     }
  
-    public EventDataEnum getEventDataEnum() 
+    public CollectionEventDataEnum getEventDataEnum() 
     {
         return eventDataEnum;
     }
@@ -48,7 +48,7 @@ public class Event
     {
         final HObservable observable;
         final Object eventData;
-        EventDataEnum eventDataEnum;
+        CollectionEventDataEnum eventDataEnum;
     
         public EventBuilder(HObservable observable, Object eventData) 
         {
@@ -56,7 +56,7 @@ public class Event
             this.eventData = eventData;
         }
 
-        public EventBuilder eventDataEnum(EventDataEnum eventDataEnum) 
+        public EventBuilder eventDataEnum(CollectionEventDataEnum eventDataEnum) 
         {
             this.eventDataEnum = eventDataEnum;
             return this;

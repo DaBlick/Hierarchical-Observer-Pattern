@@ -13,7 +13,7 @@ import com.barfly.hobservable.collections.AbstractCollectionObservable;
  */
 public class CollectionEvent extends Event
 {
-    private final EventDataEnum eventDataEnum;
+    private final CollectionEventDataEnum eventDataEnum;
     
     public CollectionEvent(AbstractCollectionObservable observable, Object eventData)
     {
@@ -21,7 +21,7 @@ public class CollectionEvent extends Event
         this.eventDataEnum = observable.getMostRecentChange();
     }
 
-    public EventDataEnum getEventDataEnum()
+    public CollectionEventDataEnum getEventDataEnum()
     {
         return this.eventDataEnum;
     }    

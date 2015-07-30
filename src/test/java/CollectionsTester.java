@@ -5,11 +5,12 @@
  */
 
 import com.barfly.hobservable.CollectionEvent;
-import static com.barfly.hobservable.EventDataEnum.ADD;
+import static com.barfly.hobservable.CollectionEventDataEnum.ADD;
 import static com.barfly.hobservable.SetChangedMode.AUTO;
 import static com.barfly.hobservable.SetChangedMode.MANUAL;
 import com.barfly.hobservable.collections.AbstractCollectionObservable;
 import com.barfly.hobservable.collections.ListObservable;
+import com.barfly.hobservable.collections.SetObservable;
 import java.util.ArrayList;
 import java.util.List;
 import static org.junit.Assert.assertEquals;
@@ -196,19 +197,33 @@ public class CollectionsTester
      * Tests if the collectionEvent can be read into the list of events and the ENUM says the right operation from the event
      * TODO Get the enums to be read into the collectionEvent when updating the observer. 
      */
+
     @Test
-    public void collectionObserver()
+    public void listObservable()
     {
         ListObservable<String> collectionObservable = new ListObservable<>("List Observable", null, AUTO, new ArrayList<String>());
         TestCollectionObserver collectionObserver = new TestCollectionObserver("Observer");
         
-        collectionObservable.add("Event Data");   //Should make the most recent change ADD as the enum
+        collectionObservable.add("Event Data");  
         collectionObservable.addObserver(collectionObserver);
         collectionObservable.notifyObservers(collectionObservable.get(0));
       
         
         assert(collectionObserver.getEvents().get(0).getEventDataEnum() == ADD);
-    }
+    }    
 
 
+    @Test
+    public void setObservable()
+    {
+        SetObservable<String> collectionObservable = new SetObservable<>("List Observable", null, AUTO, new ArrayList<String>());
+        TestCollectionObserver collectionObserver = new TestCollectionObserver("Observer");
+        
+        collectionObservable.add("Event Data");  
+        collectionObservable.addObserver(collectionObserver);
+        collectionObservable.notifyObservers(null);
+      
+        
+        assert(collectionObserver.getEvents().get(0).getEventDataEnum() == ADD);
+    }        
 }
