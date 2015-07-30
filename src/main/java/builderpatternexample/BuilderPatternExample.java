@@ -6,7 +6,7 @@
 package builderpatternexample;
 
 import com.barfly.hobservable.BaseHObservable;
-import static com.barfly.hobservable.CollectionEventDataEnum.ADD;
+import static com.barfly.hobservable.EventDataEnum.ADD;
 
 /**
  *

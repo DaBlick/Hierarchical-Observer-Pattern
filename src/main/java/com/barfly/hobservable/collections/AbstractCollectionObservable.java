@@ -6,13 +6,8 @@
 package com.barfly.hobservable.collections;
 
 import com.barfly.hobservable.BaseHObservable;
-import com.barfly.hobservable.CollectionEventDataEnum;
-import static com.barfly.hobservable.CollectionEventDataEnum.ADD;
-import static com.barfly.hobservable.CollectionEventDataEnum.ADDALL;
-import static com.barfly.hobservable.CollectionEventDataEnum.CLEAR;
-import static com.barfly.hobservable.CollectionEventDataEnum.REMOVE;
-import static com.barfly.hobservable.CollectionEventDataEnum.REMOVEALL;
-import static com.barfly.hobservable.CollectionEventDataEnum.RETAINALL;
+import com.barfly.hobservable.EventDataEnum;
+import static com.barfly.hobservable.EventDataEnum.ADD;
 import com.barfly.hobservable.HObservable;
 import com.barfly.hobservable.NotificationOrder;
 import static com.barfly.hobservable.NotificationOrder.POST;
@@ -30,7 +25,7 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
 {
     protected final Collection<E> collection;   //arraylist, stack, list (Concrete types) 
     
-    private CollectionEventDataEnum eventDataEnum;
+    private EventDataEnum eventDataEnum;
 
     public AbstractCollectionObservable(String observableID, BaseHObservable parentObservable, Collection<E> collection)   
     {
@@ -142,7 +137,6 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         }
         */
-        setMostRecentChange(REMOVE);
         return collection.remove(o);
     }
 
@@ -173,7 +167,6 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         }
         */      
-        setMostRecentChange(ADDALL);        
         return collection.addAll(c);
     }
 
@@ -192,7 +185,6 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         } 
         */
-        setMostRecentChange(REMOVEALL);        
         return collection.removeAll(c);
     }
 
@@ -211,7 +203,6 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         } 
         */
-        setMostRecentChange(RETAINALL);        
         return collection.retainAll(c);
     }
 
@@ -261,7 +252,6 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         } 
         */
-        setMostRecentChange(CLEAR);        
         collection.clear();
     }
     
@@ -298,16 +288,15 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
             super.setChanged();
         } 
         */
-        setMostRecentChange(REMOVEALL);        
         return collection.removeAll((Collection<?>) e);
     }
 
-    private void setMostRecentChange(CollectionEventDataEnum eventDataEnum) 
+    private void setMostRecentChange(EventDataEnum eventDataEnum) 
     {
         this.eventDataEnum = eventDataEnum;
     }
     
-    public CollectionEventDataEnum getMostRecentChange() 
+    public EventDataEnum getMostRecentChange() 
     {
         return this.eventDataEnum;
     }    

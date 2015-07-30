@@ -17,7 +17,7 @@ public class BaseHObservable extends Observable implements HObservable
     
     private String observableID;
     
-    private ArrayList<CollectionEventDataEnum> eventOperations = new ArrayList<CollectionEventDataEnum>();
+    private ArrayList<EventDataEnum> eventOperations = new ArrayList<EventDataEnum>();
 
     private NotificationOrder order;
     
@@ -25,7 +25,7 @@ public class BaseHObservable extends Observable implements HObservable
     
     private boolean consoleDisplayMode;
     
-    private CollectionEventDataEnum mostRecentChange;
+    private EventDataEnum mostRecentChange;
     
     public BaseHObservable(String observableID, BaseHObservable parentObservable)   
     {
@@ -289,7 +289,7 @@ public class BaseHObservable extends Observable implements HObservable
         }
     }
 
-    public CollectionEventDataEnum getMostRecentChange() 
+    public EventDataEnum getMostRecentChange() 
     {
         return this.mostRecentChange;
     }
