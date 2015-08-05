@@ -16,13 +16,10 @@ themselves as observers of the the contact list.
 
 #What is an Hierarchical Observer?
 
-Suppose we wanted finer grained control over the update notification.   For example, if we have a component that only
-displays the name, we don't need (nor "want") the expense of re-rendering if the thing that changed was the contact's 
+Suppose we wanted finer grained control over the update notification.   For example, if we have a component that only displays the name, we don't need (nor "want") the expense of re-rendering if the thing that changed was the contact's 
 phone number.
 
-HObserver expands on the design pattern by introducing the notion of Observables that are part of a tree of Observables.  
-The tree reflects the logical structure of the domain objects.   Each Observable in the tree C might have a parent Observable
-P.   Anytime a notification is sent to observers of C, notifications are also sent to observers of all ancestors of C.
+HObserver expands on the design pattern by introducing the notion of Observables that are part of a tree of Observables. The tree reflects the logical structure of the domain objects.   Each Observable in the tree C might have a parent Observable P. Anytime a notification is sent to observers of C, notifications are also sent to observers of all ancestors of C.
 
 It might be best to explain this in terms of our contact list example.  
 
@@ -49,29 +46,29 @@ This example is admittedly contrived and overkill but contrived overkill example
 
 The Logging Observer provides an easy way to create Log File entries in response to changes to an Observable. This is accomplished via a builtin Observer that writes a Log File entry for each change to the Observable via the SLF4J API.
 
-The LoggingObserver instantiates a Logger using the built in Logger Factory and then events are processed by the LoggingObserver class and the proper log message is outputted through the log. The loggingObserver can write the data to different log levels such as DEBUG and INFO. 
+The LoggingObserver instantiates a Logger using the built in Logger Factory and then the observer creates a log containing information about the events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, 'ERROR', and `INFO`. 
 
-To Be Added: Example of a Logging Observer implementation
+For example, an observer receives data from an observable and takes that info and generates a log that can be viewed post run-time. TBA: More information about the logback. 
 
 #What is the Collection Observable?
 
-Collection Observable allows for observers to be fired an event that not only provides information about the data changed in the collection of data, but also the operation executed onto the collection. 
+Collection Observable allows for observers to receive events that provide information about data that was changed in the collection.
 
-Collection Observable is an extension of the *BaseHObservable* class. *AbstractCollectionObservable* is an abstract class that has sub classes that extend it which use different data structures for their collections. The abstract class also implements the `Collection` Interface.
+Collection Observable is an extension of the `BaseHObservable` class. `AbstractCollectionObservable` is an abstract class that has sub classes that extend it which use different data structures for their collections. The abstract class also implements the `Collection` Interface.
 
-- *HObservable*
-	- *BaseHObservable*
-      - *AbstractCollectionObservable*
-	      - *ListObservable*
-	      - *SetObservable*
+- `HObservable`
+	- `BaseHObservable`
+      - `AbstractCollectionObservable`
+	      - `ListObservable`
+	      - `SetObservable`
 
-Suppose a collection observable that uses an ArrayList, a type of collection for its collection, can add or remove data from its list. If data is removed from the list, the most recent event done on the observable's collection is set to Add and then the observers of this observable are notified of the recent change in the form of an enum. Examples of *EventDataEnum* are for *ADD*, *REMOVE*, *ADDALL*, and *REMOVEALL*.
+Suppose a collection observable that uses an `ArrayList`, an instance of `Collection`. If data is added to the list, the observers are notified of the recent change in the form of an enum. Examples of *EventDataEnum* are for `ADD`, `REMOVE`, `ADDALL`, and `REMOVEALL`.
 
-Consider an instant messaging service that holds a list of contacts in a collection such as a list. The service with the collection of contact names is the observable and the observers are the clients downloaded by the user to use the service on a variety of devices. The clients must have the information about the user's account details provided by the service. Observers can receive information in the form of an event. 
+Consider an instant messaging service that holds a list of contacts in a collection such as a list. The service is the observable and the observers are the clients downloaded by the user to use the service on a variety of devices. Observers can receive information in the form of an event. 
 
-This event generated by the observer includes information about the operations occurring on the list. For the end user, the operations are adding and removing contacts from the current list of contact names. 
+This event includes information about the operations on the list. For the end user, the operations are adding and removing contacts from the current list of names. 
 
-As these changes are made, observers of this collection are notified in real time and the client is kept up to date about the current service list every time the user accesses the service from the client. 
+As these changes are made, observers of this collection are notified in real time and the client is kept up to date every time the user accesses the service from the client. 
 
 - Instant Messaging Service
 	- Client on Desktop
