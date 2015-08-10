@@ -46,9 +46,17 @@ This example is admittedly contrived and overkill but contrived overkill example
 
 The Logging Observer provides an easy way to create Log File entries in response to changes to an Observable. This is accomplished via a builtin Observer that writes a Log File entry for each change to the Observable via the SLF4J API.
 
-The LoggingObserver instantiates a Logger using the built in Logger Factory and then the observer creates a log containing information about the events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, 'ERROR', and `INFO`. 
+The LoggingObserver instantiates a Logger using the built in Logger Factory and then the observer creates a log which contains information about the events and the time that the event was logged. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
 
-For example, an observer receives data from an observable and takes that info and generates a log that can be viewed post run-time. TBA: More information about the logback. 
+Consider a stock market application that shows the values of a stock which changes over the course of the day. 
+
+The observers of these stock values is are logs that record the events and are updated with the new value as the day progresses. Each time a stock changes, the observers receive an event with the updated stock information. The information is then logged and the end user is presented a list of all the changes in the stock and the time new changes were made. This log can then be used to study the changes in the stock over a period of time. 
+
+- Stock Market Observable 
+	- Logging Observer A 
+	- Logging Observer B 
+	- Logging Observer C 
+
 
 #What is the Collection Observable?
 
