@@ -10,38 +10,19 @@ import org.slf4j.LoggerFactory;
  */
 public class LoggingHObserver implements HObserver {
 
+    private final String observerID;
     private static final LogLevel DEFAULT_LOGLEVEL = LogLevel.WARN;
-
-    private Logger log;
+    private static final Logger log = LoggerFactory.getLogger(LoggingHObserver.class);
 
     /**
      * Creates a LoggingObserver that generates its own Logger using
      * LoggerFactor.getLogger(name)
      *
-     * @param name
+     * @param observerID
      */
-    public LoggingHObserver(String name) {
-        log = LoggerFactory.getLogger(name);
-    }
-
-    /**
-     * Create a LoggingObserver that generates its own Logger using
-     * LoggingFactory.getLogger(clazz).
-     *
-     * @param clazz Class marker to use for all log events
-     */
-    public LoggingHObserver(Class<? extends Class> clazz) {
-        log = LoggerFactory.getLogger(clazz);
-    }
-
-    /**
-     * Create an Observer with provided Logger
-     *
-     * @param logger The Logger
-     *
-     */
-    public LoggingHObserver(Logger logger) {
-        log = logger;
+    public LoggingHObserver(String observerID) 
+    {
+        this.observerID = observerID;
     }
 
     /**
@@ -51,21 +32,26 @@ public class LoggingHObserver implements HObserver {
      * @param eventData The event context
      */
     @Override
-    public void update(Observable observable, Object eventData) {
+    public void update(Observable observable, Object eventData) 
+    {
         String eventDataStr;
         LogLevel logLevel = DEFAULT_LOGLEVEL;
-        if (eventData instanceof LoggingEventData) {
+        if (eventData instanceof LoggingEventData) 
+        {
 
             LoggingEventData ed = (LoggingEventData) eventData;
             logLevel = ed.getLogLevel();
             eventDataStr = ed.logString((HObservable) observable);
             System.out.println("This eventData [" + eventData + "] is an instance!");
-        } else {
+        } 
+        else 
+        {
             eventDataStr = eventData.toString();
             System.out.println("This eventData [" + eventData + "] is NOT an instance!");
         }
 
-        switch (logLevel) {
+        switch (logLevel) 
+        {
             case TRACE:
                 log.trace(eventDataStr);
                 break;
