@@ -46,9 +46,55 @@ This example is admittedly contrived and overkill but contrived overkill example
 
 The Logging Observer provides an easy way to create Log File entries in response to changes to an Observable. This is accomplished via a builtin Observer that writes a Log File entry for each change to the Observable via the SLF4J API.
 
-The LoggingObserver instantiates a Logger using the built in Logger Factory and then the observer creates a log containing information about the events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, 'ERROR', and `INFO`. 
+The LoggingObserver instantiates a Logger using the built in Logger Factory and then the observer creates a log which contains information about the events and the time that the event was logged. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
 
-For example, an observer receives data from an observable and takes that info and generates a log that can be viewed post run-time. TBA: More information about the logback. 
+Consider a tournament application that contains a list of the players competing in a tournament. 
+
+The Player List class contains functions such as adding players, removing players, and editing existing players in the list to provide updated information.
+
+For each of these functions, there is an observable designed to notify its observers of events. The `addObservable`, the `removeObservable`, and the `editObservable` are all children of the `mainObservable`.  If a player is added to the list, then the  `addObservable` will fire an event to its observers and also the parent, `mainObservable` will notify its observers of the event as well. 
+
+- `Player List`
+	- `mainObservable`
+		- Observers
+	- `AddObservable`
+		- Observers
+	- `RemoveObservable`
+		- Observers
+	- `EditingObservable`
+		- Observers
+
+The observers in this example are logging observers and display information about the changes to the `PlayerList` pertaining to the observable they observe. In this case, we are going to have observers that observe the `addObservable` and `editObservable`
+
+First, we initialize a `PlayerList` and also populate the list with `Player` objects. 
+
+PlayerList playerList = new PlayerList();
+Player player1 = new Player("Jon", 21, "M", "jon@gmail.com");
+Player player2 = new Player("Mike", 21, "M", "mike@gmail.com");
+
+`Player` objects contain fields such as the player's name, age, gender, and email. The information can be changed and accessed via setters and getters. 
+
+Next, we create `LoggingHObserver` objects which will observe the observables in the `PlayerList` class. 
+
+	HObserver observer1 = new LoggingHObserver("AddObserver");
+	HObserver observer2 = new LoggingHObserver("EditObserver");
+	HObserver observer3 = new LoggingHObserver("MainObserver");
+
+`LoggingHObserver` objects display information in the console related to the event it receives. When the observables use their built-in notifyObservers() method, these observers will be updated with the information and display it in the console. 
+
+	playerList.addObservable.addObserver(observer1);
+	playerList.editObservable.addObserver(observer2);
+	playerList.mainObservable.addObserver(observer3);
+	        
+This code adds the observers to the observable they will be notified events from. Anytime an event is notified, the parent also notifies its observers of the same event. For example, if `addObservable` calls notifyObservers(), it will also notify the `mainObservable` object's children as well.
+
+	playerList.addPlayer(player1);
+	playerList.addPlayer(player2);
+	playerList.editPlayer(player1, "Jonathan", player1.getAge(), player1.getGender(), "jonathan@gmail.com");
+
+We add two `Player` objects to the `PlayerList` and then edit one of the existing `Player` objects on the list. Since the addPlayer() method is being called twice, the `addObservable` and `mainObservable`'s observers are both being notified of changes in the PlayerList. The loggers should both display that `player1`  and `player2` were added. Finally, the `editObservable` will notify its observers since the playerList makes a call to the editPlayer() method. Both editObservable and its parent will notify their observers of the edit.
+
+Using the `LoggingHObserver` can serve as a useful form of keeping track of changes of different functions of a component. Like the example above where a list is modified in different ways, the observers can keep track of information of different observables and display information at the console level of the application. 
 
 #What is the Collection Observable?
 
