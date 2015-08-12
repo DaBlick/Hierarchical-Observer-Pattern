@@ -6,7 +6,6 @@
 package examples;
 
 import com.barfly.hobservable.BaseHObservable;
-import com.barfly.hobservable.HObservable;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +16,10 @@ public class PlayerList
 {
     ArrayList <Player>players = new ArrayList<>(); 
     
-    public HObservable mainObservable = new BaseHObservable("main observable", null);
-    public HObservable addObservable = new BaseHObservable("add observable", (BaseHObservable) mainObservable);
-    public HObservable removeObservable = new BaseHObservable("remove observable", (BaseHObservable) mainObservable);
-    public HObservable editObservable = new BaseHObservable("edit observable", (BaseHObservable) mainObservable);
+    public BaseHObservable mainObservable = new BaseHObservable("main observable", null);
+    public BaseHObservable addObservable = new BaseHObservable("add observable", (BaseHObservable) mainObservable);
+    public BaseHObservable removeObservable = new BaseHObservable("remove observable", (BaseHObservable) mainObservable);
+    public BaseHObservable editObservable = new BaseHObservable("edit observable", (BaseHObservable) mainObservable);
     
     public PlayerList()
     {
