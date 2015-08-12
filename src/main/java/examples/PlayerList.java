@@ -44,11 +44,10 @@ public class PlayerList
         
     public void editPlayer(Player player, String name, int age, String gender, String email)
     {
-        int index = players.indexOf(player);
-        players.get(index).setName(name);
-        players.get(index).setAge(age);
-        players.get(index).setGender(gender);
-        players.get(index).setEmail(email);
+        player.setName(name);
+        player.setAge(age);
+        player.setGender(gender);
+        player.setEmail(email);
         editObservable.notifyObservers(player + " was edited in the list");
     } 
     
@@ -67,43 +66,18 @@ public class PlayerList
         return this.mainObservable;
     }
     
-    public void setMainObservable(String observerID, BaseHObservable parentObservable)
-    {
-        this.mainObservable.setObservableID(observerID);
-        this.mainObservable.setParentObservable(parentObservable); 
-    }
-    
     public BaseHObservable getAddObservable()
     {
         return this.addObservable;
     }
 
-    public void setAddObservable(String observerID, BaseHObservable parentObservable)
-    {
-        this.addObservable.setObservableID(observerID);
-        this.addObservable.setParentObservable(parentObservable); 
-    }    
-    
     public BaseHObservable getRemoveObservable()
     {
         return this.removeObservable;
-    }    
-
-    public void setRemoveObservable(String observerID, BaseHObservable parentObservable)
-    {
-        this.removeObservable.setObservableID(observerID);
-        this.removeObservable.setParentObservable(parentObservable); 
     }    
     
     public BaseHObservable getEditObservable()
     {
         return this.editObservable;
     }        
-    
-    public void setEditObservable(String observerID, BaseHObservable parentObservable)
-    {
-        this.mainObservable.setObservableID(observerID);
-        this.mainObservable.setParentObservable(parentObservable); 
-    }    
-
 }
