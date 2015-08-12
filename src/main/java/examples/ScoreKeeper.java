@@ -15,42 +15,48 @@ import java.util.Observer;
  */
 public class ScoreKeeper extends LoggingHObserver implements Observer 
 {
-    PlayerList playerList = new PlayerList();
-    String observerID;
+    private PlayerList playerList;
     
     public ScoreKeeper(String observerID)
     {    
         super(observerID);
+        playerList = new PlayerList();
     }
     
     public void respondToAdd()
     {
-        System.out.println("add happened");
+        System.out.println("adding...");
     }
 
     public void respondToRemove()
     {
-        System.out.println("remove happened");
+        System.out.println("removing...");
     }
     
     public void respondToEdit()
     {
-        System.out.println("edit happened");
+        System.out.println("editing...");
     }    
 
+    public PlayerList getPlayerList()
+    {
+        return this.playerList;
+    }
+    
     @Override
     public void update(Observable observable, Object eventData) 
     {
         System.out.println("Updating...");
-        if (observable.toString().contains("add observable"));          
+        String observableID = observable.toString();
+        if (observableID.contains("add observable"));          
         {
             respondToAdd();
         }
-        if (observable.toString().contains("remove observable"))
+        if (observableID.contains("remove observable"))
         {
             respondToRemove();
         }
-        if (observable.toString().contains("edit observable"))
+        if (observableID.contains("edit observable"))
         {
             respondToEdit();           
         }

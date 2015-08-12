@@ -161,7 +161,7 @@ public class BaseHObservable extends Observable implements HObservable
         printConsoleDisplay("Getting the parentObservable....");        
         return parentObservable;
     }
-
+    
     /**
      * Sets the parent observable of this observable
      * @param parentObservable
@@ -183,6 +183,16 @@ public class BaseHObservable extends Observable implements HObservable
         return observableID;
     }
 
+    
+    /**
+     * Sets the observable ID of this observable
+     * @param observableID
+     */
+    public void setObservableID(String observableID)
+    {
+        this.observableID = observableID;
+    }
+    
     /**
      * Returns the path of the parent and child observable in string form
      * @return the path of the parent and child observable in string form
