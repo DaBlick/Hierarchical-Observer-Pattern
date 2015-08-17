@@ -7,9 +7,9 @@
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.HObserver;
 import com.barfly.hobservable.LoggingHObserver;
-import examples.Player;
-import examples.PlayerList;
-import examples.ScoreKeeper;
+import com.barfly.hobservable.loggingexample.Player;
+import com.barfly.hobservable.loggingexample.PlayerList;
+import com.barfly.hobservable.loggingexample.ScoreKeeper;
 import org.junit.Test;
 
 /**

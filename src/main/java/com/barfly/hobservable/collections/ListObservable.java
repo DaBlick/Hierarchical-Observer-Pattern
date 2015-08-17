@@ -45,6 +45,17 @@ public class ListObservable<T> extends AbstractCollectionObservable implements L
      * @see com.barfly.hobservable.BaseHObservable
      */
     
+    /**
+     *
+     * @return
+     * @see com.barfly.hobservable.BaseHObservable
+     */
+    @Override
+    public ListObservable getParentObservable()
+    {
+        return (ListObservable) super.getParentObservable();
+    }
+    
     @Override
     public int size() {
         return collection.size();
