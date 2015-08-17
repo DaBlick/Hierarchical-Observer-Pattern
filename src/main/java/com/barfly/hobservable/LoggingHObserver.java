@@ -69,5 +69,11 @@ public class LoggingHObserver implements HObserver {
                 break;
         }
     }
+    
+    @Override
+    public String toString()
+    {
+        return this.observerID;
+    }
 
 }
