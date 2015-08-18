@@ -1,7 +1,4 @@
 package com.barfly.hobservable;
-
-
-
 /**
  *
  * @author dblickstein

@@ -50,11 +50,6 @@ public class ListObservable<T> extends AbstractCollectionObservable implements L
      * @return
      * @see com.barfly.hobservable.BaseHObservable
      */
-    @Override
-    public ListObservable getParentObservable()
-    {
-        return (ListObservable) super.getParentObservable();
-    }
     
     @Override
     public int size() {

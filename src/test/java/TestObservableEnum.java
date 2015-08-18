@@ -1,4 +1,3 @@
-
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.HObservable;
 import com.barfly.hobservable.HObserver;

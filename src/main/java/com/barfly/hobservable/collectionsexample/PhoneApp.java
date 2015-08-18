@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.barfly.hobservable.collectionsexample;
 
 import com.barfly.hobservable.HObserver;
@@ -24,9 +19,9 @@ public class PhoneApp extends LoggingHObserver implements HObserver
     }
       
     @Override
-    public void update(Observable o, Object arg) 
+    public void update(Observable observable, Object event) 
     {
-        System.out.println(arg + " in the " + getAppID() + " " + o);
+        System.out.println(event + " in the " + getAppID() + " " + observable);
         updateCount++;
     }
     
