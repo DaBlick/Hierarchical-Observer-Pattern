@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import com.barfly.hobservable.collections.ListObservable;
 import com.barfly.hobservable.collectionsexample.Contact;
 import com.barfly.hobservable.collectionsexample.ContactsList;
@@ -21,11 +15,12 @@ public class ContactListObservablesTest
     {   
         PhoneApp appA = new PhoneApp("System App");  //Most important app that really needs the contacts
         PhoneApp appB = new PhoneApp("Email App");
-        PhoneApp appC = new PhoneApp("Social Media App");        
+        PhoneApp appC = new PhoneApp("Garbage Bin App");
         ContactsList contactsList = new ContactsList("User");
         ListObservable mainObservable = contactsList.getMainObservable();
         ListObservable addObservable = contactsList.getAddObservable();
-        ListObservable editObservable = contactsList.getEditObservable();
+        ListObservable removeObservable = contactsList.getRemoveObservable(); 
+
         Contact contact1 = new Contact("Jon", "111-111-1111");
         Contact contact2 = new Contact("Mike", "222-222-2222");
         Contact contact3 = new Contact("Alex", "333-333-3333");
@@ -33,18 +28,22 @@ public class ContactListObservablesTest
         
         mainObservable.addObserver(appA);
         addObservable.addObserver(appB);
-        editObservable.addObserver(appC);   
+        removeObservable.addObserver(appC);
         contactsList.addContact(contact1);
         contactsList.addContact(contact2);        
         contactsList.addContact(contact3);        
-        contactsList.addContact(contact4);  
-        contactsList.editContact(contact1, "Jonathan", "222-222-2222");
+        contactsList.addContact(contact4); 
+        contactsList.removeContact(contact3);
         
         int testAppAUpdateCount = appA.getUpdateCount();
         int testAppBUpdateCount = appB.getUpdateCount();
-        int testAppCUpdateCount = appC.getUpdateCount();
+        int testAppCUpdateCount = appC.getUpdateCount();  
+        boolean testConditionI = testAppAUpdateCount > testAppBUpdateCount && testAppBUpdateCount > testAppCUpdateCount;
+        boolean testConditionII = mainObservable.size() == contactsList.size();  
+        boolean testConditionIII = addObservable.size() == contactsList.size();
+        boolean testConditionIV = removeObservable.size() == contactsList.size();
         
-        assert(testAppAUpdateCount > testAppBUpdateCount && testAppBUpdateCount > testAppCUpdateCount);
+        assert(testConditionI && testConditionII && testConditionIII && testConditionIV);
         
     }
 }

@@ -1,4 +1,3 @@
-
 import com.barfly.hobservable.CollectionEvent;
 import com.barfly.hobservable.HObserver;
 import com.barfly.hobservable.collections.AbstractCollectionObservable;

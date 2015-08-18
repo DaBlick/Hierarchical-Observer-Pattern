@@ -1,5 +1,3 @@
-
-
 import com.barfly.hobservable.BaseHObservable;
 import com.barfly.hobservable.NotificationOrder;
 
