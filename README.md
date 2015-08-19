@@ -154,56 +154,56 @@ The output of this code is presented in log form and looks like this.
 -------------------------------------------------------
  T E S T S
 -------------------------------------------------------
-Running PlayerListObservablesTest
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.239 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.243 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.243 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.243 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-This eventData [Mike was added to the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Mike was added to the list
-This eventData [Mike was added to the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Mike was added to the list
-This eventData [Jon was removed from the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was removed from the list
-This eventData [Jon was removed from the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was removed from the list
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-This eventData [Mike was added to the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Mike was added to the list
-This eventData [Jonathan was edited in the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jonathan was edited in the list
-This eventData [Michael was edited in the list] is NOT an instance!
-18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Michael was edited in the list
-Starting...
-Updating...
-adding...
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.245 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-Updating...
-adding...
-This eventData [Jon was added to the list] is NOT an instance!
-18:03:56.245 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
-Updating...
-adding...
-This eventData [Jonathan was edited in the list] is NOT an instance!
-18:03:56.245 [main] WARN  c.b.hobservable.LoggingHObserver - Jonathan was edited in the list
-Updating...
-adding...
-editing...
-This eventData [Jonathan was edited in the list] is NOT an instance!
-18:03:56.246 [main] WARN  c.b.hobservable.LoggingHObserver - Jonathan was edited in the list
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 sec
+	Running PlayerListObservablesTest
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.239 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.243 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.243 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.243 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	This eventData [Mike was added to the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Mike was added to the list
+	This eventData [Mike was added to the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Mike was added to the list
+	This eventData [Jon was removed from the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was removed from the list
+	This eventData [Jon was removed from the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was removed from the list
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	This eventData [Mike was added to the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Mike was added to the list
+	This eventData [Jonathan was edited in the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Jonathan was edited in the list
+	This eventData [Michael was edited in the list] is NOT an instance!
+	18:03:56.244 [main] WARN  c.b.hobservable.LoggingHObserver - Michael was edited in the list
+	Starting...
+	Updating...
+	adding...
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.245 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	Updating...
+	adding...
+	This eventData [Jon was added to the list] is NOT an instance!
+	18:03:56.245 [main] WARN  c.b.hobservable.LoggingHObserver - Jon was added to the list
+	Updating...
+	adding...
+	This eventData [Jonathan was edited in the list] is NOT an instance!
+	18:03:56.245 [main] WARN  c.b.hobservable.LoggingHObserver - Jonathan was edited in the list
+	Updating...
+	adding...
+	editing...
+	This eventData [Jonathan was edited in the list] is NOT an instance!
+	18:03:56.246 [main] WARN  c.b.hobservable.LoggingHObserver - Jonathan was edited in the list
+	Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.137 sec
 
-Results :
+	Results :
 
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+	Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
 
--------------------------------------------------------
+	-------------------------------------------------------
 
 `LoggingHObserver` objects display information in the console related to the event it receives. When the observables use their built-in notifyObservers() method, these observers will be updated with the information and display it in the console. 
 
@@ -213,25 +213,164 @@ Using the `LoggingHObserver` can serve as a useful form of keeping track of chan
 
 Collection Observable allows for observers to receive events that provide information about data that was changed in the collection.
 
-Collection Observable is an extension of the `BaseHObservable` class. `AbstractCollectionObservable` is an abstract class that has sub classes that extend it which use different data structures for their collections. The abstract class also implements the `Collection` Interface.
+The Collection Observable is a sub-class of the existing `BaseHObservable` class. `AbstractCollectionObservable` is an abstract class that implements the `Collection` Interface and has sub classes which use other types of collections.
 
 - `HObservable`
 	- `BaseHObservable`
       - `AbstractCollectionObservable`
 	      - `ListObservable`
-	      - `SetObservable`
 
-Suppose a collection observable that uses an `ArrayList`, an instance of `Collection`. If data is added to the list, the observers are notified of the recent change in the form of an enum. Examples of *EventDataEnum* are for `ADD`, `REMOVE`, `ADDALL`, and `REMOVEALL`.
+Consider a mobile phone which consists of different apps that view a list of contacts. Apps can have access to this list and can be integrated with app's specific functionality. The contacts can be used in a phone app to make calls or in a social media app to get the contact's profile. 
 
-Consider an instant messaging service that holds a list of contacts in a collection such as a list. The service is the observable and the observers are the clients downloaded by the user to use the service on a variety of devices. Observers can receive information in the form of an event. 
+- `ContactsList`
+	- `mainObservable`
+		- `AppA`
+	- `AddObservable`
+		- `AppB`
+	- `RemoveObservable`
+		- `AppC`
 
-This event includes information about the operations on the list. For the end user, the operations are adding and removing contacts from the current list of names. 
+The `ContactList` contains a list of `Contact`s which are inserted in an `ArrayList`. The `ContactsList` can have `Contact`s added and removed. When these operations occur, the`ContactsList`'s `mainObservable`, `addObservable`, and `removeObservable` notify their observers of these changes. 
 
-As these changes are made, observers of this collection are notified in real time and the client is kept up to date every time the user accesses the service from the client. 
+	public class ContactsList
+	{
+	    private final String userID;
+	    private final ArrayList<Contact> contacts;   
+	    private final  ListObservable mainObservable;
+	    private final  ListObservable addObservable;
+	    private final  ListObservable removeObservable;
+	    private final  ListObservable editObservable;
 
-- Instant Messaging Service
-	- Client on Desktop
-	- Client on Web
-	- Client on Mobile
+	   public ContactsList(String userID, ListObservable parent)
+	    {
+	        this.userID = userID;
+	        contacts = new ArrayList<>();    
+	        mainObservable = new ListObservable<>("Main ListObservable", parent, contacts);    
+	        addObservable = new ListObservable<>("Add ListObservable", mainObservable, contacts);
+	        removeObservable = new ListObservable<>("Remove ListObservable", mainObservable, contacts);
+	        editObservable = new ListObservable<>("Edit ListObservable", mainObservable, contacts);
+	    }    
+
+	    public ContactsList(String userID)
+	    {
+	        this.userID = userID;
+	        contacts = new ArrayList<>();    
+	        mainObservable = new ListObservable<>("Main ListObservable", null, contacts);    
+	        addObservable = new ListObservable<>("Add ListObservable", mainObservable, contacts);
+	        removeObservable = new ListObservable<>("Remove ListObservable", mainObservable, contacts);
+	        editObservable = new ListObservable<>("Edit ListObservable", mainObservable, contacts);
+    }
+
+These observables are of type `ListObservable` which is a subclass of the `AbstractCollectionObservable`.  As changes are made to the `ArrayList` named `contacts`, the observables' collections are exactly the same as the `contacts` and will be changed accordingly. 
+
+The observers of these ListObservables are `appA`, `appB`, and `appC` which are all of the type `PhoneApp` and implement the `HObserver` interface. `PhoneApp` also extends the `LoggingHObserver` class so we have the option to integrate logging functionality into our program.  The appA object is an observer of the `mainObservable`, the appB object is an observer of the `addObservable`, and the appC object is an observer of the `removeObservable`.
+
+		public class PhoneApp extends LoggingHObserver implements HObserver 
+	{  
+	    private int updateCount;
+    
+	    public PhoneApp(String appID)
+	    {
+	        super(appID);
+	        this.updateCount = 0;
+	    }
+      
+	    @Override
+	    public void update(Observable observable, Object event) 
+	    {
+	        System.out.println(event + " in the " + getAppID() + " " + observable);
+        updateCount++;
+	    }
+    
+	    public String getAppID()
+	    {
+	        return super.toString();
+	    }
+    
+	    public int getUpdateCount()
+	    {
+	        return this.updateCount;
+	    }   
+	}
+
+Similar to the observer pattern, when the `ListObservable` calls its notifyObservers() method, the overriding update() method in the `PlayerApp` class will be called and the information will be displayed by the observer. The `PlayerApp` class also allows the user to get the name of the app and also the number of times that the app has been notified by an observable.
+
+The example program involves 3 apps (observers) being notified of changes in the phone's `ContactList`. To begin the implementation we need to first initialize the observers or in this case, the `PhoneApp` objects.
+
+        PhoneApp appA = new PhoneApp("System App");  
+        PhoneApp appB = new PhoneApp("Email App");
+        PhoneApp appC = new PhoneApp("Garbage Bin App");
+
+The `PhoneApp`'s parameter is a `String` that is the app's name. `AppA` is an example of a phone app that you open when calling a contact, `appB` is an email app example that observes the contacts and can be notified of any emails tied to that phone number. `AppC` is a utility app example that is informed of contacts that are removed from the list.  
+
+Next, we create the `ContactsList` that will store the `Contact`s. We also create reference objects to the different observables in the `ContactsList`.
+
+        ContactsList contactsList = new ContactsList("User");
+        ListObservable mainObservable = contactsList.getMainObservable();
+        ListObservable addObservable = contactsList.getAddObservable();
+        ListObservable removeObservable = contactsList.getRemoveObservable(); 
+
+`ContactsList` contains getters for all of its observables. This keeps the observables private and protected in the class. 
+
+Next we initiate some `Contact`s	 to be added to the contacts.  
+
+        Contact contact1 = new Contact("Jon", "111-111-1111");
+        Contact contact2 = new Contact("Mike", "222-222-2222");
+        Contact contact3 = new Contact("Alex", "333-333-3333");
+        Contact contact4 = new Contact("Tom", "444-444-4444");     
+
+The parameters of `Contact` are the name of the contact and the phone number. Both parameters are of type `String`.         
+
+Next, we add the observers `appA`, `appB`, and `appC` to the different observables so that they can receive events.
+
+        mainObservable.addObserver(appA);
+        addObservable.addObserver(appB);
+        removeObservable.addObserver(appC);
+
+We now add the previously initialized contacts to the `ContactList`.
+
+        contactsList.addContact(contact1);
+        contactsList.addContact(contact2);        
+        contactsList.addContact(contact3);        
+        contactsList.addContact(contact4); 
+
+To test the remove capabilities, let's take `contact3` off of the list. 
+
+        contactsList.removeContact(contact3);
+        
+Now that the contacts have been added to the list and we removed one of them, the assert code is tested. In this assertion, which checks the number of updates and the size of the lists. The assertion returns true. 
+
+        int testAppAUpdateCount = appA.getUpdateCount();
+        int testAppBUpdateCount = appB.getUpdateCount();
+        int testAppCUpdateCount = appC.getUpdateCount();  
+        boolean testConditionI = testAppAUpdateCount > testAppBUpdateCount && testAppBUpdateCount > testAppCUpdateCount;
+        boolean testConditionII = mainObservable.size() == contactsList.size();  
+        boolean testConditionIII = addObservable.size() == contactsList.size();
+        boolean testConditionIV = removeObservable.size() == contactsList.size();
+        
+        assert(testConditionI && testConditionII && testConditionIII && testConditionIV);
+
+The output of this code is presented looks like this. 
+
+-------------------------------------------------------
+	 T E S T S
+-------------------------------------------------------
+	Running ContactListObservablesTest
+	Jon | 111-111-1111 was added to the list in the System App Observable: Main ListObservable
+	Jon | 111-111-1111 was added to the list in the Email App Observable: Add ListObservable
+	Mike | 222-222-2222 was added to the list in the System App Observable: Main ListObservable
+	Mike | 222-222-2222 was added to the list in the Email App Observable: Add ListObservable
+	Alex | 333-333-3333 was added to the list in the System App Observable: Main ListObservable
+	Alex | 333-333-3333 was added to the list in the Email App Observable: Add ListObservable
+	Tom | 444-444-4444 was added to the list in the System App Observable: Main ListObservable
+	Tom | 444-444-4444 was added to the list in the Email App Observable: Add ListObservable
+	Alex | 333-333-3333 was removed from the list in the System App Observable: Main ListObservable
+	Alex | 333-333-3333 was removed from the list in the Garbage Bin App Observable: Remove ListObservable
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.17 sec
+
+	Results :
+
+	Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 
+The information about the changes made to the list are fired to the observing apps and the updates are displayed. 
