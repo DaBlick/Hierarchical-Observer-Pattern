@@ -21,7 +21,7 @@ phone number.
 
 HObserver expands on the design pattern by introducing the notion of Observables that are part of a tree of Observables. The tree reflects the logical structure of the domain objects.   Each Observable in the tree C might have a parent Observable P. Anytime a notification is sent to observers of C, notifications are also sent to observers of all ancestors of C.
 
-It might be best to explain this in terms of our contact list example.  
+It might be best to explain this in terms of the contact list example.  
 
 Here's a potential organization of the tree of oberservables:
 
@@ -46,7 +46,7 @@ This example is admittedly contrived and overkill but contrived overkill example
 
 The Logging Observer creates Log File entries in response to changes. This is accomplished via a builtin Observer that writes a Log File entry for each change to the Observable via the SLF4J API.
 
-The LoggingObserver instantiates a Logger using the Logger Factory and then creates a log which contains information about the passed events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
+The LoggingObserver instantiates a Logger using the Logger Factory and creates a log which contains information about the passed events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
 
 Consider a tournament application that contains a list of players and a score keeper that observes the changes in the list. 
 
@@ -54,7 +54,7 @@ The `PlayerList` class contains functions that add , remove, and edit `Player`s.
 
 For each function, there is a corresponding observable. 
 
-The `addObservable`, the `removeObservable`, and the `editObservable` are children of the `mainObservable`.  If a player is added, then the  `addObservable` will fire an event to its parent's and its own observers. 
+`AddObservable`, `removeObservable`, and `editObservable` are children of  `mainObservable`.  If a player is added, `addObservable` will fire an event to its parent's and its observers. 
 
 - `Player List`
 	- `mainObservable`
@@ -66,7 +66,7 @@ The `addObservable`, the `removeObservable`, and the `editObservable` are childr
 	- `EditingObservable`
 		- `ScoreKeeper`
 
-First, we create the `ScoreKeeper`which will be the observer. 
+First, we create the `ScoreKeeper`which will be an observer. 
 
         ScoreKeeper scoreKeeper = new ScoreKeeper("Score Keeper");
 
@@ -102,14 +102,14 @@ Here's a block from the `ScoreKeeper` class.
 	        super.update(observable, eventData);
 	    }   
 
-The `ScoreKeeper` contains a reference to the `PlayerList` class and an observerID. `ScoreKeeper` logs events using the overriding Update() method in response to changes in the list. 
+`ScoreKeeper` contains a reference to `PlayerList` and an observerID. `ScoreKeeper` logs events using the overriding Update() method in response to changes in the list. 
 
-Next, we initialize a `PlayerList` and also populate the list with `Player`s
+Next, we initialize `PlayerList` and populate it with `Player`s
 
         PlayerList playerList = scoreKeeper.getPlayerList();
         Player player = new Player("Jon", 21, "M", "jonathan@gmail.com");   
 
-`Player` objects contain the player's name, age, gender, and email.
+`Player`contains the player's name, age, gender, and email.
 
 Next, we create references to the observables.
 
@@ -117,7 +117,7 @@ Next, we create references to the observables.
         BaseHObservable addObservable = playerList.getAddObservable();
         BaseHObservable editObservable = playerList.getEditObservable();
         
-We add our `ScoreKeeper` to the observables.
+We add `ScoreKeeper` to the observables.
 
         System.out.println("Starting...");
         
@@ -125,14 +125,14 @@ We add our `ScoreKeeper` to the observables.
         addObservable.addObserver(scoreKeeper);
         editObservable.addObserver(scoreKeeper);
 
-`ScoreKeeper` is an observer of the `mainObservable`, the `addObservable`, and the `editObservable`. When a player is added, removed, edited, the observables will fire the events.
+`ScoreKeeper` is an observer of `mainObservable`, `addObservable`, and `editObservable`. When a player is added, removed, edited, observables will fire the events.
 
-Next, let's make some changes to the `PlayerList`. 
+Next, let's make some changes to `PlayerList`. 
 
         playerList.addPlayer(player);
         playerList.editPlayer(player, "Jonathan", player.getAge(), player.getGender(), "jonathan@gmail.com");
         
-This code will add a  `Player` and  edit a `Player`s name and email fields. As these two calls occur, the observers are updated. Let's take a look at the addPlayer() method in PlayerList.
+This code will add a  `Player` and edit a `Player`s name and email fields. As these two calls occur, the observers are updated. Let's take a look at the addPlayer() method in PlayerList.
 
     public void addPlayer(Player player)
     {
@@ -140,7 +140,7 @@ This code will add a  `Player` and  edit a `Player`s name and email fields. As t
         addObservable.notifyObservers(player + " was added to the list");
     }
     
-The player is added to the list and the addObservable notifies the observers of the event. Our `ScoreKeeper` is updated via the notifyObservers() method.
+The player is added to the list and the addObservable notifies the observers of the event. `ScoreKeeper` is updated via the notifyObservers() method.
 
 Finally, we run an assertion to test the size of the list and the information of the edited player.
 
@@ -294,19 +294,19 @@ The observers of these ListObservables are `appA`, `appB`, and `appC` which are 
 	    }   
 	}
 
-Similar to the observer pattern, when the `ListObservable` calls its notifyObservers() method, the overriding update() method in the `PlayerApp` class will be called and the information will be displayed by the observer. The `PlayerApp` class also allows the user to get the name of the app and the number of times that the app has been notified by an observable.
+Similar to the observer pattern, when `ListObservable` calls notifyObservers(), the overriding update() method in `PhoneApp` will be called and the information will be displayed. `PhoneApp` allows the user to get the name of the app and number of updates that the app received.
 
 The example program involves 3 apps (observers) being notified of changes in the phone's `ContactList`. 
 
-First, we initialize the observers or in this case, the `PhoneApp` objects.
+First, we initialize the observers or in this case, the `PhoneApp`s.
 
         PhoneApp appA = new PhoneApp("System App");  
         PhoneApp appB = new PhoneApp("Email App");
         PhoneApp appC = new PhoneApp("Garbage Bin App");
 
-The `PhoneApp`'s parameter is a `String` that is the app's name. `AppA` is an example of a phone app that you open when calling a contact, `appB` is an email app example that observes the contacts and can be notified of any emails tied to that phone number. `AppC` is a utility app example that is informed of contacts that are removed from the list.  
+`PhoneApp`'s parameter is a `String` that is the app's name. `AppA` is an example of a phone app that you open when calling a contact, `appB` is an email app example that observes the contacts and can be notified of any emails tied to that phone number. `AppC` is a utility app example that is informed of contacts that are removed from the list.  
 
-Next, we initialize the `ContactsList` and the reference objects to the observables in the `ContactsList`.
+Next, we initialize `ContactsList` and reference objects to the observables in `ContactsList`.
 
         ContactsList contactsList = new ContactsList("User");
         ListObservable mainObservable = contactsList.getMainObservable();
@@ -330,7 +330,7 @@ Next, we add the observers `appA`, `appB`, and `appC` to the different observabl
 
 `AppA` is an observer of `mainObservable`, `appB`  is an observer of `addObservable`, and `appC`  is an observer of `removeObservable`.
 
-We add the `Contact`s to the `ContactList`.
+We add `Contact`s to the `ContactList`.
 
         contactsList.addContact(contact1);
         contactsList.addContact(contact2);        
@@ -341,7 +341,7 @@ To test the remove capabilities, let's remove `contact3`.
 
         contactsList.removeContact(contact3);
         
-Now, the assert code is tested. This assertion tests both the number of updates and the size of the lists. 
+Now, the assert code is tested. This assertion tests both the number of updates and size of the lists. 
 
         int testAppAUpdateCount = appA.getUpdateCount();
         int testAppBUpdateCount = appB.getUpdateCount();
