@@ -46,6 +46,7 @@ This example is admittedly contrived and overkill but contrived overkill example
 
 The Logging Observer creates Log File entries in response to changes. This is accomplished via a builtin Observer that writes a Log File entry for each change to the Observable via the SLF4J API.
 
+<<<<<<< HEAD
 The LoggingObserver instantiates a Logger using the Logger Factory and creates a log which contains information about the passed events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
 
 Consider a tournament application that contains a list of players and a score keeper that observes the changes in the list. 
@@ -209,6 +210,19 @@ The output of this code is presented in log form and looks like this.
 	-------------------------------------------------------
 
 Using the `LoggingHObserver` allows for the observers to keep track of information of different observables and display information at the console level of the application. 
+
+The LoggingObserver instantiates a Logger using the built in Logger Factory and then the observer creates a log which contains information about the events and the time that the event was logged. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
+
+Consider a stock market application that shows the values of a stock which changes over the course of the day. 
+
+The observers of these stock values is are logs that record the events and are updated with the new value as the day progresses. Each time a stock changes, the observers receive an event with the updated stock information. The information is then logged and the end user is presented a list of all the changes in the stock and the time new changes were made. This log can then be used to study the changes in the stock over a period of time. 
+
+- Stock Market Observable 
+	- Logging Observer A 
+	- Logging Observer B 
+	- Logging Observer C 
+
+>>>>>>> e1d5e065e68c9378f8239f1a969f6a0c75499da8
 
 #What is the Collection Observable?
 
