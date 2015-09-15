@@ -1,29 +1,23 @@
 # Hierarchical Observer
 
-HObserver is an extension of the `java.util.Observable` class and it's supporting framework that allows Observables to 
-be part of an hierarchy such that events fired to any observable are also fired to its ancestors.
+HObserver is an extension of the `java.util.Observable` class that allows Observables to 
+be part of an hierarchy where events fired by a child observable are also its ancestor's observers.
 
-#Observer Pattern
+## Gang-of-Four Observer Pattern
 
-`Observable` is an implementation of the GOF (Gang of Four) "Observer" pattern. An "Observable" provides an API with which
-"Observers" can register themselves for notifications whenever the Observable is changed.   Since Observers register with 
-Observable, the Observer is unaware of and thus decouple from its observers.
+`Observable` is an implementation of the GOF (Gang of Four) "Observer" pattern. 
+"Observers" register themselves for notifications whenever the Observable is changed.   The observable does make explicit calls to its observers.   Instead observers register with observable and thus the observable is decoupled from its observers.
 
-For example, in a typical AJAX web application changing the name of some domain entity may require re-rendering in another 
-part of the DOM where the name is displayed.   Let's say we have a web app that maintains a contact list.   Whenever the 
-name of  a contact is changed, we might need to update any place where names are used.   Such places would register
-themselves as observers of the the contact list.
+## What is an Hierarchical Observer?
 
-#What is an Hierarchical Observer?
+To illustrate the purpose of having an hierarchical observer, consider a typical AJAX web application that maintains a contact list.   Whenever the 
+name of  a contact is changed, components that display names would need to be updated.   Such places would register themselves as observers of the the contact list.
 
-Suppose we wanted finer grained control over the update notification.   For example, if we have a component that only displays the name, we don't need (nor "want") the expense of re-rendering if the thing that changed was the contact's 
-phone number.
+Now suppose we wanted finer grained control over the update notification.   For example, if we have a component that displays only names, we don't need re-rendering when a contact's phone number is changed.
 
-HObserver expands on the design pattern by introducing the notion of Observables that are part of a tree of Observables. The tree reflects the logical structure of the domain objects.   Each Observable in the tree C might have a parent Observable P. Anytime a notification is sent to observers of C, notifications are also sent to observers of all ancestors of C.
+HObserver expands on the design pattern by introducing the notion of Observables that are part of a tree of Observables. The tree reflects a particular view of the domain objects.   Each Observable in the tree C might have a parent Observable P. Anytime a notification is sent to observers of C, notifications are also sent to observers of all ancestors of C.
 
-It might be best to explain this in terms of the contact list example.  
-
-Here's a potential organization of the tree of oberservables:
+In terms of our contact list example,  here's a potential organization of the tree:
 
 - Contact List
    - Contact
@@ -34,19 +28,21 @@ Here's a potential organization of the tree of oberservables:
       - Address
          - Country
 
-Every time a contact's Home Phone is changed, all observers of the "Home Phone" Observable are notified.   But an observer who registered as an observer of "Phone Numbers" will also get a notification when the "Home Phone" is changed, or any
+Every time a contact's Home Phone is changed, all observers of the "Home Phone" Observable are notified.   But an observer who registered as an observer of "Phone Numbers" will also get a notification when the "Home Phone" is changed, or along with changes to any other
 phone number.
 
-Observers can also register for notification of changes to ANY part of a contact by registering with "Contact". And if you have something that wants to be notified whenever any part of a contact changes, or whenever the list itself 
-changes (via addition and deletion) there is that option as well.
+Observers can also register for notification of changes to ANY part of a contact by registering with "Contact".
 
-This example is admittedly contrived and overkill but contrived overkill examples are usually the most helpful.
+# Supplied Observers and Observables
 
-#What is the Logging Observer?
+One prefabricated Observer and several prefabircated observables are supplied by the HObservable project.
+
+- `LoggingObserver` - an obserer that writes an Observables events to an SFL4J log
+- There are several Collection observables that can be used to turn a Java `Collection` into an observable. 
+## What is the Logging Observer?
 
 The Logging Observer creates Log File entries in response to changes. This is accomplished via a builtin Observer that writes a Log File entry for each change to the Observable via the SLF4J API.
 
-<<<<<<< HEAD
 The LoggingObserver instantiates a Logger using the Logger Factory and creates a log which contains information about the passed events. The `LoggingObserver` can write the data to different log levels such as `DEBUG`, `TRACE`, `WARN`, `ERROR`, and `INFO`. 
 
 Consider a tournament application that contains a list of players and a score keeper that observes the changes in the list. 
@@ -152,7 +148,7 @@ Finally, we run an assertion to test the size of the list and the information of
         
         assert(playerList.size() == 1 && testPlayer.getName().equals(testName) && testPlayer.getEmail().equals(testEmail)); 
 
-The output of this code is presented in log form and looks like this. 
+The log from this example looks like this:
 
 
 -------------------------------------------------------
@@ -224,7 +220,7 @@ The observers of these stock values is are logs that record the events and are u
 
 >>>>>>> e1d5e065e68c9378f8239f1a969f6a0c75499da8
 
-#What is the Collection Observable?
+## What is the Collection Observable?
 
 Collection Observable allows for observers to receive events that provide information about data that was changed in the collection.
 
@@ -367,7 +363,7 @@ Now, the assert code is tested. This assertion tests both the number of updates 
         
         assert(testConditionI && testConditionII && testConditionIII && testConditionIV);
 
-The output of this code is presented looks like this. 
+The log from this example looks like this: 
 
 -------------------------------------------------------
 	 T E S T S
