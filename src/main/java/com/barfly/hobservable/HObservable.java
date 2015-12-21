@@ -6,29 +6,31 @@ package com.barfly.hobservable;
 public interface HObservable 
 {
     /**
-     * implements the same functionality as java.util.Observable#setChanged()
+     * implements the same functionality as java.util.Observable.setChanged().
      * @see java.util.Observable#setChanged() 
      */
     public void setChanged();
 
     /**
-     * implements the same functionality as java.util.Observable#notifyObservers()
+     * implements the same functionality as java.util.Observable.notifyObservers().
      * @see java.util.Observable#notifyObservers() 
      */    
     public void notifyObservers();
     
     /**
+     * implements the same functionality as java.util.Observable.notifyObservers(java.lang.Object).
      * @see java.util.Observable#notifyObservers(java.lang.Object) 
      */    
     public void notifyObservers(Object o);
 
     /**
+     * Adds an observer to the observable's list of observers.
      * @see java.util.Observable#addObserver(java.util.Observer) 
      */    
     public void addObserver(HObserver observer);    
-
-    
+  
     /**
+     * Removes an observer from the observable's list of observers.
      * @see java.util.Observable#deleteObserver(java.util.Observer)
      */    
     public void deleteObserver(HObserver observer);
@@ -40,8 +42,8 @@ public interface HObservable
     public String getObservableID();
 
     /**
-     * Returns the parentObservable
-     * @return the parentObservable
+     * Returns the parent observable of the observable
+     * @return the parent observable 
      */
     public BaseHObservable getParentObservable();
 
@@ -59,7 +61,8 @@ public interface HObservable
     public int countObservers();
 
     /**
-     * Returns the number of observers of an observable and its parent
+     * Returns the number of observers of both the observable and parent
+     * @return  the number of observers of the observable and parent
      */    
     public int countAllObservers();
     

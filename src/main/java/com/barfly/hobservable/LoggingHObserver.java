@@ -17,7 +17,6 @@ public class LoggingHObserver implements HObserver {
     /**
      * Creates a LoggingObserver that generates its own Logger using
      * LoggerFactor.getLogger(name)
-     *
      * @param observerID
      */
     public LoggingHObserver(String observerID) 

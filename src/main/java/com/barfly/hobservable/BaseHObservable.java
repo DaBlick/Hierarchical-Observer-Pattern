@@ -67,6 +67,7 @@ public class BaseHObservable extends Observable implements HObservable
     /**
      * Removes an observer from the observable's list of observers
      * @param observer 
+     * @see java.util.Observable
      */
     @Override
     public void deleteObserver(HObserver observer)
@@ -89,7 +90,7 @@ public class BaseHObservable extends Observable implements HObservable
     }
     
     /**
-     * Notifies the observers of an observable and its parent. 
+     * Notifies the observers of an observable and the observable's parent. 
      */
     @Override
     public void notifyObservers() 
@@ -118,7 +119,7 @@ public class BaseHObservable extends Observable implements HObservable
     }
 
     /**
-     * Notifies the observers of an observable and its parent. 
+     * Notifies the observers of an observable and the observable's parent. 
      * @param eventData
      */    
     @Override
@@ -135,9 +136,9 @@ public class BaseHObservable extends Observable implements HObservable
             super.notifyObservers(eventData);
             if (parentObservable != null)
             {
-                parentObservable.notifyObservers(eventData);   //Notifies this observable's parent's observers         
+                parentObservable.notifyObservers(eventData);           
             }
-//
+
         }
         if (order.equals(POST))
         {
@@ -152,8 +153,8 @@ public class BaseHObservable extends Observable implements HObservable
     
     
     /**
-     * Returns the parent observable of this observable
-     * @return the parent observable of this observable
+     * Returns the parent observable of the observable
+     * @return the parent observable
      */
     @Override
     public BaseHObservable getParentObservable() 
@@ -299,6 +300,10 @@ public class BaseHObservable extends Observable implements HObservable
         }
     }
 
+    /**
+     * Returns the most recent change to the collection 
+     * @return the most recent change to the collection
+     */
     public CollectionEventDataEnum getMostRecentChange() 
     {
         return this.mostRecentChange;

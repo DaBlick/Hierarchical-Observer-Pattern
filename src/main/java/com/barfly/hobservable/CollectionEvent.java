@@ -14,6 +14,10 @@ public class CollectionEvent extends Event
         this.eventDataEnum = observable.getMostRecentChange();
     }
 
+    /**
+     * Returns the event data enumerator
+     * @return the event data enumerator
+     */
     public CollectionEventDataEnum getEventDataEnum()
     {
         return this.eventDataEnum;
