@@ -25,7 +25,7 @@ public class LoggingHObserverTester
         observable.setChanged();
         observable.notifyObservers(new EventData("Hello", LogLevel.DEBUG));
         
-        //assert(observerA.getLog.equals("DEBUG")); // TODO this test is wrong.   
+        //assert(observerA..equals("DEBUG")); // TODO this test is wrong.   
     }    
 
     /**

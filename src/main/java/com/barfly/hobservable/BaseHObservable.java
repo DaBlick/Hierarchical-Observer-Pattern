@@ -3,9 +3,7 @@ package com.barfly.hobservable;
 import static com.barfly.hobservable.NotificationOrder.POST;
 import static com.barfly.hobservable.NotificationOrder.PRE;
 import static com.barfly.hobservable.SetChangedMode.AUTO;
-import java.util.ArrayList;
 import java.util.Observable;
-
 
 /**
  *
@@ -14,23 +12,16 @@ import java.util.Observable;
 public class BaseHObservable extends Observable implements HObservable
 {
     private BaseHObservable parentObservable;
-    
-    private String observableID;
-    
-    private ArrayList<CollectionEventDataEnum> eventOperations = new ArrayList<CollectionEventDataEnum>();
-
+    private String observableID;    
     private NotificationOrder order;
-    
-    private SetChangedMode setChangedMode;
-    
-    private boolean consoleDisplayMode;
-    
+    private SetChangedMode setChangedMode; 
+    private boolean consoleDisplayMode; 
     private CollectionEventDataEnum mostRecentChange;
     
     public BaseHObservable(String observableID, BaseHObservable parentObservable)   
     {
         this(observableID, parentObservable, POST, AUTO);
-    }    
+    }     
     
     public BaseHObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order)  
     {
@@ -50,10 +41,9 @@ public class BaseHObservable extends Observable implements HObservable
         this.setChangedMode = setChangedMode;        
     }
    
-
     /**
-     * Adds an observer to the observable's list of observers
-     * @param observer
+     * Adds an observer to the observable's known list of observers.
+     * @param observer The observer to be added.
      * @see java.util.Observable
      */    
     @Override
@@ -61,12 +51,11 @@ public class BaseHObservable extends Observable implements HObservable
     {
         printConsoleDisplay("Registering observer....");
         super.addObserver(observer);
-        //Should we add a way to set the observable in the observer object in this method?
     }    
     
     /**
-     * Removes an observer from the observable's list of observers
-     * @param observer 
+     * Removes an observer from the observable's known list of observers.
+     * @param observer The observer to be deleted.
      * @see java.util.Observable
      */
     @Override
@@ -78,9 +67,10 @@ public class BaseHObservable extends Observable implements HObservable
 
     /**
      * Toggles the status of an observable before notifying the observers
+     * @see java.util.Observable
      */
     @Override
-    public void setChanged()    //make a test based on this
+    public void setChanged()   
     {
         super.setChanged();
         if (this.parentObservable != null)
@@ -90,7 +80,8 @@ public class BaseHObservable extends Observable implements HObservable
     }
     
     /**
-     * Notifies the observers of an observable and the observable's parent. 
+     * Notifies the observers of an observable and the observable's parent of an event. 
+     * @see java.util.Observable
      */
     @Override
     public void notifyObservers() 
@@ -104,7 +95,7 @@ public class BaseHObservable extends Observable implements HObservable
         {
             if (parentObservable != null)
             {
-                parentObservable.notifyObservers();   //Notifies this observable's parent's observers         
+                parentObservable.notifyObservers();         
             }
             super.notifyObservers();            
         }
@@ -113,19 +104,19 @@ public class BaseHObservable extends Observable implements HObservable
             super.notifyObservers();
             if (parentObservable != null)
             {
-                parentObservable.notifyObservers();   //Notifies this observable's parent's observers         
+                parentObservable.notifyObservers();        
             }           
         }
     }
 
     /**
-     * Notifies the observers of an observable and the observable's parent. 
-     * @param eventData
+     * Notifies the observers of an observable and the observable's parent of an event.  
+     * @param eventData the information being fired to the observers.
+     * @see java.util.Observable
      */    
     @Override
     public void notifyObservers(Object eventData) 
     {
-
         printConsoleDisplay("Broadcasting event.....");
         if (this.setChangedMode.equals(AUTO))
         {
@@ -138,7 +129,6 @@ public class BaseHObservable extends Observable implements HObservable
             {
                 parentObservable.notifyObservers(eventData);           
             }
-
         }
         if (order.equals(POST))
         {
@@ -150,11 +140,10 @@ public class BaseHObservable extends Observable implements HObservable
         }
         
     }
-    
-    
+
     /**
-     * Returns the parent observable of the observable
-     * @return the parent observable
+     * Returns the parent observable of the observable.
+     * @return the parent observable.
      */
     @Override
     public BaseHObservable getParentObservable() 
@@ -164,8 +153,8 @@ public class BaseHObservable extends Observable implements HObservable
     }
     
     /**
-     * Sets the parent observable of this observable
-     * @param parentObservable
+     * Sets the parent observable of the observable.
+     * @param parentObservable The parent of the observable.
      */    
     @Override
     public void setParentObservable(BaseHObservable parentObservable) 
@@ -175,19 +164,18 @@ public class BaseHObservable extends Observable implements HObservable
     }
 
     /**
-     * Returns the name of the observable
-     * @return the name of the observable
+     * Returns the name of the observable.
+     * @return the name of the observable.
      */
     @Override
     public String getObservableID()        
     {
         return observableID;
     }
-
-    
+  
     /**
-     * Sets the observable ID of this observable
-     * @param observableID
+     * Sets the name of this observable.
+     * @param observableID The name of the observable. 
      */
     public void setObservableID(String observableID)
     {
@@ -195,30 +183,23 @@ public class BaseHObservable extends Observable implements HObservable
     }
     
     /**
-     * Returns the path of the parent and child observable in string form
-     * @return the path of the parent and child observable in string form
+     * Returns the path of the observable and its parent.
+     * @return the path of the observable and its parent.
      */
     public String getFullPath() 
     {
         String result = this.toString();
-        /*
-        while (this.parentObservable != null) 
-        {
-            result += "/";
-            result = result + parentObservable.toString();
-        }
-        */
+
         if (this.parentObservable != null)
         {
             result = this.parentObservable.getFullPath() + "/" + result;
-            //result = result + "/" + this.parentObservable.getFullPath();
         }
         return result;
     }
     
     /**
-     * Returns the notification order
-     * @return the notification order
+     * Returns the notification order of the observable and its parent
+     * @return the notification order of the observable and its parent
      */
     public NotificationOrder getNotificationOrder()
     {
@@ -266,6 +247,7 @@ public class BaseHObservable extends Observable implements HObservable
     /**
      * Returns the name of the observable
      * @return the name of the observable 
+     * @see java.lang.Object
      */
     @Override
     public String toString()
@@ -276,6 +258,7 @@ public class BaseHObservable extends Observable implements HObservable
     /**
      * Returns the number of observers of the observable
      * @return the number of observers
+     * @see java.util.Observable
      */
     @Override
     public int countObservers()
@@ -285,7 +268,7 @@ public class BaseHObservable extends Observable implements HObservable
     
     /**
      * Returns the number of observers of the observable and its parent
-     * @return the number of observers of the observable and the parent
+     * @return the number of observers of the observable and its parent
      */
     @Override
     public int countAllObservers()
@@ -301,8 +284,8 @@ public class BaseHObservable extends Observable implements HObservable
     }
 
     /**
-     * Returns the most recent change to the collection 
-     * @return the most recent change to the collection
+     * Returns the most recent change to the observable's collection
+     * @return the most recent change to the observable's collection
      */
     public CollectionEventDataEnum getMostRecentChange() 
     {

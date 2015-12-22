@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public class LoggingHObserver implements HObserver {
 
     private final String observerID;
-    private static final LogLevel DEFAULT_LOGLEVEL = LogLevel.WARN;
+    private final LogLevel DEFAULT_LOGLEVEL = LogLevel.WARN;
     private static final Logger log = LoggerFactory.getLogger(LoggingHObserver.class);
 
     /**
@@ -25,10 +25,9 @@ public class LoggingHObserver implements HObserver {
     }
 
     /**
-     * Receives events from the Observer and writes them to the log
-     *
-     * @param observable The Observable
-     * @param eventData The event context
+     * Receives events from the Observable and writes them to the log.
+     * @param observable The observable.
+     * @param eventData The event data.
      */
     @Override
     public void update(Observable observable, Object eventData) 
@@ -68,7 +67,11 @@ public class LoggingHObserver implements HObserver {
                 break;
         }
     }
-    
+ 
+    /**
+     * Returns the name of the observer.
+     * @return the name of the observer.
+     */
     @Override
     public String toString()
     {

@@ -9,10 +9,39 @@ package com.barfly.hobservable.collections;
  *
  * @author jonathanodgis
  */
+/**
+ * The collection event data functions that can be used
+ * @author jonathanodgis
+ */
 public enum ListEventDataEnum 
 {
-    ADD,ADDALL,
-    REMOVE,REMOVEALL,
-    RETAIN,RETAINALL,
-    CLEAR,    
+    /**
+     * The ADD function
+     */
+    ADD,
+    /**
+     * The ADDALL function
+     */
+    ADDALL,
+    /**
+     * The REMOVE function
+     */
+    REMOVE,
+    /**
+     * The REMOVEALL function
+     */
+    REMOVEALL,
+    /**
+     * The RETAIN function
+     */
+    RETAIN,
+    /**
+     * The RETAINALL function
+     */
+    RETAINALL,
+    /**
+     * THe CLEAR function
+     */
+    CLEAR,
+     ;    
 }

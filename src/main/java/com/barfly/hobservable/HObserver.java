@@ -17,7 +17,7 @@ public interface HObserver extends Observer
 
     /**
      * implements the same functionality as java.util.Observer#toString() 
-     * @return String of the Observer 
+     * @return the name of the observer 
      * @see java.util.Observer#toString() 
      */
     public String toString();

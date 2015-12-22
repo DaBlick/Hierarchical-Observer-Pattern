@@ -33,8 +33,8 @@ public class Event
     }
     
     /**
-     * Returns the string of the observable.
-     * @return the string of the observable
+     * Returns the name of the observable.
+     * @return the name of the observable
      */
     @Override
     public String toString()
@@ -44,8 +44,8 @@ public class Event
 
     /**
      * Returns boolean value if the object is an instance of the event interface
-     * @param obj
-     * @return boolean value
+     * @param obj The object 
+     * @return false if the object passed is not an instance of the Event class; otherwise true if the event and objects's observables and eventData are equal to each other.
      */
     @Override
     public boolean equals(Object obj) 
@@ -56,7 +56,5 @@ public class Event
         }
         Event event = (Event) obj;
         return this.observable == event.observable && this.eventData == event.eventData;
-    }
-    
-    
+    }   
 }

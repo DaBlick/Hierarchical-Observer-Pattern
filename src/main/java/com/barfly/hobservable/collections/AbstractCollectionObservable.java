@@ -49,12 +49,10 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
     
     /**
-     * Returns the size of the collection 
-     * @return 
+     * Returns the size of the collection.
+     * @return the size of the collection.
      * @see java.util.Collection
      */ 
-   
-    
     @Override
     public int size() 
     {
@@ -62,8 +60,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * Returns boolean value if the collection is empty or not empty
-     * @return 
+     * Returns boolean value if the collection is empty or not empty.
+     * @return true if the collection is empty; otherwise false.
      * @see java.util.Collection
      */
     @Override
@@ -73,9 +71,9 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * Returns boolean value if the collection contains the object specified in the parameter
-     * @param o
-     * @return 
+     * Returns boolean value if the collection contains the object specified in the parameter.
+     * @param o the object.
+     * @return true if the collection contains the object; otherwise false.
      * @see java.util.Collection
      */
     @Override
@@ -85,8 +83,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * Returns the iterator of the collection
-     * @return 
+     * Returns the iterator of the collection.
+     * @return the iterator.
      * @see java.util.Collection
      */
     @Override
@@ -96,8 +94,8 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * Returns the collection as an array
-     * @return the collection as an array
+     * Returns the collection as an array.
+     * @return the array of the collection.
      * @see java.util.Collection
      */
     @Override
@@ -108,9 +106,9 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
 
     /**
      * 
-     * @param <T>
-     * @param a
-     * @return 
+     * @param <T> 
+     * @param a The array.
+     * @return the array of the collection.
      * @see java.util.Collection
      */
     @Override
@@ -121,26 +119,20 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
 
     /**
      * 
-     * @param o
-     * @return 
+     * @param o The object to be removed.
+     * @return true if the object is removed from the collection; otherwise false.
      * @see java.util.Collection
      */
     @Override
     public boolean remove(Object o) 
     {
-        /*
-        if (this.getSetChangedMode().equals(AUTO))
-        {
-            super.setChanged();
-        }
-        */
         return collection.remove(o);
     }
 
     /**
      * 
-     * @param c
-     * @return 
+     * @param c The collection to be checked with the current collection.
+     * @return true if the collections contains all the elements in the collection. 
      * @see java.util.Collection
      */
     @Override
@@ -150,7 +142,6 @@ public abstract class AbstractCollectionObservable<E> extends BaseHObservable im
     }
 
     /**
-     * 
      * @param c
      * @return 
      * @see java.util.Collection

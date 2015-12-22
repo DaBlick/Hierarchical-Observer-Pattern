@@ -49,20 +49,20 @@ public interface HObservable
 
     /**
      * Sets the value of the parentObservable
-     * @param parentObservable 
+     * @param parentObservable The parent of the observable.
      */
     public void setParentObservable(BaseHObservable parentObservable);
 
     /**
      * Returns the number of observers of an observable
-     * @return the number of the observers
+     * @return the number of the observers of an observable
      * @see java.util.Observable#countObservers() 
      */    
     public int countObservers();
 
     /**
      * Returns the number of observers of both the observable and parent
-     * @return  the number of observers of the observable and parent
+     * @return the number of observers of the observable and parent
      */    
     public int countAllObservers();
     
