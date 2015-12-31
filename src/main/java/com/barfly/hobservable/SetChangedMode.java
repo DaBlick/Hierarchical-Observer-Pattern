@@ -1,20 +1,17 @@
 package com.barfly.hobservable;
 
 /**
- *
+ * Set changed modes used to change whether the setChanged() function is called automatically or manually by the user. 
  * @author jonathanodgis
- */
-/**
- * Set changed modes that can be used
  */
 public enum SetChangedMode 
 {
     /**
-     * The AUTO mode 
+     * Enum representing the automatic setChangedMode. Using this enum allows the observable to call the setChanged() method automatically.
      */
     AUTO(), 
     /**
-     * The MANUAL mode
+     * Enum representing the manual setChangedMode. Using this enum allows the observable to call the setChanged ONLY when the user makes the setChanged() calls manually. 
      */
     MANUAL();
 }

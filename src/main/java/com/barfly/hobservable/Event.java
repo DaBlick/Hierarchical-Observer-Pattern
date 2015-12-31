@@ -1,6 +1,10 @@
 package com.barfly.hobservable;
+
 /**
- *
+ * This class represents the Event object.
+ * The object is used as a representation of an event and its data. When Update is called in the TestHObserver class, a new instance of an Event object is created using 
+ * the event's data and a reference to the HObservable that notified the observer. The events then stored as CollectionEventDataEnums and stored in
+ * an ArrayList of events in the TestCollectionObserver class.
  * @author jonathanodgis
  */
 public class Event 
@@ -8,6 +12,11 @@ public class Event
     private final HObservable observable;
     private final Object eventData;
     
+    /**
+     * Creates a new Event using a HObservable observable and an Object eventData.
+     * @param observable
+     * @param eventData 
+     */
     public Event(HObservable observable, Object eventData)
     {
         this.eventData = eventData;

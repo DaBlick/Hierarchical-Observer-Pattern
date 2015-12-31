@@ -1,6 +1,6 @@
 package com.barfly.hobservable;
 /**
- *
+ * This Interface represents the HObservable object and contains all the methods to be used by all of the classes that implement it. 
  * @author dblickstein
  */
 public interface HObservable 
@@ -19,18 +19,21 @@ public interface HObservable
     
     /**
      * implements the same functionality as java.util.Observable.notifyObservers(java.lang.Object).
+     * @param o The object that is fired to the observers
      * @see java.util.Observable#notifyObservers(java.lang.Object) 
      */    
     public void notifyObservers(Object o);
 
     /**
-     * Adds an observer to the observable's list of observers.
+     * Adds an observer to the observable's known list of observers.
+     * @param observer The observer that is added to the observable.
      * @see java.util.Observable#addObserver(java.util.Observer) 
      */    
     public void addObserver(HObserver observer);    
   
     /**
-     * Removes an observer from the observable's list of observers.
+     * Removes an observer from the observable's known list of observers.
+     * @param observer The observer that is removed from the observable.
      * @see java.util.Observable#deleteObserver(java.util.Observer)
      */    
     public void deleteObserver(HObserver observer);

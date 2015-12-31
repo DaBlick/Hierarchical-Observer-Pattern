@@ -5,7 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * This class represents the LoggingHObserver object which implements the HObserver Interface. The class also uses the slf4j LoggerFactory to log events to the console at different log levels such as TRACE, DEBUG, WARN, ERROR, and INFO.
+ * An instance of this class is initialized with an observerID.
  * @author jonathanodgis
  */
 public class LoggingHObserver implements HObserver {
@@ -15,8 +16,7 @@ public class LoggingHObserver implements HObserver {
     private static final Logger log = LoggerFactory.getLogger(LoggingHObserver.class);
 
     /**
-     * Creates a LoggingObserver that generates its own Logger using
-     * LoggerFactor.getLogger(name)
+     * Creates a LoggingObserver using a String observerID.
      * @param observerID
      */
     public LoggingHObserver(String observerID) 

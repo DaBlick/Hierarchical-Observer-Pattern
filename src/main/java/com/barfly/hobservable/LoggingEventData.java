@@ -1,7 +1,8 @@
 package com.barfly.hobservable;
 
 /**
- *
+ * This Interface represents the LoggingEventData object. 
+ * Instances of this interface are associated with the LoggingHObserver class and are logged as events in the console. 
  * @author jonathanodgis
  */
 public interface LoggingEventData 

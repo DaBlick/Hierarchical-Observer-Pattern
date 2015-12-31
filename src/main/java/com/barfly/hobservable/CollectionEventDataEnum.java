@@ -1,40 +1,38 @@
 package com.barfly.hobservable;
 /**
- *
+ * Collection event data functions used to define the functions in the collection observables and assign the mostRecentChange field in BaseHObservable an enum value representing the last function on the collection.
  * @author jonathanodgis
  */
-/**
- * Collection event data functions that can be used.
- */
+
 public enum CollectionEventDataEnum 
 {
     /**
-     * The ADD function
+     * Enum constant representing the add function of the collection.
      */
     ADD,
     /**
-     * The ADDALL function
+     * Enum constant representing the add all function of the collection 
      */
     ADDALL,
     /**
-     * The REMOVE function
+     * Enum constant representing the remove function of the collection
      */
     REMOVE,
     /**
-     * The REMOVEALL function
+     * Enum constant representing the remove all function of the collection
      */
     REMOVEALL,
     /**
-     * The RETAIN function
+     * Enum constant representing the retain function of the collection
      */
     RETAIN,
     /**
-     * The RETAINALL function
+     * Enum constant representing the retain all function of the collection
      */
     RETAINALL,
     /**
-     * The CLEAR function
+     * Enum constant representing the clear function of the collection
      */
     CLEAR,
-     ;    
+     ;  
 }

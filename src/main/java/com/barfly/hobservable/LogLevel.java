@@ -1,11 +1,8 @@
 package com.barfly.hobservable;
 
 /**
- *
+ * The Log Levels used to determine the level that an event is logged at in the logger.
  * @author dblickstein
- */
-/**
- * Log levels that can be used.
  */
 public enum LogLevel {
     /**

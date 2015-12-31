@@ -23,7 +23,7 @@ public class phoneAppObservesPhoneContacts
         Contact contact2 = new Contact("Mike", "222-222-2222");
         Contact contact3 = new Contact("Alex", "333-333-3333");
         Contact contact4 = new Contact("Tom", "444-444-4444");     
-        
+               
         mainObservable.addObserver(appA);
         addObservable.addObserver(appB);
         removeObservable.addObserver(appC);

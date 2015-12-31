@@ -29,7 +29,7 @@ public class ContactsList
     public ContactsList(String userID)
     {
         this.userID = userID;
-        contacts = new ArrayList<>();    
+        contacts = new ArrayList<>();         
         mainObservable = new ListObservable<>("Main ListObservable", null, contacts);    
         addObservable = new ListObservable<>("Add ListObservable", mainObservable, contacts);
         removeObservable = new ListObservable<>("Remove ListObservable", mainObservable, contacts);

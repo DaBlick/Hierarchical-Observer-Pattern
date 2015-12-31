@@ -6,7 +6,9 @@ import static com.barfly.hobservable.SetChangedMode.AUTO;
 import java.util.Observable;
 
 /**
- *
+ * This class represents the BaseHObservable object which is an extension of the Observable class and implements the HObservable interface. It can contain a parent or be a parent to another HObservable object. 
+ * It can also hold multiple observers and notify them using the notifyObservers() method, which then calls the observer's update method. The instance of the BaseHObservable can be created with preset notification orders and setChanged modes but can also 
+ * be set by the user in another class. This allows for the user to control how the object updates its observers. 
  * @author dblickstein
  */
 public class BaseHObservable extends Observable implements HObservable
@@ -18,21 +20,46 @@ public class BaseHObservable extends Observable implements HObservable
     private boolean consoleDisplayMode; 
     private CollectionEventDataEnum mostRecentChange;
     
+    
+  /**
+   * Creates a new BaseHObservable object using a string observableID and a BaseHObservable parentObservable.
+   * @param observableID The name of the observable
+   * @param parentObservable The observable's parent
+   */    
     public BaseHObservable(String observableID, BaseHObservable parentObservable)   
     {
         this(observableID, parentObservable, POST, AUTO);
     }     
     
+  /**
+   * Creates a new BaseHObservable object using a string observableID, a BaseHObservable parentObservable, and a NotificationOrder order.
+   * @param observableID The name of the observable
+   * @param parentObservable The observable's parent
+   * @param order The observables's notification order when notifyObservers() is used
+   */       
     public BaseHObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order)  
     {
         this(observableID, parentObservable, order, AUTO);
     }    
 
+  /**
+   * Creates a new BaseHObservable object using a string observableID, a BaseHObservable parentObservable, and a SetChangedMode setChangedMode.
+   * @param observableID The name of the observable
+   * @param parentObservable The observable's parent
+   * @param setChangedMode The setting to determine if the observable needs to be setChanged manually by the user via a setChanged() call or automatically done by the class
+   */           
     public BaseHObservable(String observableID, BaseHObservable parentObservable, SetChangedMode setChangedMode)   
     {
         this(observableID, parentObservable, POST, setChangedMode);
     }        
-    
+
+  /**
+   * Creates a new BaseHObservable object using a string observableID, a BaseHObservable parentObservable, a NotificationOrder order, and a SetChangedMode setChangedMode.
+   * @param observableID The name of the observable
+   * @param parentObservable The observable's parent
+   * @param order The observables's notification order when notifyObservers() is used
+   * @param setChangedMode The setting to determine if the observable needs to be setChanged manually by the user via a setChanged() call or automatically done by the class
+   */     
     public BaseHObservable(String observableID, BaseHObservable parentObservable, NotificationOrder order, SetChangedMode setChangedMode)
     {
         this.observableID = observableID;
@@ -80,7 +107,7 @@ public class BaseHObservable extends Observable implements HObservable
     }
     
     /**
-     * Notifies the observers of an observable and the observable's parent of an event. 
+     * Notifies the observers of an observable and its parent by calling the observer's update method and firing the event to them.  
      * @see java.util.Observable
      */
     @Override
@@ -110,7 +137,7 @@ public class BaseHObservable extends Observable implements HObservable
     }
 
     /**
-     * Notifies the observers of an observable and the observable's parent of an event.  
+     * Notifies the observers of an observable and its parent by calling the observer's update method and firing the event to them.  
      * @param eventData the information being fired to the observers.
      * @see java.util.Observable
      */    
@@ -142,7 +169,7 @@ public class BaseHObservable extends Observable implements HObservable
     }
 
     /**
-     * Returns the parent observable of the observable.
+     * Returns the observable's parent.
      * @return the parent observable.
      */
     @Override
@@ -153,7 +180,7 @@ public class BaseHObservable extends Observable implements HObservable
     }
     
     /**
-     * Sets the parent observable of the observable.
+     * Sets the observables's parent.
      * @param parentObservable The parent of the observable.
      */    
     @Override
@@ -291,6 +318,4 @@ public class BaseHObservable extends Observable implements HObservable
     {
         return this.mostRecentChange;
     }
-    
-    
 }
